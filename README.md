@@ -79,6 +79,7 @@ Ao final, você recebe um resultado em linguagem simples, que pode ser salvo em 
 - Toque em **Baixar em PDF (imprimir e salvar como PDF)** no resultado.
 - No campo de destino, escolha **Salvar como PDF**. Se você preencheu o campo de nome no início, o nome do arquivo sai com ele e com a data.
 - Cada pessoa tem o próprio PDF.
+- Se o PDF sair cortado no celular, use **Baixar em HTML (arquivo para guardar)**. Ele baixa um arquivo `.html` com o resultado completo, que abre sem internet e pode ser impresso ou salvo como PDF em qualquer navegador.
 - O PDF traz, no fim, o **código de respostas** e a data em que foi gerado. Se o resultado da tela se perder, o PDF guarda o que é preciso para recuperá-lo (ver abaixo).
 
 ### Recuperar ou atualizar um resultado
@@ -106,6 +107,8 @@ Respostas de códigos gerados antes desta versão continuam válidas. As pergunt
 O resultado traz três conjuntos de profissões, com finalidades diferentes:
 
 1. **Profissões de destaque (75):** são as que o teste calcula. Cada uma tem a descrição do que faz, as características comuns e a indicação de formação (graduação, técnico, curso livre ou sem formação obrigatória). Quando a profissão pode exigir registro ou licença, o resultado avisa.
+
+   Como o cálculo pesa as respostas: as notas de interesse e habilidade (de 0 a 5) decidem a ordem. As marcações de "gosto" e "não gosto" e as áreas marcadas entram só como ajuste pequeno, para que uma escolha isolada não mude o resultado inteiro. Assim, respostas diferentes nas notas mudam as profissões sugeridas.
 2. **Mais 20 profissões para explorar:** escolhidas por mim nas duas listas oficiais, a CBO (Brasil) e a CPP (Portugal), para cobrir áreas pouco representadas nas profissões de destaque. A letra C (organização e dados) aparece em 16 delas, E (negócios) em 17, S (cuidado) em 21 e R (trabalho prático) em 37. Cada uma traz o motivo da escolha e um link de busca na Wikipédia para saber mais. Elas não entram no ranking.
 3. **Lista de nomes (só na tela):** cerca de 2.800 nomes das duas listas oficiais, com busca por nome. Serve para encontrar uma profissão específica. Não tem descrições, e não sai no PDF.
 

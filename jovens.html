@@ -72,12 +72,24 @@ body.big{font-size:20px}
 body.calm *{transition:none!important;animation:none!important}
 @media (max-width:640px){.two{grid-template-columns:1fr}.row{grid-template-columns:110px 1fr 30px}.hero h2{font-size:21px}.float{right:10px;bottom:10px;font-size:14px;padding:10px 14px}}
 @media print{
-  body{background:#fff;font-size:12pt}
-  header,.no-print,.float{display:none!important}
-  main{padding:0;max-width:none}
-  .card{border:none;padding:0;break-inside:avoid}
+  @page{size:A4;margin:14mm 12mm}
+  /* Impressão e "Salvar como PDF": nada pode ficar com altura, largura ou rolagem fixa, senão o navegador corta o conteúdo */
+  html,body,main,#app,.card,.res,.course{height:auto!important;max-height:none!important;min-height:0!important;overflow:visible!important;position:static!important;width:auto!important;max-width:none!important;float:none!important;transform:none!important}
+  html,body{background:#fff;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{font-family:Arial,Helvetica,sans-serif;font-size:12pt;line-height:1.5;color:#000}
+  header,.no-print,.float,details summary{display:none!important}
+  details{display:block!important}
+  main{padding:0;margin:0}
+  .card{border:none;padding:0;margin:0 0 10px;box-shadow:none;background:none}
   .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .res h3{break-after:avoid}
+  /* Quebras de página: títulos ficam com o texto que vem depois; blocos grandes podem quebrar */
+  h2,h3,h4,.res h3,.res h4,.lbl{break-after:avoid;page-break-after:avoid}
+  .course-h,.lbl{break-inside:avoid;page-break-inside:avoid}
+  p,li{orphans:3;widows:3}
+  .course{break-inside:auto;page-break-inside:auto;margin:0 0 10px}
+  .res h3{margin-top:18px;padding-bottom:4px}
+  .bar div,.track i,.pill,.code{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a{color:inherit;text-decoration:none}
   footer{display:none}
 }
 </style>
@@ -338,6 +350,22 @@ function imprimirPDF(){
   document.title='Resultado-jovem-'+nome+'-'+new Date().toISOString().slice(0,10);
   window.addEventListener('afterprint',()=>{document.title=antigo;},{once:true});
   window.print();
+}
+
+// Baixa o resultado como arquivo HTML autônomo (abre sem internet e imprime bem em qualquer navegador)
+function baixarHTML(){
+  const app=document.getElementById('app');
+  const copia=app.cloneNode(true);
+  copia.querySelectorAll('.no-print,.float,button,details').forEach(e=>e.remove());
+  const css=[...document.querySelectorAll('style')].map(s=>s.textContent).join('\n');
+  const nome=(S.nome||'sem-nome').replace(/[^A-Za-z0-9À-ɏ]+/g,'-').replace(/^-|-$/g,'');
+  const doc='<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>Resultado-'+nome+'</title>\n<style>\n'+css+'\n</style>\n</head>\n<body>\n<main>'+copia.innerHTML+'</main>\n</body>\n</html>';
+  const blob=new Blob([doc],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='Resultado-'+nome+'-'+new Date().toISOString().slice(0,10)+'.html';
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 }
 
 /* =========================================================
@@ -702,13 +730,15 @@ function rankProfissoes(med,gostaIdx,gostaMap,menosIdx,menosMap){
   const gosta={}, menos={};
   (Array.isArray(gostaIdx)?gostaIdx:[]).forEach(k=>{(gostaMap[k]||'').split('').forEach(l=>gosta[l]=(gosta[l]||0)+1);});
   (Array.isArray(menosIdx)?menosIdx:[]).forEach(k=>{(menosMap[k]||'').split('').forEach(l=>menos[l]=(menos[l]||0)+1);});
+  // Notas de interesse e habilidade (0–5) pesam mais. As marcações entram só como ajuste pequeno e limitado.
+  const PESO_GOSTA=0.15, PESO_MENOS=0.1, TETO_MARCA=2;
   return Object.keys(PROF_META).map(n=>{
     const m=PROF_META[n], ls=m[0].split('');
     const base=ls.reduce((s,l)=>s+med[l],0)/ls.length;
-    const bon=ls.reduce((s,l)=>s+(gosta[l]||0),0)/ls.length;
-    const pen=ls.reduce((s,l)=>s+(menos[l]||0),0)/ls.length;
+    const bon=Math.min(TETO_MARCA,ls.reduce((s,l)=>s+(gosta[l]||0),0)/ls.length);
+    const pen=Math.min(TETO_MARCA,ls.reduce((s,l)=>s+(menos[l]||0),0)/ls.length);
     const dims=ls.filter(l=>med[l]>=3);
-    return {n:n,fm:m[1],reg:m[2],score:base+0.4*bon-0.25*pen,dims:dims.length?dims:[ls.slice().sort((a,b)=>med[b]-med[a])[0]]};
+    return {n:n,fm:m[1],reg:m[2],score:base+PESO_GOSTA*bon-PESO_MENOS*pen,dims:dims.length?dims:[ls.slice().sort((a,b)=>med[b]-med[a])[0]]};
   }).sort((a,b)=>b.score-a.score).slice(0,10);
 }
 
@@ -918,6 +948,7 @@ function renderResultado(){
   app.innerHTML=
    '<div class="no-print" style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:12px">'+
      '<button class="btn" onclick="imprimirPDF()">Baixar em PDF (imprimir e salvar como PDF)</button>'+
+     '<button class="btn ghost" onclick="baixarHTML()">Baixar em HTML (arquivo para guardar)</button>'+
      '<button class="btn ghost" onclick="novaPessoa()">Nova pessoa</button>'+
    '</div>'+
    '<div class="res">'+
