@@ -368,6 +368,217 @@ function baixarHTML(){
   setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 }
 
+// PDF gerado dentro da própria página. Não usa a impressão do navegador, então não depende de
+// como o iPhone, o iPad ou cada navegador paginam o documento. Fonte e layout são sempre os mesmos.
+const PDF_LIB_URL='https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js';
+let PDF_LIB_PROMESSA=null;
+function carregarPDFLib(){
+  if(window.PDFLib) return Promise.resolve(window.PDFLib);
+  if(!PDF_LIB_PROMESSA){
+    PDF_LIB_PROMESSA=new Promise((ok,erro)=>{
+      const s=document.createElement('script');
+      s.src=PDF_LIB_URL;
+      s.onload=()=>window.PDFLib?ok(window.PDFLib):erro(new Error('pdf-lib'));
+      s.onerror=()=>erro(new Error('pdf-lib'));
+      document.head.appendChild(s);
+    });
+  }
+  return PDF_LIB_PROMESSA;
+}
+
+// Caracteres fora do conjunto que o PDF padrão aceita viram "?", para nunca travar a geração
+function limpaTexto(t){
+  return t.replace(/[^\x09\x0A\x0D\x20-\x7E -ÿ–—‘’“”•…]/g,'?');
+}
+
+async function gerarPDF(){
+  let L;
+  try{ L=await carregarPDFLib(); }
+  catch(e){ alert('Não consegui preparar o PDF agora. Verifique a conexão e tente de novo, ou use "Baixar em HTML".'); return; }
+  try{
+    const {PDFDocument,StandardFonts,rgb}=L;
+    const doc=await PDFDocument.create();
+    const F={
+      r:await doc.embedFont(StandardFonts.Helvetica),
+      b:await doc.embedFont(StandardFonts.HelveticaBold),
+      m:await doc.embedFont(StandardFonts.Courier)
+    };
+    const COR={
+      ameixa:rgb(0.231,0.192,0.376), lilas:rgb(0.49,0.424,0.71),
+      verde:rgb(0.227,0.459,0.337), cinza:rgb(0.42,0.42,0.42), linha:rgb(0.80,0.78,0.90)
+    };
+    const PAG={w:595.28,h:841.89,ml:50,mr:50,mt:50,mb:58};
+    const LARG=PAG.w-PAG.ml-PAG.mr;
+    const paginas=[];
+    let pag=null, y=0;
+    function novaPagina(){ pag=doc.addPage([PAG.w,PAG.h]); paginas.push(pag); y=PAG.h-PAG.mt; }
+    function garantir(altura){ if(y-altura<PAG.mb) novaPagina(); }
+    novaPagina();
+
+    function fonteDe(s){ return s.mono?F.m:(s.bold?F.b:F.r); }
+    function larguraDe(t,s){ return fonteDe(s).widthOfTextAtSize(t,s.tam); }
+
+    // Quebra uma sequência de trechos com estilo em linhas que cabem na largura disponível
+    function quebraLinhas(trechos,larguraMax){
+      const linhas=[]; let atual=[]; let larg=0;
+      const fecha=()=>{
+        while(atual.length && atual[atual.length-1].espaco) { larg-=atual.pop().w; }
+        linhas.push(atual); atual=[]; larg=0;
+      };
+      for(const tr of trechos){
+        if(tr.quebra){ fecha(); continue; }
+        for(const parte of tr.t.split(/(\s+)/)){
+          if(!parte) continue;
+          if(/^\s+$/.test(parte)){
+            if(atual.length){ const w=larguraDe(' ',tr.s); atual.push({t:' ',s:tr.s,w,espaco:true}); larg+=w; }
+            continue;
+          }
+          let resto=parte;
+          while(resto.length){
+            const w=larguraDe(resto,tr.s);
+            if(larg+w<=larguraMax){ atual.push({t:resto,s:tr.s,w,espaco:false}); larg+=w; resto=''; }
+            else if(atual.length){ fecha(); }
+            else {
+              // palavra maior que a linha (ex.: código): corta por caractere
+              let n=1;
+              while(n<resto.length && larguraDe(resto.slice(0,n+1),tr.s)<=larguraMax) n++;
+              const pedaco=resto.slice(0,n);
+              atual.push({t:pedaco,s:tr.s,w:larguraDe(pedaco,tr.s),espaco:false}); larg+=larguraDe(pedaco,tr.s);
+              fecha(); resto=resto.slice(n);
+            }
+          }
+        }
+      }
+      if(atual.length) fecha();
+      return linhas.filter(l=>l.length);
+    }
+
+    function escreveParagrafo(trechos,o){
+      o=o||{};
+      const recuo=o.recuo||0;
+      const linhas=quebraLinhas(trechos,LARG-recuo);
+      if(!linhas.length) return;
+      if(o.antes) y-=o.antes;
+      linhas.forEach((linha,i)=>{
+        const tam=Math.max(...linha.map(t=>t.s.tam));
+        const alt=tam*1.38;
+        garantir(alt);
+        const base=y-tam;
+        if(i===0 && o.marcador){ pag.drawText('•',{x:PAG.ml+recuo-10,y:base,size:tam,font:F.r,color:COR.ameixa}); }
+        let x=PAG.ml+recuo;
+        for(const t of linha){
+          pag.drawText(limpaTexto(t.t),{x,y:base,size:t.s.tam,font:fonteDe(t.s),color:t.s.cor});
+          x+=t.w;
+        }
+        y-=alt;
+      });
+      y-=(o.depois!==undefined?o.depois:3);
+    }
+
+    function regra(){
+      garantir(10);
+      pag.drawLine({start:{x:PAG.ml,y:y-2},end:{x:PAG.ml+LARG,y:y-2},thickness:0.6,color:COR.linha});
+      y-=10;
+    }
+
+    const IGNORAR=new Set(['BUTTON','SCRIPT','STYLE','DETAILS','SUMMARY','SVG']);
+    const BLOCO=new Set(['DIV','P','H1','H2','H3','H4','H5','H6','UL','OL','LI','SECTION','ARTICLE','MAIN','HEADER','FOOTER']);
+    function ignorado(n){ return IGNORAR.has(n.tagName)||n.classList.contains('no-print')||n.classList.contains('float'); }
+
+    // Estilo de um elemento inline (negrito, pílula, código, texto pequeno)
+    function estiloInline(n,s){
+      const r=Object.assign({},s);
+      const c=n.classList;
+      if(n.tagName==='B'||n.tagName==='STRONG') r.bold=true;
+      if(c.contains('pill')){ r.bold=true; r.tam=Math.min(s.tam,8.5); r.cor=COR.verde; }
+      if(c.contains('code')){ r.mono=true; r.bold=true; r.cor=COR.ameixa; }
+      if(c.contains('small')){ r.tam=8.5; r.cor=COR.cinza; }
+      return r;
+    }
+    // Coleta trechos inline de um nó (texto, negrito, pílulas), sem entrar em blocos
+    function coletaInline(n,s,saida){
+      if(n.nodeType===3){
+        const t=n.textContent.replace(/\s+/g,' ');
+        if(t) saida.push({t,s});
+        return;
+      }
+      if(n.nodeType!==1 || ignorado(n)) return;
+      if(n.tagName==='BR'){ saida.push({quebra:true}); return; }
+      if(BLOCO.has(n.tagName)) return;
+      if(n.classList.contains('pill')){ saida.push({t:' ['+n.textContent.trim()+'] ',s:estiloInline(n,s)}); return; }
+      const s2=estiloInline(n,s);
+      for(const f of n.childNodes) coletaInline(f,s2,saida);
+    }
+    function trechosDe(n,s){ const out=[]; for(const f of n.childNodes) coletaInline(f,s,out); return out; }
+
+    // Percorre blocos: texto solto vira parágrafo; elementos de bloco são tratados à parte
+    function percorre(el,s){
+      let acc=[];
+      const descarrega=(opcoes)=>{
+        if(acc.some(x=>x.quebra||(x.t&&x.t.trim()))) escreveParagrafo(acc,Object.assign({depois:3},opcoes||{}));
+        acc=[];
+      };
+      for(const n of el.childNodes){
+        if(n.nodeType===3){ const t=n.textContent.replace(/\s+/g,' '); if(t.trim()) acc.push({t,s}); continue; }
+        if(n.nodeType!==1 || ignorado(n)) continue;
+        if(BLOCO.has(n.tagName)){ descarrega(); trataBloco(n,s); }
+        else coletaInline(n,s,acc);
+      }
+      descarrega();
+    }
+
+    function trataBloco(n,s){
+      const c=n.classList;
+      const t=n.tagName;
+      if(t==='H2'){ garantir(40); escreveParagrafo(trechosDe(n,Object.assign({},s,{tam:17,bold:true,cor:COR.ameixa})),{depois:6,antes:6}); return; }
+      if(t==='H3'){ garantir(60); escreveParagrafo(trechosDe(n,Object.assign({},s,{tam:13,bold:true,cor:COR.lilas})),{antes:10,depois:2}); regra(); return; }
+      if(t==='H4'){ garantir(40); escreveParagrafo(trechosDe(n,Object.assign({},s,{tam:11,bold:true,cor:COR.ameixa})),{antes:8,depois:4}); return; }
+      if(c.contains('lbl')){ escreveParagrafo([{t:limpaTexto(n.textContent.trim().toUpperCase()),s:Object.assign({},s,{tam:8,bold:true,cor:COR.lilas})}],{antes:4,depois:1}); return; }
+      if(c.contains('codigo-texto')){ escreveParagrafo(trechosDe(n,Object.assign({},s,{tam:7.5,mono:true,bold:false,cor:COR.ameixa})),{depois:4}); return; }
+      if(c.contains('note')){ escreveParagrafo(trechosDe(n,Object.assign({},s,{tam:9,cor:COR.verde})),{antes:4,depois:6}); return; }
+      if(t==='LI'){
+        const pai=n.parentElement;
+        const marca=pai&&(pai.classList.contains('clean')||pai.classList.contains('dash'));
+        const recuo=marca?14:0;
+        const temBloco=[...n.children].some(f=>BLOCO.has(f.tagName));
+        if(temBloco){ percorre(n,s); return; }
+        escreveParagrafo(trechosDe(n,s),{marcador:marca,recuo,depois:2});
+        return;
+      }
+      if(c.contains('course')){ garantir(30); y-=4; regra(); y-=2; percorre(n,s); y-=2; return; }
+      if(t==='P'){ escreveParagrafo(trechosDe(n,s),{depois:3}); return; }
+      // DIV, UL, OL, SECTION e similares: só percorre os filhos
+      percorre(n,s);
+    }
+
+    const base={tam:9.5,bold:false,cor:COR.ameixa,mono:false};
+    const raiz=document.querySelector('#app .res')||document.getElementById('app');
+    percorre(raiz,base);
+
+    // Rodapé em todas as páginas
+    const nomeTexto=limpaTexto(S.nome||'sem nome');
+    const total=paginas.length;
+    paginas.forEach((p,i)=>{
+      p.drawLine({start:{x:PAG.ml,y:34},end:{x:PAG.w-PAG.mr,y:34},thickness:0.5,color:COR.linha});
+      p.drawText(limpaTexto('Teste vocacional para neurodivergentes · Resultado de '+nomeTexto),{x:PAG.ml,y:22,size:7.5,font:F.r,color:COR.cinza});
+      const txt='Página '+(i+1)+' de '+total;
+      p.drawText(txt,{x:PAG.w-PAG.mr-F.r.widthOfTextAtSize(txt,7.5),y:22,size:7.5,font:F.r,color:COR.cinza});
+    });
+
+    const bytes=await doc.save();
+    const nome=(S.nome||'sem-nome').replace(/[^A-Za-z0-9À-ɏ]+/g,'-').replace(/^-|-$/g,'');
+    const blob=new Blob([bytes],{type:'application/pdf'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='Resultado-'+nome+'-'+new Date().toISOString().slice(0,10)+'.pdf';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  }catch(e){
+    console.error(e);
+    alert('Não consegui gerar o PDF desta vez. Use "Baixar em HTML" e abra o arquivo para imprimir.');
+  }
+}
+
 /* =========================================================
    RENDERIZAÇÃO
    ========================================================= */
@@ -947,7 +1158,8 @@ function renderResultado(){
 
   app.innerHTML=
    '<div class="no-print" style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:12px">'+
-     '<button class="btn" onclick="imprimirPDF()">Baixar em PDF (imprimir e salvar como PDF)</button>'+
+     '<button class="btn" onclick="gerarPDF()">Baixar em PDF</button>'+
+     '<button class="btn ghost" onclick="imprimirPDF()">Imprimir</button>'+
      '<button class="btn ghost" onclick="baixarHTML()">Baixar em HTML (arquivo para guardar)</button>'+
      '<button class="btn ghost" onclick="novaPessoa()">Nova pessoa</button>'+
    '</div>'+

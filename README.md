@@ -76,11 +76,12 @@ Ao final, você recebe um resultado em linguagem simples, que pode ser salvo em 
 
 ### Salvar o resultado em PDF
 
-- Toque em **Baixar em PDF (imprimir e salvar como PDF)** no resultado.
-- No campo de destino, escolha **Salvar como PDF**. Se você preencheu o campo de nome no início, o nome do arquivo sai com ele e com a data.
-- Cada pessoa tem o próprio PDF.
-- Se o PDF sair cortado no celular, use **Baixar em HTML (arquivo para guardar)**. Ele baixa um arquivo `.html` com o resultado completo, que abre sem internet e pode ser impresso ou salvo como PDF em qualquer navegador.
-- O PDF traz, no fim, o **código de respostas** e a data em que foi gerado. Se o resultado da tela se perder, o PDF guarda o que é preciso para recuperá-lo (ver abaixo).
+- Toque em **Baixar em PDF** no resultado. O próprio teste monta o arquivo, com a mesma fonte e a mesma diagramação em qualquer aparelho. Não é preciso reduzir fontes nem ajustar nada na impressão.
+- O arquivo é gerado com a biblioteca pdf-lib, carregada da internet na primeira vez. Por isso, é preciso estar conectado para baixar o PDF.
+- Cada pessoa tem o próprio PDF. O nome do arquivo sai com o nome preenchido no início e com a data.
+- O PDF traz, no fim, o **código de respostas** e a data em que foi gerado. Se o resultado da tela se perder, o código recupera tudo (ver abaixo).
+- **Imprimir** abre a impressão do navegador. Use se preferir imprimir direto.
+- Se o PDF não abrir ou sair incompleto, use **Baixar em HTML (arquivo para guardar)**. Ele baixa um arquivo `.html` com o resultado completo, que abre sem internet e pode ser impresso ou salvo como PDF em qualquer navegador.
 
 ### Recuperar ou atualizar um resultado
 
