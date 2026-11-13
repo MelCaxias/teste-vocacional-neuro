@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teste vocacional para jovens (10 a 16 anos)</title>
+<style>
+:root{
+  --ameixa:#3B3160; --lav-suave:#6554A0; --lav-legenda:#7D6CB5; --lav-sombra:#A692E0; --lav-mascote:#C4B5F0;
+  --lav-pixel:#DCD3F2; --branco-nevoa:#F6F3FD; --verde-folha:#3A7556; --verde-mascote:#9AD4AF; --verde-nevoa:#CFE9D8;
+  --warn:#A8322A; --bg:var(--branco-nevoa); --card:#FFFFFF; --ink:var(--ameixa); --muted:var(--lav-legenda); --line:var(--lav-pixel);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px}
+header{background:var(--ameixa);color:#fff;padding:18px 20px}
+.hwrap{max-width:820px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+header h1{margin:0;font-size:20px;font-weight:700}
+header p{margin:2px 0 0;font-size:14px;opacity:.92}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tog{background:transparent;color:#fff;border:1px solid #ffffff99;border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+.tog[aria-pressed="true"]{background:#fff;color:var(--ameixa)}
+main{max-width:820px;margin:0 auto;padding:18px 16px 110px}
+.bar{height:10px;background:var(--line);border-radius:10px;overflow:hidden;margin:6px 0 4px}
+.bar div{height:100%;background:var(--verde-folha);width:0}
+.meta{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-bottom:12px;flex-wrap:wrap;gap:6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:14px}
+.bloco-desc{background:var(--lav-pixel);border-radius:14px;padding:12px 14px;margin:0 0 14px;color:var(--ameixa);font-size:15px}
+h2{font-size:21px;line-height:1.35;margin:0 0 8px}
+.ex{background:var(--verde-nevoa);color:var(--verde-folha);border-radius:12px;padding:10px 12px;font-size:15px;margin:10px 0 16px}
+.sub{font-size:14px;color:var(--muted);margin:14px 0 6px;font-weight:600}
+.sc-row{display:flex;flex-wrap:wrap;gap:8px}
+.sc{flex:1 1 72px;min-width:72px;border:2px solid var(--line);background:#fff;border-radius:14px;padding:10px 6px;text-align:center;cursor:pointer;font:inherit;color:var(--ink)}
+.sc b{display:block;font-size:22px;line-height:1.1}
+.sc small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.sc.nsei{flex:1 1 100%;font-size:15px;padding:12px}
+.sc.on{border-color:var(--lav-suave);background:var(--lav-mascote)}
+.sc.on b{color:var(--ameixa)}
+.sc:focus-visible,.btn:focus-visible,.opt:focus-visible,.tog:focus-visible,input:focus-visible{outline:3px solid var(--lav-suave);outline-offset:2px}
+.opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 14px;margin:8px 0;cursor:pointer;font:inherit;color:var(--ink)}
+.opt .box{width:22px;height:22px;border:2px solid var(--lav-suave);border-radius:6px;flex:0 0 22px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
+.opt.on{border-color:var(--lav-suave);background:var(--branco-nevoa)}
+.opt.on .box{background:var(--lav-suave)}
+.opt.round .box{border-radius:50%}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}
+.btn{background:var(--lav-suave);color:#fff;border:0;border-radius:14px;padding:13px 20px;font:inherit;font-size:16px;font-weight:600;cursor:pointer}
+.btn:disabled{background:var(--lav-sombra);cursor:not-allowed;opacity:.6}
+.btn.ghost{background:#fff;color:var(--lav-suave);border:2px solid var(--lav-suave)}
+.btn.gr{background:var(--verde-folha)}
+.warn{color:var(--warn);min-height:22px;font-size:15px;margin:8px 0 0}
+label.field{display:block;font-size:15px;color:var(--muted);margin-top:10px}
+input[type=text],input[type=number]{display:block;width:100%;padding:12px;border:2px solid var(--line);border-radius:12px;font:inherit;font-size:17px;margin:6px 0 12px;color:var(--ink);background:#fff}
+.res h3{font-size:19px;margin:26px 0 8px;color:var(--lav-suave);border-bottom:2px solid var(--lav-pixel);padding-bottom:6px}
+.hero{background:var(--ameixa);color:#fff;border-radius:22px;padding:24px;margin-bottom:10px}
+.hero h2{color:#fff;font-size:24px;margin:0 0 6px}
+.hero p{margin:4px 0;font-size:16px}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em;background:var(--verde-mascote);color:var(--ameixa);padding:2px 10px;border-radius:8px;font-weight:700}
+.pill{display:inline-block;background:var(--verde-nevoa);color:var(--verde-folha);border-radius:999px;padding:2px 10px;font-size:13px;margin:2px 4px 2px 0;font-weight:600}
+.pill.lav{background:var(--lav-pixel);color:var(--ameixa)}
+.row{display:grid;grid-template-columns:150px 1fr 36px;gap:10px;align-items:center;margin:8px 0;font-size:15px}
+.track{background:var(--lav-pixel);border-radius:8px;height:14px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--lav-suave)}
+ul.clean{list-style:none;margin:0;padding:0}
+ul.clean li{padding:10px 0;border-bottom:1px solid var(--line)}
+ul.clean li:last-child{border-bottom:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.small{font-size:14px;color:var(--muted)}
+.note{background:var(--verde-nevoa);border-radius:14px;padding:14px 16px;color:var(--verde-folha);font-size:15px;margin-top:12px}
+.float{position:fixed;right:16px;bottom:16px;background:var(--lav-suave);color:#fff;border:2px solid #fff;border-radius:999px;padding:12px 18px;font:inherit;font-weight:600;font-size:15px;cursor:pointer;z-index:10}
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+body.big{font-size:20px}
+body.calm *{transition:none!important;animation:none!important}
+@media (max-width:640px){.two{grid-template-columns:1fr}.row{grid-template-columns:110px 1fr 30px}.hero h2{font-size:21px}.float{right:10px;bottom:10px;font-size:14px;padding:10px 14px}}
+@media print{
+  body{background:#fff;font-size:12pt}
+  header,.no-print,.float{display:none!important}
+  main{padding:0;max-width:none}
+  .card{border:none;padding:0;break-inside:avoid}
+  .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .res h3{break-after:avoid}
+  footer{display:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div>
+      <h1>Teste vocacional para jovens (10 a 16 anos)</h1>
+      <p>Responda do seu jeito, no seu ritmo. Não existe resposta certa.</p>
+    </div>
+    <div class="tools no-print">
+      <button class="tog" id="tBig" aria-pressed="false" onclick="togglePref('big')">Letra maior</button>
+      <button class="tog" id="tCalm" aria-pressed="false" onclick="togglePref('calm')">Modo calmo</button>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="bar no-print"><div id="bar"></div></div>
+  <div id="app"></div>
+  <footer class="no-print">Teste feito com a identidade visual da TouchPixel Design.<br>Dentro de visualizadores online, o botão de PDF e o de envio podem ser bloqueados. Para o PDF, use Ctrl+P (Cmd+P no Mac) e escolha “Salvar como PDF”.</footer>
+</main>
+<button class="float no-print" onclick="enviarLimpo()">Enviar para outra pessoa</button>
+
+<script>
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+const ESC=['Nada','Pouco','Um pouco','Razoável','Bastante','Muito'];
+const NIVEL_TXT={G:'Graduação',T:'Tecnólogo ou CTeSP',C:'Técnico'};
+const DIM_NOME={R:'Realista',I:'Investigativo',A:'Artístico',S:'Social',E:'Empreendedor',C:'Convencional'};
+const DIMS=[...'RRRRRIIIIIAAAAASSSSSEEEEECCCCC'];
+const DIM_TRAIT={
+  R:'gosta de fazer coisas com as mãos, de montar, consertar e estar em movimento ou ao ar livre.',
+  I:'gosta de descobrir como as coisas funcionam, de fazer testes e de resolver desafios.',
+  A:'gosta de criar, desenhar, escrever ou inventar coisas diferentes.',
+  S:'gosta de ajudar, ensinar e estar perto das pessoas.',
+  E:'gosta de liderar, propor ideias e convencer os outros.',
+  C:'gosta de organizar, seguir regras e cuidar dos detalhes.'};
+const EXPERIMENTAR={
+  R:'oficinas de marcenaria, robótica, esportes ou jardinagem',
+  I:'clube de ciências, experimentos caseiros, quebra-cabeças e jogos de lógica',
+  A:'oficinas de desenho, pintura, teatro, música ou fotografia',
+  S:'voluntariado, monitoria de colegas e grupos de apoio nos estudos',
+  E:'projetos de venda na escola, grêmio estudantil e liderança de grupos',
+  C:'clube de matemática, organização de eventos e projetos com planilhas'};
+const FAM_DIM={
+  R:['Indústria e cursos técnicos','Ciências, meio ambiente e agro'],
+  I:['Tecnologia e engenharia','Ciências, meio ambiente e agro'],
+  A:['Design, artes e comunicação'],
+  S:['Saúde e bem-estar','Educação e humanas'],
+  E:['Gestão, negócios e finanças'],
+  C:['Gestão, negócios e finanças']};
+
+// Bloco 1: como eu funciono
+const F=[
+ {t:'Prefiro lugares silenciosos e com pouca luz forte',ex:'Ex.: estudar no quarto quieto, em vez de em um lugar com muito barulho.',alto:'Lugares calmos ajudam você. Na escola, peça um lugar mais tranquilo para estudar, se precisar.'},
+ {t:'Consigo ficar concentrado por muito tempo quando gosto do assunto',ex:'Ex.: passar uma tarde inteira montando ou desenhando.',alto:'Seu foco é um talento. Use esse tempo para algo que você ama e combine pausas.'},
+ {t:'Preciso fazer pausas para não me cansar',ex:'Ex.: levantar, beber água ou mudar de atividade depois de um tempo.',alto:'Pausas fazem bem. Use um alarme de 25 ou 30 minutos para lembrar delas.'},
+ {t:'Tenho temas que me interessam muito e sobre os quais falo bastante',ex:'Ex.: dinossauros, jogos, animais, espaço.',alto:'Seus temas favoritos podem virar projetos. Você pode aprender muito sobre eles.'},
+ {t:'Gosto de regras claras e de saber o que vem depois',ex:'Ex.: saber a ordem da aula ou da atividade.',alto:'Regras claras deixam você mais tranquilo. Peça a agenda da semana para se organizar.'},
+ {t:'Mudanças de última hora me deixam nervoso',ex:'Ex.: trocar de sala ou de horário sem aviso.',alto:'Avisar antes sobre mudanças ajuda você. Combine com a família ou com a escola um aviso com antecedência.'},
+ {t:'Prefiro fazer coisas com as mãos a ficar só ouvindo explicações',ex:'Ex.: montar, pintar, cozinhar.',alto:'Atividades práticas combinam com você. Experimente oficinas, clubes de arte ou projetos.'},
+ {t:'Preciso de tempo sozinho para descansar',ex:'Ex.: ficar no meu canto depois da escola.',alto:'Tempo sozinho é importante. Combine com a família um momento de descanso depois da escola.'},
+ {t:'Gosto de escrever mais do que falar em público',ex:'Ex.: escrever uma história em vez de apresentar na frente da turma.',alto:'A escrita é um ponto forte. Se falar em público for difícil, você pode apresentar com um roteiro escrito.'},
+ {t:'Me sinto bem quando as tarefas têm começo, meio e fim',ex:'Ex.: montar uma maquete em etapas.',alto:'Tarefas em etapas funcionam bem para você. Divida os trabalhos da escola em partes pequenas.'}
+];
+
+// Bloco 2: organização e foco
+const EF=[
+ {t:'Demoro para começar tarefas que não gosto',ex:'Ex.: começar uma lição de matemática difícil.',alto:'Começar é a parte difícil. Tente um primeiro passo bem pequeno, como abrir o caderno, e use um temporizador de 5 minutos.'},
+ {t:'Esqueço trabalhos, provas ou materiais',ex:'Ex.: esquecer o caderno ou a data de uma entrega.',alto:'Anotar tudo em um lugar só ajuda muito. Uma agenda ou um calendário na parede podem ser úteis.'},
+ {t:'Consigo escolher por onde começar quando tenho várias tarefas',ex:'Ex.: três trabalhos na mesma semana.',alto:'Você sabe priorizar. Use isso para escolher primeiro o que abre caminho para o resto.'},
+ {t:'Perco o fio do que estava fazendo quando alguém me interrompe',ex:'Ex.: alguém me chama e eu esqueço a conta que estava fazendo.',alto:'Interrupções atrapalham você. Quando precisar parar, deixe um bilhete com o próximo passo.'},
+ {t:'Minha mochila ou meu quarto ficam bagunçados com facilidade',ex:'Ex.: coisas espalhadas pela mesa.',alto:'Um canto organizado ajuda a cabeça. Caixas com etiqueta e um lugar fixo para cada coisa funcionam bem.'},
+ {t:'Fico cansado quando uma tarefa tem muitas etapas',ex:'Ex.: um trabalho com dez passos.',alto:'Tarefas longas cansam você. Quebre-as em partes e marque cada uma ao terminar.'},
+ {t:'Gosto de listas ou quadros para acompanhar o que fazer',ex:'Ex.: uma lista de tarefas na geladeira.',alto:'Listas e quadros combinam com você. Experimente uma lista com colunas: a fazer, fazendo e feito.'},
+ {t:'Tenho uma rotina de estudo que consigo seguir',ex:'Ex.: estudar sempre no mesmo horário.',alto:'Rotina é um apoio. Mantenha horários fixos para estudar e descansar.'},
+ {t:'Tenho dificuldade em perceber quanto tempo passou',ex:'Ex.: achar que passaram dez minutos e já foi uma hora.',alto:'Um relógio ou temporizador visível ajuda você a perceber o tempo.'},
+ {t:'Preciso de alguém para me lembrar dos prazos',ex:'Ex.: um adulto ou um aplicativo avisando a data da entrega.',alto:'Ter alguém lembrando dos prazos é uma estratégia inteligente, e não um problema.'}
+];
+
+// Bloco 3: interesses
+const IA=[
+ ['Montar, consertar ou desmontar objetos','Ex.: montar um brinquedo ou consertar uma bicicleta.'],
+ ['Usar ferramentas ou máquinas','Ex.: ajudar um adulto em um pequeno reparo em casa.'],
+ ['Fazer coisas ao ar livre, com plantas ou animais','Ex.: cuidar de uma horta ou de um animal de estimação.'],
+ ['Praticar atividades que exigem força ou coordenação','Ex.: esportes, correr, andar de skate ou de bicicleta.'],
+ ['Criar coisas com as mãos de forma artística','Ex.: pintar, fazer cerâmica, bordar ou fazer colagens.'],
+ ['Descobrir como as coisas funcionam','Ex.: por que o céu é azul ou como funciona um motor.'],
+ ['Fazer experimentos e testes','Ex.: misturar materiais para ver o que acontece.'],
+ ['Resolver quebra-cabeças e desafios de lógica','Ex.: jogos de lógica, sudoku, xadrez.'],
+ ['Ler sobre ciência, animais, espaço ou corpo humano','Ex.: ver documentários ou ler livros sobre esses temas.'],
+ ['Analisar números e padrões','Ex.: olhar estatísticas de um jogo ou de uma pesquisa.'],
+ ['Desenhar, pintar ou criar imagens','Ex.: criar personagens, ilustrações ou histórias em quadrinhos.'],
+ ['Escrever histórias, poemas ou roteiros','Ex.: inventar uma história com começo, meio e fim.'],
+ ['Criar música, dança ou teatro','Ex.: compor uma música, ensaiar uma peça ou criar uma coreografia.'],
+ ['Fazer vídeos, fotos ou animações','Ex.: editar um vídeo com trilha sonora.'],
+ ['Inventar coisas novas e diferentes','Ex.: criar um jogo ou um personagem próprio.'],
+ ['Ajudar amigos ou colegas','Ex.: explicar uma matéria para um colega.'],
+ ['Ensinar algo para outras pessoas','Ex.: mostrar a um irmão como fazer alguma coisa.'],
+ ['Cuidar de pessoas ou de animais','Ex.: cuidar de um irmão menor ou de um animal.'],
+ ['Conversar e ouvir pessoas','Ex.: ouvir um amigo que está triste e perguntar como ele está.'],
+ ['Trabalhar em grupo para ajudar a comunidade','Ex.: participar de uma campanha na escola.'],
+ ['Liderar um grupo ou um projeto','Ex.: organizar a turma para uma apresentação.'],
+ ['Convencer os outros das minhas ideias','Ex.: defender um ponto em uma discussão.'],
+ ['Criar um projeto ou uma pequena empresa','Ex.: vender pulseiras que eu mesmo fiz.'],
+ ['Propor ideias e tomar decisões','Ex.: sugerir o tema de um trabalho e organizar o grupo.'],
+ ['Vender ou trocar coisas','Ex.: fazer um bazar de brinquedos.'],
+ ['Organizar coisas, arquivos ou listas','Ex.: organizar uma coleção de cartas ou uma pasta de fotos.'],
+ ['Seguir regras e instruções com cuidado','Ex.: seguir uma receita passo a passo.'],
+ ['Cuidar de dinheiro ou de contas','Ex.: controlar a mesada.'],
+ ['Trabalhar com tabelas e planilhas','Ex.: organizar dados em uma tabela.'],
+ ['Cumprir horários e combinados','Ex.: chegar na hora combinada.']
+];
+
+// Bloco 4: habilidades
+const HAB=[
+ ['Escrever bem','Ex.: escrever uma redação ou um bilhete.'],
+ ['Falar em público','Ex.: apresentar um trabalho na frente da turma.'],
+ ['Fazer contas e raciocinar com números','Ex.: resolver um problema de matemática.'],
+ ['Resolver problemas','Ex.: encontrar um jeito quando algo dá errado.'],
+ ['Ser criativo','Ex.: pensar em ideias originais.'],
+ ['Fazer coisas com as mãos','Ex.: montar, pintar ou recortar com precisão.'],
+ ['Usar computador ou tablet','Ex.: pesquisar na internet ou usar um programa.'],
+ ['Trabalhar em equipe','Ex.: dividir tarefas em um trabalho de grupo.'],
+ ['Aprender coisas novas rapidamente','Ex.: aprender um jogo novo em poucos dias.'],
+ ['Organizar meu tempo','Ex.: entregar um trabalho antes do prazo.'],
+ ['Perceber como os outros se sentem','Ex.: notar quando um colega está chateado.'],
+ ['Falar outra língua','Ex.: entender uma música ou um filme em inglês.']
+];
+
+// Bloco 5: o que é importante
+const VAL=[
+ ['Fazer coisas que me deixam feliz','Ex.: atividades de que eu gosto de verdade.'],
+ ['Ajudar outras pessoas','Ex.: ver que fiz diferença para alguém.'],
+ ['Ter tempo para brincar e descansar','Ex.: ter tempo livre na semana.'],
+ ['Aprender coisas novas','Ex.: descobrir algo que eu ainda não sei.'],
+ ['Ser criativo','Ex.: ter liberdade para inventar.'],
+ ['Ter amigos e trabalhar junto','Ex.: fazer coisas com outras pessoas.'],
+ ['Ter uma rotina tranquila','Ex.: saber, na maior parte do tempo, como será o meu dia.'],
+ ['Cuidar do meio ambiente e dos animais','Ex.: ajudar a proteger a natureza.']
+];
+
+// Bloco 6: matérias e atividades (múltipla escolha)
+const SUBJ=['Matemática','Português e leitura','Ciências','História e geografia','Artes','Educação física','Inglês ou outra língua','Informática e tecnologia','Música','Filosofia e sociologia'];
+const LAZER=['Jogar videogame ou jogos de tabuleiro','Assistir vídeos ou criar conteúdo','Ler','Montar ou construir coisas','Cozinhar','Cuidar de animais','Ajudar outras pessoas','Desenhar ou criar histórias','Praticar esportes','Ouvir ou tocar música'];
+const EXTRA=['Esportes','Música','Dança','Teatro','Artes e desenho','Programação ou robótica','Leitura e escrita','Voluntariado','Nenhuma'];
+const FACIL=['Explicar coisas para outras pessoas','Resolver quebra-cabeças e desafios de lógica','Desenhar ou criar visuais','Escrever histórias ou textos','Consertar ou montar objetos','Organizar eventos ou grupos','Falar em público','Usar computador ou tablet'];
+const ADMIRA=['Médico ou enfermeiro','Professor','Criador de conteúdo','Atleta','Artista ou designer','Cientista','Empreendedor','Bombeiro ou policial','Engenheiro ou técnico','Outra pessoa'];
+const MULTI=[
+ {t:'Quais matérias você mais gosta? (marque até 3)',ops:SUBJ,k:'Matérias favoritas'},
+ {t:'Quais matérias você menos gosta? (marque até 3)',ops:SUBJ,k:'Matérias menos favoritas'},
+ {t:'O que você mais gosta de fazer no tempo livre?',ops:LAZER,k:'No tempo livre'},
+ {t:'Quais atividades extras você faz ou gostaria de fazer?',ops:EXTRA,k:'Atividades extras'},
+ {t:'O que você faz com facilidade? (pode marcar mais de uma)',ops:FACIL,k:'Coisas que faz com facilidade'},
+ {t:'Quem você admira ou se inspira? (pode marcar mais de uma)',ops:ADMIRA,k:'Inspirações'}
+];
+
+// Bloco 7: sobre mim (escolha única)
+const SOBRE=[
+ {t:'Em qual ano escolar você está?',ops:['4º ou 5º ano','6º ao 9º ano','1º ao 3º ano do ensino médio','Ainda não estou na escola'],k:'Ano escolar'},
+ {t:'Você prefere trabalhar:',ops:['Sozinho(a)','Em dupla','Em grupo','Depende da atividade'],k:'Forma de trabalhar'},
+ {t:'Você prefere ambientes:',ops:['Dentro de casa ou da escola','Ao ar livre','Laboratórios, oficinas ou ateliês','Tanto faz'],k:'Ambiente preferido'},
+ {t:'Como você aprende melhor?',ops:['Vendo vídeos ou imagens','Lendo','Fazendo na prática','Conversando e ouvindo','Uma mistura dessas'],k:'Como aprende melhor'},
+ {t:'Você já pensou em alguma profissão?',ops:['Ainda não','Tenho ideias vagas','Tenho uma ideia clara'],k:'Profissão em mente'},
+ {t:'Quando você pensa no futuro, você sente:',ops:['Animação','Curiosidade','Confusão','Ainda não penso nisso'],k:'Sentimento sobre o futuro'}
+];
+
+const BLOCOS=[
+ null,
+ {nome:'Como eu funciono',desc:'Perguntas sobre o que deixa você confortável para estudar e fazer coisas. Não existe resposta certa.'},
+ {nome:'Organização e foco',desc:'Perguntas sobre como você começa tarefas, lembra de prazos e mantém o foco no dia a dia.'},
+ {nome:'Interesses',desc:'Cada frase tem um exemplo. Pense no que você faria com prazer.'},
+ {nome:'Habilidades',desc:'Para cada habilidade, responda duas vezes: o que você faz hoje e o que acha que consegue aprender com prática.'},
+ {nome:'O que é importante',desc:'O que faz diferença para você.'},
+ {nome:'Matérias e atividades',desc:'Marque o que combina com você. Pode deixar em branco.'},
+ {nome:'Sobre você',desc:'Algumas perguntas rápidas sobre você.'}
+];
+const NUM_BLOCOS=BLOCOS.length-1;
+
+/* =========================================================
+   ESTADO E PÁGINAS
+   ========================================================= */
+let S={nome:'',idade:null,i:0,R:{},pausa:false,pref:{big:false,calm:false}};
+let PAGES=[];
+let CLEAN_HTML='';
+let ULTIMA_TELA='';
+const app=document.getElementById('app');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const URL_ADULTOS='https://melcaxias.github.io/teste-vocacional-neuro/';
+
+function buildPages(){
+  const P=[];
+  F.forEach((x,i)=>P.push({b:1,tipo:'escala',id:'f'+i,t:x.t,ex:x.ex}));
+  EF.forEach((x,i)=>P.push({b:2,tipo:'escala',id:'e'+i,t:x.t,ex:x.ex}));
+  IA.forEach((x,i)=>P.push({b:3,tipo:'escala',id:'a'+i,t:x[0],ex:x[1]}));
+  HAB.forEach((x,i)=>P.push({b:4,tipo:'hab',id:'h'+i,t:x[0],ex:x[1]}));
+  VAL.forEach((x,i)=>P.push({b:5,tipo:'escala',id:'v'+i,t:x[0],ex:x[1]}));
+  MULTI.forEach((x,i)=>P.push({b:6,tipo:'multi',id:'m'+i,t:x.t,ops:x.ops}));
+  SOBRE.forEach((x,i)=>P.push({b:7,tipo:'unica',id:'s'+i,t:x.t,ops:x.ops}));
+  PAGES=P;
+}
+
+function totalPerguntas(){
+  return F.length+EF.length+IA.length+HAB.length+VAL.length+MULTI.length+SOBRE.length;
+}
+
+function salvar(){
+  if(!S.nome) return;
+  try{localStorage.setItem('tvjovens:'+S.nome.toLowerCase(),JSON.stringify({nome:S.nome,idade:S.idade,i:S.i,R:S.R}));}catch(e){}
+}
+function carregar(nome){
+  try{return JSON.parse(localStorage.getItem('tvjovens:'+nome.toLowerCase()));}catch(e){return null;}
+}
+function savePref(){try{localStorage.setItem('tvjovens:pref',JSON.stringify(S.pref));}catch(e){}}
+function loadPref(){try{const p=JSON.parse(localStorage.getItem('tvjovens:pref'));if(p)S.pref=p;}catch(e){}}
+function applyPref(){
+  document.body.classList.toggle('big',!!S.pref.big);
+  document.body.classList.toggle('calm',!!S.pref.calm);
+  document.getElementById('tBig').setAttribute('aria-pressed',!!S.pref.big);
+  document.getElementById('tCalm').setAttribute('aria-pressed',!!S.pref.calm);
+}
+function togglePref(k){S.pref[k]=!S.pref[k];savePref();applyPref();}
+
+/* =========================================================
+   ENVIO E PDF
+   ========================================================= */
+function enviarLimpo(){
+  const nomeArq='teste-vocacional-jovens.html';
+  const blob=new Blob([CLEAN_HTML],{type:'text/html'});
+  const file=new File([blob],nomeArq,{type:'text/html'});
+  if(navigator.canShare&&navigator.canShare({files:[file]})){
+    navigator.share({files:[file],title:'Teste vocacional para jovens',text:'Teste vocacional para jovens (10 a 16 anos)'}).catch(()=>{});
+  } else {
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download=nomeArq;
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  }
+}
+
+function imprimirPDF(){
+  const antigo=document.title;
+  const nome=(S.nome||'sem-nome').replace(/[^A-Za-z0-9À-ɏ]+/g,'-').replace(/^-|-$/g,'');
+  document.title='Resultado-jovem-'+nome+'-'+new Date().toISOString().slice(0,10);
+  window.addEventListener('afterprint',()=>{document.title=antigo;},{once:true});
+  window.print();
+}
+
+/* =========================================================
+   RENDERIZAÇÃO
+   ========================================================= */
+function setBar(){
+  const pct=PAGES.length?Math.min(S.i,PAGES.length)/PAGES.length*100:0;
+  const b=document.getElementById('bar'); if(b) b.style.width=pct+'%';
+}
+
+// Sobe a tela só quando muda de pergunta, pausa ou resultado
+function render(){
+  setBar();
+  let tela;
+  if(!PAGES.length){tela='intro';renderIntro();}
+  else if(S.i>=PAGES.length){tela='resultado';renderResultado();}
+  else if(S.pausa){tela='pausa'+S.i;renderPausa();}
+  else{tela='pergunta'+S.i;renderPagina();}
+  if(tela!==ULTIMA_TELA){ULTIMA_TELA=tela;window.scrollTo(0,0);}
+}
+
+function avisoIdade(){
+  if(S.idade===null) return '';
+  if(S.idade<10) return 'Este teste é indicado para jovens a partir de 10 anos.';
+  if(S.idade>16) return 'Para pessoas de 17 anos ou mais, use o teste de adultos: '+URL_ADULTOS;
+  return '';
+}
+
+function renderIntro(){
+  const salvo=S.nome?carregar(S.nome):null;
+  const aviso=avisoIdade();
+  const bloqueado=S.idade===null||S.idade<10||S.idade>16;
+  app.innerHTML=
+   '<div class="card">'+
+   '<h2>Antes de começar</h2>'+
+   '<p>Este teste tem cerca de '+totalPerguntas()+' perguntas, divididas em '+NUM_BLOCOS+' partes. Você pode pausar entre as partes e voltar depois. Seu progresso fica salvo neste navegador.</p>'+
+   '<p>Não existe resposta certa. Você pode pular qualquer pergunta. Se quiser, um adulto de confiança pode ler as perguntas com você.</p>'+
+   '<label class="field" for="nome">Seu nome (opcional, usado para salvar o progresso e nomear o PDF)</label>'+
+   '<input id="nome" type="text" value="'+esc(S.nome)+'">'+
+   '<label class="field" for="idade">Sua idade</label>'+
+   '<input id="idade" type="number" min="1" max="99" value="'+(S.idade===null?'':S.idade)+'">'+
+   '<p id="aviso" class="warn">'+esc(aviso)+'</p>'+
+   '<div class="nav">'+
+     (salvo&&salvo.i>0?'<button class="btn gr" onclick="continuarSalvo()">Continuar de onde parou</button>':'')+
+     '<button class="btn" id="ini" '+(bloqueado?'disabled':'')+' onclick="comecar()">Começar do início</button>'+
+   '</div></div>';
+}
+
+app.addEventListener('input',e=>{
+  if(e.target.id==='nome') S.nome=e.target.value.trim();
+  if(e.target.id==='idade'){
+    const v=parseInt(e.target.value,10);
+    S.idade=isNaN(v)?null:v;
+    const bloqueado=S.idade===null||S.idade<10||S.idade>16;
+    document.getElementById('aviso').textContent=avisoIdade();
+    document.getElementById('ini').disabled=bloqueado;
+  }
+});
+
+function comecar(){
+  if(S.idade===null||S.idade<10||S.idade>16) return;
+  S.R={};S.i=0;S.pausa=false;
+  buildPages();
+  salvar();
+  render();
+}
+
+function continuarSalvo(){
+  const s=carregar(S.nome);
+  if(!s) return;
+  S.nome=s.nome;S.idade=s.idade;S.i=s.i;S.R=s.R||{};S.pausa=false;
+  buildPages();
+  render();
+}
+
+function renderPausa(){
+  const anterior=PAGES[S.i-1];
+  const prox=PAGES[S.i];
+  app.innerHTML=
+   '<div class="card" style="text-align:center;padding:34px 22px">'+
+   '<h2>Parte '+anterior.b+' concluída</h2>'+
+   '<p>Você terminou “'+BLOCOS[anterior.b].nome+'”. Pode fazer uma pausa agora. Seu progresso está salvo.</p>'+
+   '<p class="small">Próxima parte: '+BLOCOS[prox.b].nome+'</p>'+
+   '<div class="nav" style="justify-content:center"><button class="btn" onclick="pausaContinuar()">Continuar</button></div>'+
+   '</div>';
+}
+
+function pausaContinuar(){
+  S.pausa=false;S.i++;salvar();render();
+}
+
+function renderPagina(){
+  const p=PAGES[S.i];
+  const bl=BLOCOS[p.b];
+  const primeiro=S.i===0||PAGES[S.i-1].b!==p.b;
+  let controle='';
+  if(p.tipo==='escala') controle=escalaHTML(p.id,null,S.R[p.id]);
+  if(p.tipo==='hab'){
+    const v=S.R[p.id]||{};
+    controle='<div class="sub">O que você faz hoje?</div>'+escalaHTML(p.id,'h',v.h)+
+             '<div class="sub">Com estudo e prática, quanto você acha que consegue aprender?</div>'+escalaHTML(p.id,'p',v.p);
+  }
+  if(p.tipo==='multi'){
+    const arr=Array.isArray(S.R[p.id])?S.R[p.id]:[];
+    controle=p.ops.map((o,oi)=>{
+      const on=arr.includes(oi);
+      return '<button class="opt'+(on?' on':'')+'" aria-pressed="'+on+'" onclick="toggleMulti(\''+p.id+'\','+oi+')"><span class="box">'+(on?'✓':'')+'</span><span>'+esc(o)+'</span></button>';
+    }).join('');
+  }
+  if(p.tipo==='unica'){
+    const v=S.R[p.id];
+    controle=p.ops.map((o,oi)=>{
+      const on=v===oi;
+      return '<button class="opt round'+(on?' on':'')+'" aria-pressed="'+on+'" onclick="setVal(\''+p.id+'\',null,'+oi+')"><span class="box">'+(on?'●':'')+'</span><span>'+esc(o)+'</span></button>';
+    }).join('');
+  }
+  const ex=p.ex?'<div class="ex">'+esc(p.ex)+'</div>':'';
+  app.innerHTML=
+   '<div class="meta"><span>Parte '+p.b+' de '+NUM_BLOCOS+' · '+bl.nome+'</span><span>Pergunta '+(S.i+1)+' de '+PAGES.length+'</span></div>'+
+   (primeiro?'<div class="bloco-desc">'+bl.desc+'</div>':'')+
+   '<div class="card" id="pergunta">'+
+     '<h2>'+esc(p.t)+'</h2>'+ex+controle+
+   '</div>'+
+   '<div class="nav">'+
+     '<button class="btn ghost" onclick="voltar()" '+(S.i===0?'disabled':'')+'>← Voltar</button>'+
+     '<button class="btn ghost" onclick="pular()">Pular</button>'+
+     '<button class="btn" id="prox" onclick="proxima()">Próxima →</button>'+
+   '</div>'+
+   '<p id="msg" class="warn"></p>'+
+   '<p class="small no-print" style="text-align:center">Atalhos: teclas 0 a 5 respondem a escala, Enter avança, seta à esquerda volta.</p>';
+}
+
+function escalaHTML(id,sub,val){
+  let h='<div class="sc-row">';
+  for(let k=0;k<=5;k++){
+    const on=val===k;
+    h+='<button class="sc'+(on?' on':'')+'" aria-pressed="'+on+'" onclick="setVal(\''+id+'\',\''+(sub||'')+'\','+k+')"><b>'+k+'</b><small>'+ESC[k]+'</small></button>';
+  }
+  const nsei=val==='nsei';
+  h+='<button class="sc nsei'+(nsei?' on':'')+'" aria-pressed="'+nsei+'" onclick="setVal(\''+id+'\',\''+(sub||'')+'\',\'nsei\')">Não sei / não se aplica</button>';
+  h+='</div>';
+  return h;
+}
+
+function setVal(id,sub,val){
+  if(sub){
+    if(typeof S.R[id]!=='object'||S.R[id]===null) S.R[id]={};
+    S.R[id][sub]=val;
+  } else S.R[id]=val;
+  salvar();
+  render();
+}
+
+function toggleMulti(id,oi){
+  const arr=Array.isArray(S.R[id])?S.R[id].slice():[];
+  const k=arr.indexOf(oi);
+  if(k>=0) arr.splice(k,1); else arr.push(oi);
+  S.R[id]=arr;
+  salvar();
+  render();
+}
+
+function respondido(p){
+  const v=S.R[p.id];
+  if(p.tipo==='hab') return v&&v.h!==undefined&&v.p!==undefined;
+  return v!==undefined;
+}
+
+function proxima(){
+  const p=PAGES[S.i];
+  if(!respondido(p)){
+    document.getElementById('msg').textContent='Responda para continuar, ou use “Pular”.';
+    return;
+  }
+  const nxt=PAGES[S.i+1];
+  if(nxt&&nxt.b!==p.b){S.pausa=true;salvar();render();return;}
+  S.i++;salvar();render();
+}
+
+function voltar(){
+  if(S.pausa){S.pausa=false;render();return;}
+  if(S.i>0){S.i--;salvar();render();}
+}
+
+function pular(){
+  const p=PAGES[S.i];
+  S.R[p.id]=p.tipo==='hab'?{h:'skip',p:'skip'}:'skip';
+  const nxt=PAGES[S.i+1];
+  salvar();
+  if(nxt&&nxt.b!==p.b){S.pausa=true;render();return;}
+  S.i++;salvar();render();
+}
+
+document.addEventListener('keydown',e=>{
+  if(!PAGES.length||S.i>=PAGES.length||S.pausa) return;
+  if(e.target.tagName==='INPUT') return;
+  const p=PAGES[S.i];
+  if(/^[0-5]$/.test(e.key)&&(p.tipo==='escala'||p.tipo==='hab')){
+    if(p.tipo==='escala') setVal(p.id,null,+e.key);
+    else{
+      const v=S.R[p.id]||{};
+      setVal(p.id,v.h===undefined?'h':'p',+e.key);
+    }
+  }
+  if(e.key==='Enter'&&!e.target.closest('button')) proxima();
+  if(e.key==='ArrowLeft') voltar();
+});
+
+/* =========================================================
+   RESULTADO
+   ========================================================= */
+const num=(id,sub)=>{
+  const v=sub?(S.R[id]||{})[sub]:S.R[id];
+  return typeof v==='number'?v:null;
+};
+
+function nomesMarcados(id,ops){
+  const arr=Array.isArray(S.R[id])?S.R[id]:[];
+  return arr.map(k=>ops[k]).filter(Boolean);
+}
+
+function renderResultado(){
+  const med={};
+  for(const k of 'RIASEC'){
+    const vals=[...Array(30).keys()].filter(i=>DIMS[i]===k).map(i=>num('a'+i)).filter(v=>v!==null);
+    med[k]=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;
+  }
+  const ordem='RIASEC'.split('').sort((a,b)=>med[b]-med[a]);
+  const [d1,d2,d3]=ordem;
+
+  const jeito=F.map((x,i)=>({x,v:num('f'+i)})).filter(o=>o.v!==null&&o.v>=4).map(o=>o.x.alto);
+  const organiz=EF.map((x,i)=>({x,v:num('e'+i)})).filter(o=>o.v!==null&&o.v>=4).map(o=>o.x.alto);
+
+  const hab=HAB.map((x,i)=>({t:x[0],ex:x[1],h:num('h'+i,'h'),p:num('h'+i,'p')}));
+  const fortes=hab.filter(x=>x.h!==null&&x.h>=4).sort((a,b)=>b.h-a.h);
+  const potencial=hab.filter(x=>x.p!==null&&x.p>=4&&(x.h===null||x.h<=3)).sort((a,b)=>b.p-a.p);
+
+  const valores=VAL.map((x,i)=>({t:x[0],v:num('v'+i)})).filter(x=>x.v!==null).sort((a,b)=>b.v-a.v).slice(0,4);
+
+  const profissoes=[];
+  const familias=[];
+  [d1,d2,d3].forEach(k=>FAM_DIM[k].forEach(f=>{if(!familias.includes(f)) familias.push(f);}));
+  const JOBS_J={
+   'Indústria e cursos técnicos':['Técnico(a) em manutenção','Operador(a) de máquinas','Mecânico(a)'],
+   'Ciências, meio ambiente e agro':['Biólogo(a)','Técnico(a) ambiental','Agrônomo(a)'],
+   'Tecnologia e engenharia':['Programador(a)','Engenheiro(a)','Cientista de dados'],
+   'Design, artes e comunicação':['Designer','Ilustrador(a)','Produtor(a) de vídeo'],
+   'Saúde e bem-estar':['Enfermeiro(a)','Psicólogo(a)','Fisioterapeuta'],
+   'Educação e humanas':['Professor(a)','Pedagogo(a)','Assistente social'],
+   'Gestão, negócios e finanças':['Empreendedor(a)','Gestor(a) de projetos','Analista financeiro(a)']
+  };
+  familias.forEach(f=>(JOBS_J[f]||[]).forEach(j=>profissoes.push(j)));
+
+  const perfil=SOBRE.map((q,i)=>{
+    const v=S.R['s'+i];
+    return {q:q.k,r:typeof v==='number'?q.ops[v]:'—'};
+  });
+  const multi=MULTI.map((q,i)=>({k:q.k,r:nomesMarcados('m'+i,q.ops)}));
+
+  const barras=ordem.map(k=>{
+    const pct=Math.round(med[k]/5*100);
+    return '<div class="row"><span>'+k+' · '+DIM_NOME[k]+'</span><div class="track"><i style="width:'+pct+'%"></i></div><span>'+med[k].toFixed(1)+'</span></div>';
+  }).join('');
+
+  const frase=d1&&d2?'Seu jeito predominante é '+DIM_NOME[d1]+' com '+DIM_NOME[d2]+': você '+DIM_TRAIT[d1]+' Também '+DIM_TRAIT[d2]:'';
+  const tituloPessoa=S.nome?esc(S.nome):'Sem nome';
+
+  app.innerHTML=
+   '<div class="no-print" style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:12px">'+
+     '<button class="btn" onclick="imprimirPDF()">Baixar em PDF (imprimir e salvar como PDF)</button>'+
+     '<button class="btn ghost" onclick="novaPessoa()">Nova pessoa</button>'+
+   '</div>'+
+   '<div class="res">'+
+   '<div class="hero">'+
+     '<p class="small" style="color:#fff;opacity:.85">Resultado de</p>'+
+     '<h2>'+tituloPessoa+'</h2>'+
+     '<p>Código de interesses: <span class="code">'+(d1||'')+(d2||'')+(d3||'')+'</span></p>'+
+     '<p>'+esc(frase)+'</p>'+
+     '<p class="small" style="color:#fff;opacity:.85">Data: '+new Date().toLocaleDateString('pt-BR')+' · Idade: '+(S.idade===null?'—':S.idade)+'</p>'+
+   '</div>'+
+
+   '<h3>1. Seu jeito de funcionar</h3>'+
+   (jeito.length
+     ? '<div class="card"><ul class="clean">'+jeito.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></div>'
+     : '<div class="card"><p>Você marcou poucos pontos como parecidos com você. Tudo bem: ainda dá para descobrir o que funciona melhor.</p></div>')+
+
+   '<h3>2. Organização e foco</h3>'+
+   (organiz.length
+     ? '<div class="card"><ul class="clean">'+organiz.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></div>'
+     : '<div class="card"><p>Nenhum ponto de organização apareceu como muito marcante. Vale observar quais tarefas costumam ficar para depois.</p></div>')+
+
+   '<h3>3. Seus interesses</h3>'+
+   '<div class="card"><p>Estes são os seus interesses principais:</p>'+
+   '<div class="bars">'+barras+'</div>'+
+   [d1,d2,d3].map(k=>'<p><span class="pill lav">'+DIM_NOME[k]+'</span> Você '+esc(DIM_TRAIT[k])+'</p><p class="small">Coisas para experimentar: '+esc(EXPERIMENTAR[k])+'.</p>').join('')+
+   '</div>'+
+
+   '<h3>4. Seus pontos fortes</h3>'+
+   '<div class="card">'+
+   (fortes.length
+     ? '<ul class="clean">'+fortes.slice(0,6).map(x=>'<li><b>'+esc(x.t)+'</b> (nota '+x.h+')<br><span class="small">'+esc(x.ex)+'</span></li>').join('')+'</ul>'
+     : '<p>Nenhuma habilidade ficou com nota alta hoje. Habilidades crescem com prática.</p>')+
+   '</div>'+
+
+   '<h3>5. O que você pode desenvolver</h3>'+
+   '<div class="card">'+
+   (potencial.length
+     ? '<ul class="clean">'+potencial.slice(0,5).map(x=>'<li><b>'+esc(x.t)+'</b> (potencial '+x.p+')<br><span class="small">Um primeiro passo: um projeto pequeno ou uma oficina curta nessa habilidade.</span></li>').join('')+'</ul>'
+     : '<p>Nenhuma habilidade destacou um potencial acima do que você já percebe em si.</p>')+
+   '</div>'+
+
+   '<h3>6. O que é importante para você</h3>'+
+   '<div class="card"><ul class="clean">'+valores.map(x=>'<li>'+esc(x.t)+' <span class="pill">nota '+x.v+'</span></li>').join('')+'</ul></div>'+
+
+   '<h3>7. Matérias e atividades</h3>'+
+   '<div class="card"><ul class="clean">'+multi.map(m=>'<li><b>'+esc(m.k)+':</b> '+(m.r.length?esc(m.r.join(', ')):'<span class="small">não marcado</span>')+'</li>').join('')+'</ul></div>'+
+
+   '<h3>8. Sobre você</h3>'+
+   '<div class="card"><ul class="clean">'+perfil.map(p=>'<li><span class="small">'+esc(p.q)+'</span><br><b>'+esc(p.r)+'</b></li>').join('')+'</ul></div>'+
+
+   '<h3>9. Profissões para conhecer</h3>'+
+   '<div class="card"><p class="small">Estas são só para explorar, sem pressa. Ninguém precisa decidir nada agora.</p>'+
+   (profissoes.length?profissoes.map(j=>'<span class="pill">'+esc(j)+'</span>').join(''):'<p>Ainda não há sugestões. Explore mais atividades.</p>')+
+   '</div>'+
+
+   '<h3>10. Para explorar nos próximos meses</h3>'+
+   '<div class="card"><ul class="clean">'+
+     '<li><b>Experimente uma atividade</b> ligada aos seus interesses, como um clube, uma oficina ou um projeto pequeno.</li>'+
+     '<li><b>Converse com alguém</b> da família, da escola ou de um adulto de confiança sobre o que você gostou.</li>'+
+     '<li><b>Peça à escola</b> informações sobre projetos e feiras de profissões.</li>'+
+   '</ul></div>'+
+
+   '<div class="note"><b>Para a família e a escola:</b> interesses mudam bastante nessa idade. Este resultado é um ponto de partida para conversar, e não uma decisão. Se houver dúvidas, um orientador pode ajudar.</div>'+
+   '<div class="note">Este resultado não é um diagnóstico e não define o futuro.</div>'+
+   '</div>';
+}
+
+function novaPessoa(){
+  S={nome:'',idade:null,i:0,R:{},pausa:false,pref:S.pref};
+  PAGES=[];
+  render();
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  try{
+    CLEAN_HTML='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+    loadPref();
+    applyPref();
+    render();
+  }catch(err){
+    document.getElementById('app').innerHTML='<div class="card"><h2>Não foi possível abrir o teste aqui</h2><p>Abra o arquivo em um navegador (Chrome, Safari ou Edge), e não na pré-visualização de um aplicativo.</p></div>';
+  }
+});
+</script>
+</body>
+</html>

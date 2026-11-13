@@ -339,7 +339,7 @@ function buildPages(){
   HAB.forEach((x,i)=>P.push({b:4,tipo:'hab',id:'h'+i,t:x[0],ex:x[1]}));
   VAL.forEach((x,i)=>P.push({b:5,tipo:'escala',id:'v'+i,t:x[0],ex:x[1]}));
   AREAS.forEach((f,fi)=>P.push({b:6,tipo:'multi',id:'d'+fi,t:'Quais destas áreas de “'+f.f+'” despertam seu interesse?',ops:f.o.map(o=>o[0]+' · '+NIVEL[o[1]])}));
-  const perf=S.idade!==null&&S.idade<18?PERF_MENOR:PERF_ADULTO;
+  const perf=PERF_ADULTO;
   perf.forEach((q,i)=>P.push({b:7,tipo:q.m?'multi':'unica',id:'p'+i,t:q.q,ops:q.o,m:q.m}));
   PAGES=P;
 }
@@ -432,10 +432,10 @@ function renderIntro(){
    '<input id="nome" type="text" value="'+esc(S.nome)+'">'+
    '<label class="field" for="idade">Sua idade</label>'+
    '<input id="idade" type="number" min="1" max="99" value="'+(S.idade===null?'':S.idade)+'">'+
-   '<p id="aviso" class="warn">'+(S.idade!==null&&S.idade<12?'Este teste é indicado a partir de 12 anos.':'')+'</p>'+
+   '<p id="aviso" class="warn">'+(S.idade!==null&&S.idade<17?'Este teste é para pessoas de 17 anos ou mais. Para jovens de 10 a 16 anos, use o teste para jovens.':'')+'</p>'+
    '<div class="nav">'+
      (salvo&&salvo.i>0?'<button class="btn gr" onclick="continuarSalvo()">Continuar de onde parou</button>':'')+
-     '<button class="btn" id="ini" '+((S.idade===null||S.idade<12)?'disabled':'')+' onclick="comecar()">Começar do início</button>'+
+     '<button class="btn" id="ini" '+((S.idade===null||S.idade<17)?'disabled':'')+' onclick="comecar()">Começar do início</button>'+
    '</div></div>';
 }
 
@@ -446,13 +446,13 @@ app.addEventListener('input',e=>{
     S.idade=isNaN(v)?null:v;
     const aviso=document.getElementById('aviso');
     const ini=document.getElementById('ini');
-    if(S.idade!==null&&S.idade<12){aviso.textContent='Este teste é indicado a partir de 12 anos.';ini.disabled=true;}
+    if(S.idade!==null&&S.idade<17){aviso.textContent='Este teste é para pessoas de 17 anos ou mais. Para jovens de 10 a 16 anos, use o teste para jovens.';ini.disabled=true;}
     else{aviso.textContent='';ini.disabled=(S.idade===null);}
   }
 });
 
 function comecar(){
-  if(S.idade===null||S.idade<12) return;
+  if(S.idade===null||S.idade<17) return;
   S.R={};S.i=0;S.pausa=false;
   buildPages();
   salvar();
@@ -643,7 +643,7 @@ function renderResultado(){
   const tec=todas.filter(x=>x.nivel!=='G').slice(0,6);
   const famTop=Object.keys(famMax).sort((a,b)=>famMax[b]-famMax[a]).slice(0,3);
 
-  const perf=(S.idade!==null&&S.idade<18)?PERF_MENOR:PERF_ADULTO;
+  const perf=PERF_ADULTO;
   const linhas=perf.map((q,i)=>{
     const v=S.R['p'+i];
     let r;
