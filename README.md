@@ -134,6 +134,7 @@ As listas oficiais estão na pasta `referencias/`. Confira sempre o nome e a des
 | `index.html` | Teste para adultos (17 anos ou mais) |
 | `jovens.html` | Teste para jovens (10 a 16 anos) |
 | `referencias/` | Listas oficiais de profissões usadas no teste: CBO 2002 (Brasil, PDF e lista extraída em JSON) e CPP 2010 (Portugal, INE, PDF e lista extraída em JSON) |
+| `planejamento/melhorias-e-analises.md` | Melhorias planejadas, análises previstas e critérios para aceitar mudanças nos testes |
 | `README.md` | Esta descrição |
 
 ## Limitações
