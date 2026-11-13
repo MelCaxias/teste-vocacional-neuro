@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teste vocacional para neurodivergentes</title>
+<style>
+/* Paleta TouchPixel Design */
+:root{
+  --ameixa:#3B3160;      /* texto principal e cabeçalho */
+  --lav-suave:#6554A0;   /* botões e destaques */
+  --lav-legenda:#7D6CB5; /* textos secundários */
+  --lav-sombra:#A692E0;
+  --lav-mascote:#C4B5F0;
+  --lav-blush:#C9B9F2;
+  --lav-pixel:#DCD3F2;   /* bordas e painéis */
+  --branco-nevoa:#F6F3FD;/* fundo da página */
+  --verde-folha:#3A7556; /* texto de destaque em verde */
+  --verde-mascote:#9AD4AF;
+  --verde-nevoa:#CFE9D8; /* painéis verdes */
+  --neutro:#F1F0EE;
+  --warn:#A8322A;        /* só para avisos de erro */
+  --bg:var(--branco-nevoa); --card:#FFFFFF; --ink:var(--ameixa); --muted:var(--lav-legenda);
+  --line:var(--lav-pixel);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px}
+header{background:var(--ameixa);color:#fff;padding:18px 20px}
+.hwrap{max-width:820px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+header h1{margin:0;font-size:20px;font-weight:700}
+header p{margin:2px 0 0;font-size:14px;opacity:.92}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tog{background:transparent;color:#fff;border:1px solid #ffffff99;border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;font:inherit;font-size:13px}
+.tog[aria-pressed="true"]{background:#fff;color:var(--ameixa)}
+main{max-width:820px;margin:0 auto;padding:18px 16px 110px}
+.bar{height:10px;background:var(--line);border-radius:10px;overflow:hidden;margin:6px 0 4px}
+.bar div{height:100%;background:var(--verde-folha);width:0}
+.meta{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-bottom:12px;flex-wrap:wrap;gap:6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:14px}
+.card.miss{border-color:var(--warn);box-shadow:0 0 0 2px #f6d4d1}
+.bloco-desc{background:var(--lav-pixel);border-radius:14px;padding:12px 14px;margin:0 0 14px;color:var(--ameixa);font-size:15px}
+h2{font-size:21px;line-height:1.35;margin:0 0 8px}
+.ex{background:var(--verde-nevoa);color:var(--verde-folha);border-radius:12px;padding:10px 12px;font-size:15px;margin:10px 0 16px}
+.sub{font-size:14px;color:var(--muted);margin:14px 0 6px;font-weight:600}
+.sc-row{display:flex;flex-wrap:wrap;gap:8px}
+.sc{flex:1 1 72px;min-width:72px;border:2px solid var(--line);background:#fff;border-radius:14px;padding:10px 6px;text-align:center;cursor:pointer;font:inherit;color:var(--ink)}
+.sc b{display:block;font-size:22px;line-height:1.1}
+.sc small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.sc.nsei{flex:1 1 100%;font-size:15px;padding:12px}
+.sc.on{border-color:var(--lav-suave);background:var(--lav-mascote)}
+.sc.on b{color:var(--ameixa)}
+.sc:focus-visible,.btn:focus-visible,.opt:focus-visible,.tog:focus-visible,input:focus-visible,.float:focus-visible{outline:3px solid var(--lav-suave);outline-offset:2px}
+.opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 14px;margin:8px 0;cursor:pointer;font:inherit;color:var(--ink)}
+.opt .box{width:22px;height:22px;border:2px solid var(--lav-suave);border-radius:6px;flex:0 0 22px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
+.opt.on{border-color:var(--lav-suave);background:var(--branco-nevoa)}
+.opt.on .box{background:var(--lav-suave)}
+.opt.round .box{border-radius:50%}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}
+.btn{background:var(--lav-suave);color:#fff;border:0;border-radius:14px;padding:13px 20px;font-size:16px;cursor:pointer;font:inherit;font-weight:600}
+.btn:disabled{background:var(--lav-sombra);cursor:not-allowed;opacity:.6}
+.btn.ghost{background:#fff;color:var(--lav-suave);border:2px solid var(--lav-suave)}
+.btn.gr{background:var(--verde-folha)}
+.warn{color:var(--warn);min-height:22px;font-size:15px;margin:8px 0 0}
+label.field{display:block;font-size:15px;color:var(--muted);margin-top:10px}
+input[type=text],input[type=number]{display:block;width:100%;padding:12px;border:2px solid var(--line);border-radius:12px;font:inherit;font-size:17px;margin:6px 0 12px;color:var(--ink);background:#fff}
+.res h3{font-size:19px;margin:26px 0 8px;color:var(--lav-suave);border-bottom:2px solid var(--lav-pixel);padding-bottom:6px}
+.hero{background:var(--ameixa);color:#fff;border-radius:22px;padding:24px;margin-bottom:10px}
+.hero h2{color:#fff;font-size:24px;margin:0 0 6px}
+.hero p{margin:4px 0;font-size:16px}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em;background:var(--verde-mascote);color:var(--ameixa);padding:2px 10px;border-radius:8px;font-weight:700}
+.pill{display:inline-block;background:var(--verde-nevoa);color:var(--verde-folha);border-radius:999px;padding:2px 10px;font-size:13px;margin:2px 4px 2px 0;font-weight:600}
+.pill.lav{background:var(--lav-pixel);color:var(--ameixa)}
+.row{display:grid;grid-template-columns:150px 1fr 36px;gap:10px;align-items:center;margin:8px 0;font-size:15px}
+.track{background:var(--lav-pixel);border-radius:8px;height:14px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--lav-suave)}
+ul.clean{list-style:none;margin:0;padding:0}
+ul.clean li{padding:10px 0;border-bottom:1px solid var(--line)}
+ul.clean li:last-child{border-bottom:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.small{font-size:14px;color:var(--muted)}
+.note{background:var(--verde-nevoa);border-radius:14px;padding:14px 16px;color:var(--verde-folha);font-size:15px;margin-top:12px}
+.float{position:fixed;right:16px;bottom:16px;background:var(--lav-suave);color:#fff;border:2px solid #fff;border-radius:999px;padding:12px 18px;font:inherit;font-weight:600;font-size:15px;cursor:pointer;z-index:10}
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+body.big{font-size:20px}
+body.calm *{transition:none!important;animation:none!important}
+@media (max-width:640px){.two{grid-template-columns:1fr}.row{grid-template-columns:110px 1fr 30px}.hero h2{font-size:21px}.float{right:10px;bottom:10px;font-size:14px;padding:10px 14px}}
+@media print{
+  body{background:#fff;font-size:12pt}
+  header,.no-print,.float{display:none!important}
+  main{padding:0;max-width:none}
+  .card{border:none;padding:0;break-inside:avoid}
+  .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .res h3{break-after:avoid}
+  footer{display:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div>
+      <h1>Teste vocacional para neurodivergentes</h1>
+      <p>Pode ser feito em partes, no seu ritmo. Seu progresso fica salvo neste navegador.</p>
+    </div>
+    <div class="tools no-print">
+      <button class="tog" id="tBig" aria-pressed="false" onclick="togglePref('big')">Letra maior</button>
+      <button class="tog" id="tCalm" aria-pressed="false" onclick="togglePref('calm')">Modo calmo</button>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="bar no-print"><div id="bar"></div></div>
+  <div id="app"></div>
+  <footer class="no-print">Teste feito com a identidade visual da TouchPixel Design.<br>Dentro de visualizadores online, o botão de PDF e o de envio podem ser bloqueados. Para o PDF, use Ctrl+P (Cmd+P no Mac) e escolha “Salvar como PDF”. Para enviar, compartilhe o link da página.</footer>
+</main>
+<button class="float no-print" onclick="enviarLimpo()" title="Envia uma cópia limpa do teste para outra pessoa, sem alterar o seu questionário">Enviar para outra pessoa</button>
+
+<script>
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+const ESC=['Nada','Pouco','Um pouco','Razoável','Bastante','Muito'];
+const NIVEL={G:'Graduação',T:'Tecnólogo (BR) · CTeSP (PT)',C:'Técnico'};
+const DIM_NOME={R:'Realista',I:'Investigativo',A:'Artístico',S:'Social',E:'Empreendedor',C:'Convencional'};
+const DIMS=[...'RRRRRIIIIIAAAAASSSSSEEEEECCCCC'];
+const DIM_TRAIT={
+  R:'prefere resultados concretos, objetos, ferramentas e o trabalho com o corpo. Atenção: “trabalhar com as mãos” pode significar artes manuais, como pintura, cerâmica e costura, e não necessariamente agricultura ou construção.',
+  I:'gosta de entender como as coisas funcionam, investigar e resolver problemas com lógica.',
+  A:'gosta de criar, expressar ideias e trabalhar com linguagem visual, sonora ou escrita.',
+  S:'gosta de ajudar, ensinar e estar perto de pessoas.',
+  E:'gosta de propor, liderar, vender e convencer, além de assumir projetos.',
+  C:'gosta de ordem, método, precisão e processos bem definidos.'};
+const DIM_CAM={
+  R:'manutenção, engenharia, tecnologias de produção, segurança, artes manuais e ofícios',
+  I:'ciência, pesquisa, dados, saúde e tecnologia',
+  A:'design, comunicação, arquitetura, audiovisual, moda, música e artes',
+  S:'educação, saúde, psicologia, serviço social e atendimento',
+  E:'administração, vendas, marketing, empreendedorismo e direito',
+  C:'contabilidade, finanças, logística e gestão pública'};
+
+// Bloco 1: como eu funciono
+const F=[
+ {t:'Prefiro ambientes silenciosos e com luz suave',ex:'Ex.: uma sala tranquila, em vez de um escritório com muito barulho e movimento.',alto:'Ambientes calmos ajudam você a render mais. Ao escolher curso ou trabalho, considere turmas menores, espaços silenciosos e, quando possível, a opção de estudar em casa (EAD).'},
+ {t:'Consigo me concentrar por longos períodos quando um assunto me interessa',ex:'Ex.: passar horas estudando algo que eu amo sem perceber o tempo passar.',alto:'O foco intenso em temas de interesse é um recurso. Ele funciona bem em pesquisa, arte e tecnologia, desde que existam pausas combinadas.'},
+ {t:'Preciso de pausas frequentes para manter a atenção',ex:'Ex.: levantar, se movimentar ou mudar de tarefa a cada 30 a 50 minutos.',alto:'Pausas curtas e blocos de estudo fazem diferença. Blocos de 25 ou 45 minutos, seguidos de pausa, podem ajudar bastante.'},
+ {t:'Tenho interesses intensos que ocupam muito do meu tempo',ex:'Ex.: estudar um tema, criar algo ou jogar por semanas seguidas.',alto:'Interesses intensos podem virar motor de projetos. Canalize-os para entregas com início e fim claros.'},
+ {t:'Funciono melhor com regras e rotinas claras',ex:'Ex.: saber exatamente o que se espera de mim e em qual horário.',alto:'Regras claras reduzem o desgaste. Prefira cursos e trabalhos com cronograma publicado e critérios de avaliação bem explicados.'},
+ {t:'Gosto de tarefas concretas, com começo, meio e fim',ex:'Ex.: montar um objeto em etapas, em vez de planejar uma estratégia abstrata.',alto:'Tarefas práticas funcionam bem para você. Laboratórios, oficinas, estágios e projetos aplicados costumam combinar mais do que aulas só teóricas.'},
+ {t:'Mudanças de última hora me incomodam',ex:'Ex.: troca de horário ou de sala em cima da hora.',alto:'Previsibilidade importa para você. Vale procurar instituições com calendário fixo e comunicação clara sobre mudanças.'},
+ {t:'Prefiro trabalhar com pouca interação social diária',ex:'Ex.: ter horas de trabalho individual, sem reuniões o tempo todo.',alto:'Você rende melhor com tempo individual de trabalho. Áreas com atividades focadas e autônomas podem combinar bem com você.'},
+ {t:'Prefiro me comunicar por escrito do que falando ao vivo',ex:'Ex.: preferir mensagens, e-mails ou documentos a telefonemas.',alto:'A escrita é um canal forte para você. Em cursos com apresentações orais, pergunte se é possível usar roteiro escrito ou apresentação gravada.'},
+ {t:'Trabalho melhor com prazos curtos do que com prazos longos',ex:'Ex.: uma entrega em 2 dias, em vez de um projeto de 6 meses.',alto:'Prazos curtos motivam você. Procure cursos com entregas frequentes, em vez de uma única prova no fim do semestre.'},
+ {t:'Preciso de tempo sozinho para recarregar a energia',ex:'Ex.: ter um momento silencioso depois de atividades com muita gente.',alto:'Tempo sozinho é necessário para você. Planeje pausas silenciosas depois de dias sociais intensos.'},
+ {t:'Costumo perder a noção do tempo quando estou muito envolvido',ex:'Ex.: começar a desenhar ou programar e só perceber horas depois.',alto:'Quando você está envolvido, pode perder a hora. Alarmes e lembretes para pausas e prazos ajudam a manter o equilíbrio.'}
+];
+
+// Bloco 2: organização e foco (funções executivas)
+const EF=[
+ {t:'Tenho dificuldade em começar tarefas que não me interessam',ex:'Ex.: começar um relatório chato, mesmo sabendo que é importante.',alto:'Começar é a parte mais difícil para você. Divida a tarefa em um primeiro passo muito pequeno (por exemplo, abrir o arquivo) e use um temporizador de 5 minutos.'},
+ {t:'Esqueço compromissos, prazos ou objetos com facilidade',ex:'Ex.: esquecer uma entrega, um horário ou onde deixei o celular.',alto:'Lembretes em mais de um lugar ajudam bastante, como alarme no celular, agenda visível e um quadro na parede. Lembretes visuais costumam funcionar melhor do que apenas notificações.'},
+ {t:'Consigo decidir por onde começar quando tenho várias tarefas',ex:'Ex.: ter três entregas na semana e saber qual fazer primeiro.',alto:'Você tem bom senso para priorizar. Use essa força para escolher as tarefas que vão abrir caminho para as outras.'},
+ {t:'Perco o fio da tarefa quando sou interrompido',ex:'Ex.: alguém me chama e, quando volto, não lembro o que estava fazendo.',alto:'Interrupções custam caro para você. Combine horários de silêncio e deixe anotado, antes de parar, o que vem a seguir.'},
+ {t:'Tenho dificuldade em manter o espaço e os materiais organizados',ex:'Ex.: mesa cheia, arquivos espalhados, material de trabalho em desordem.',alto:'Organização visual ajuda: caixas transparentes, etiquetas com figuras e um lugar fixo para cada coisa costumam funcionar bem.'},
+ {t:'Sinto um cansaço mental grande em tarefas com muitas etapas',ex:'Ex.: um projeto com dez passos diferentes ao mesmo tempo.',alto:'Tarefas com muitas etapas esgotam você. Use listas numeradas e pausas entre as etapas, e marque cada uma ao concluir.'},
+ {t:'Gosto de ter listas ou quadros visuais para acompanhar o que fazer',ex:'Ex.: um quadro com colunas como “a fazer”, “em andamento” e “feito”.',alto:'Quadros visuais combinam com você. Experimente um quadro de tarefas (físico ou digital) com colunas simples.'},
+ {t:'Consigo manter uma rotina diária sem muita dificuldade',ex:'Ex.: estudar ou trabalhar nos mesmos horários quase todos os dias.',alto:'Sua rotina é um ponto de apoio. Mantenha horários fixos para estudo e descanso.'},
+ {t:'Tenho dificuldade em perceber a passagem do tempo',ex:'Ex.: sinto que uma hora passou em dez minutos, ou o contrário.',alto:'Temporizadores visíveis ajudam você a perceber o tempo passar. Um relógio na mesa ou um cronômetro na tela podem fazer diferença.'},
+ {t:'Preciso de apoio externo para cumprir prazos',ex:'Ex.: um colega, um professor ou um aplicativo que acompanha as entregas.',alto:'Ter alguém ou um aplicativo acompanhando prazos aumenta a chance de entregar no tempo. Isso é uma estratégia, não um sinal de fraqueza.'}
+];
+
+// Bloco 3: interesses
+const IA=[
+ ['Montar, consertar ou reparar objetos e equipamentos','Ex.: trocar uma peça de bicicleta, montar um móvel, consertar um eletrodoméstico.'],
+ ['Trabalhar com máquinas, ferramentas ou construção','Ex.: operar uma serra, trabalhar em uma obra, dar manutenção em máquinas.'],
+ ['Operar equipamentos técnicos ou veículos','Ex.: operar um drone, usar um equipamento de medição, dirigir um veículo de serviço.'],
+ ['Trabalhar ao ar livre, com plantas, terra ou animais','Ex.: cuidar de uma horta, de animais ou de áreas verdes.'],
+ ['Criar objetos com as mãos, de forma artística','Ex.: pintura, cerâmica, escultura, costura, bordado ou marcenaria artística.'],
+ ['Pesquisar como as coisas funcionam','Ex.: entender por que uma planta cresce melhor em certo solo, ou como um aplicativo funciona por dentro.'],
+ ['Analisar dados e números para encontrar padrões','Ex.: olhar uma planilha de vendas e descobrir o que se repete.'],
+ ['Fazer experimentos e testar hipóteses','Ex.: testar uma receita, um material ou uma ideia várias vezes para ver o que dá certo.'],
+ ['Ler sobre ciência, saúde ou tecnologia por interesse próprio','Ex.: assistir a vídeos ou ler artigos sobre o corpo humano, o clima ou a internet.'],
+ ['Resolver problemas complexos usando lógica','Ex.: quebra-cabeças de lógica, programação ou desafios de xadrez.'],
+ ['Criar desenhos, pinturas ou design visual','Ex.: ilustração, logotipo, layout de cartaz, pintura em tela.'],
+ ['Escrever textos, histórias ou roteiros','Ex.: contos, roteiros, legendas criativas, artigos.'],
+ ['Criar música, dança ou teatro','Ex.: compor, tocar, ensaiar uma peça ou criar uma coreografia.'],
+ ['Criar conteúdo visual ou em vídeo','Ex.: edição de vídeo, fotografia, animação, conteúdo para redes sociais.'],
+ ['Expressar ideias de forma original','Ex.: propor um jeito diferente de fazer algo e fugir do padrão.'],
+ ['Ajudar pessoas a resolver problemas do dia a dia','Ex.: orientar um colega ou familiar a encontrar uma solução prática.'],
+ ['Ensinar ou explicar coisas para outras pessoas','Ex.: explicar uma matéria, mostrar como fazer algo, dar aulas particulares.'],
+ ['Cuidar da saúde ou do bem-estar de pessoas','Ex.: cuidar de pacientes, idosos ou crianças, ou acompanhar pessoas em recuperação.'],
+ ['Atender o público com cordialidade','Ex.: receber clientes, responder dúvidas no balcão ou no chat.'],
+ ['Apoiar pessoas em conflitos ou momentos difíceis','Ex.: ouvir alguém que está com um problema e ajudar a pensar em caminhos.'],
+ ['Vender produtos ou serviços','Ex.: apresentar um produto e fechar a venda, ou indicar a melhor opção para o cliente.'],
+ ['Liderar equipes e tomar decisões','Ex.: organizar um grupo, distribuir tarefas e decidir o próximo passo.'],
+ ['Iniciar projetos ou negócios próprios','Ex.: criar um ateliê, uma loja online ou uma pequena empresa.'],
+ ['Convencer e negociar com outras pessoas','Ex.: negociar prazos, preços ou combinados com clientes ou parceiros.'],
+ ['Assumir riscos calculados para crescer','Ex.: investir em um projeto novo depois de estudar bem as opções.'],
+ ['Organizar documentos, arquivos e processos','Ex.: manter pastas, planilhas e arquivos em ordem.'],
+ ['Controlar finanças, estoques ou orçamentos','Ex.: acompanhar gastos, conferir um estoque ou montar um orçamento.'],
+ ['Seguir normas e procedimentos com precisão','Ex.: checklists, regras técnicas, normas de segurança.'],
+ ['Trabalhar com dados em planilhas e sistemas','Ex.: lançar informações em um sistema e conferir se estão corretas.'],
+ ['Manter registros e cumprir prazos administrativos','Ex.: preencher formulários, controlar entregas e cumprir datas.']
+];
+
+// Bloco 4: habilidades
+const HAB=[
+ ['Comunicação escrita','Ex.: escrever um e-mail claro, um texto ou uma legenda.'],
+ ['Comunicação oral e apresentações','Ex.: apresentar um trabalho ou falar em uma reunião.'],
+ ['Raciocínio lógico e matemático','Ex.: calcular uma medida, entender uma regra, resolver uma equação.'],
+ ['Resolução de problemas','Ex.: encontrar uma saída quando algo dá errado.'],
+ ['Organização e planejamento','Ex.: montar uma agenda e cumprir as etapas.'],
+ ['Atenção a detalhes','Ex.: revisar um texto ou um projeto sem deixar erros passarem.'],
+ ['Criatividade e ideias originais','Ex.: pensar em soluções diferentes para um mesmo problema.'],
+ ['Habilidade manual ou técnica','Ex.: pintar com precisão, montar peças, usar ferramentas.'],
+ ['Uso de tecnologia e computador','Ex.: usar programas, aplicativos, planilhas ou sistemas.'],
+ ['Vendas e negociação','Ex.: apresentar um produto e fechar uma venda.'],
+ ['Empatia e escuta','Ex.: perceber como alguém se sente e ouvir sem julgar.'],
+ ['Liderança','Ex.: organizar um grupo e orientar o que cada pessoa faz.'],
+ ['Trabalho em equipe','Ex.: colaborar com colegas para uma meta comum.'],
+ ['Aprendizagem rápida e adaptação','Ex.: aprender um programa novo em poucos dias.'],
+ ['Gestão de tempo e prazos','Ex.: cumprir uma entrega sem ficar em cima da hora.'],
+ ['Idiomas','Ex.: ler, escrever ou conversar em inglês ou em outra língua.']
+];
+
+// Bloco 5: valores
+const VAL=[
+ ['Estabilidade financeira','Ex.: salário fixo e previsível.'],
+ ['Autonomia para decidir como trabalho','Ex.: escolher meu método e meus horários.'],
+ ['Liberdade criativa','Ex.: ter espaço para propor soluções próprias.'],
+ ['Ajudar pessoas de forma direta','Ex.: ver o resultado do meu trabalho na vida de alguém.'],
+ ['Reconhecimento e prestígio','Ex.: ser conhecido e respeitado na área.'],
+ ['Ganhar bem','Ex.: ter uma renda que me permita viver com folga.'],
+ ['Equilíbrio entre vida pessoal e trabalho','Ex.: ter tempo para descansar, família e lazer.'],
+ ['Desafios intelectuais constantes','Ex.: aprender coisas novas o tempo todo.'],
+ ['Trabalho em equipe','Ex.: ter colegas com quem construir algo junto.'],
+ ['Trabalho ao ar livre ou em movimento','Ex.: não ficar preso a uma mesa o dia inteiro.'],
+ ['Rotina previsível','Ex.: saber, na maior parte do tempo, como será o meu dia.'],
+ ['Impacto na sociedade ou no meio ambiente','Ex.: fazer algo que melhore a vida de outras pessoas ou do planeta.']
+];
+
+// Bloco 6: áreas de estudo [nome, nível, códigos RIASEC]
+const AREAS=[
+ {f:'Saúde e bem-estar',o:[
+  ['Medicina','G','IS'],['Enfermagem','G','SI'],['Fisioterapia','G','SR'],['Nutrição','G','SI'],
+  ['Psicologia','G','SI'],['Estética e cosmetologia','T','AS'],['Radiologia','T','IR'],['Análises clínicas','T','IR']]},
+ {f:'Tecnologia e engenharia',o:[
+  ['Engenharia civil','G','RI'],['Engenharia mecânica','G','RI'],['Engenharia elétrica','G','IR'],['Ciência da computação','G','IC'],
+  ['Análise e desenvolvimento de sistemas','T','IC'],['Redes de computadores','T','RC'],['Automação industrial','T','RI'],['Mecatrônica industrial','T','RI']]},
+ {f:'Gestão, negócios e finanças',o:[
+  ['Administração','G','EC'],['Ciências contábeis','G','CE'],['Economia','G','IE'],['Gestão comercial','T','EC'],
+  ['Logística','T','CE'],['Gestão de recursos humanos','T','SE'],['Marketing digital','T','AE'],['Gestão financeira','T','CE']]},
+ {f:'Design, artes e comunicação',o:[
+  ['Design gráfico','T','AR'],['Design de interiores','T','AR'],['Arquitetura e urbanismo','G','AR'],['Publicidade e propaganda','G','AE'],
+  ['Jornalismo','G','AS'],['Produção audiovisual','T','AR'],['Moda','T','AE'],['Produção cultural','G','AE']]},
+ {f:'Educação e humanas',o:[
+  ['Pedagogia','G','SA'],['Licenciaturas (matemática, língua, biologia etc.)','G','SI'],['Direito','G','EC'],['Serviço social','G','SE'],
+  ['História','G','IA'],['Letras','G','AI'],['Filosofia','G','IA']]},
+ {f:'Ciências, meio ambiente e agro',o:[
+  ['Biologia','G','IR'],['Química','G','IR'],['Agronomia','G','RI'],['Gestão ambiental','T','RC'],
+  ['Agronegócio','T','RE'],['Geografia','G','IS']]},
+ {f:'Segurança, serviços públicos e turismo',o:[
+  ['Segurança pública','T','RS'],['Gestão pública','T','CE'],['Turismo','G','SE'],['Hotelaria','T','ES'],
+  ['Gastronomia','T','AR'],['Gestão de eventos','T','EA']]},
+ {f:'Indústria e cursos técnicos',o:[
+  ['Produção industrial','T','RC'],['Manutenção industrial','T','RI'],['Eletrotécnica','C','RI'],['Eletrônica','C','RI'],
+  ['Técnico em enfermagem','C','SR'],['Técnico em segurança do trabalho','C','RC']]}
+];
+
+const JOBS={
+ 'Saúde e bem-estar':['Enfermeiro(a)','Terapeuta ocupacional','Técnico(a) em análises clínicas','Nutricionista','Psicólogo(a)'],
+ 'Tecnologia e engenharia':['Desenvolvedor(a) de software','Analista de dados','Técnico(a) em automação','Engenheiro(a) de produção','Técnico(a) em redes'],
+ 'Gestão, negócios e finanças':['Analista administrativo(a)','Analista financeiro(a)','Gestor(a) comercial','Profissional de logística','Analista de recursos humanos','Profissional de marketing digital'],
+ 'Design, artes e comunicação':['Designer gráfico(a)','Designer de interiores','Ilustrador(a)','Produtor(a) audiovisual','Redator(a)','Editor(a) de vídeo'],
+ 'Educação e humanas':['Professor(a)','Pedagogo(a)','Assistente social','Pesquisador(a) em humanidades','Mediador(a) de conflitos'],
+ 'Ciências, meio ambiente e agro':['Biólogo(a)','Técnico(a) ambiental','Agrônomo(a)','Químico(a) de laboratório','Técnico(a) em agronegócio'],
+ 'Segurança, serviços públicos e turismo':['Técnico(a) em segurança do trabalho','Organizador(a) de eventos','Guia de turismo','Gestor(a) de hotelaria','Profissional de gastronomia'],
+ 'Indústria e cursos técnicos':['Técnico(a) em manutenção industrial','Eletrotécnico(a)','Técnico(a) em eletrônica','Técnico(a) em enfermagem','Operador(a) de produção especializado(a)']
+};
+
+// Bloco 7: momento atual (adulto e menor de 18)
+const ATIV=['Atender pessoas','Vender ou negociar','Resolver problemas técnicos','Organizar e controlar processos','Criar conteúdo ou material visual','Ensinar ou treinar pessoas','Cuidar de pessoas','Analisar dados e números','Trabalhar com as mãos','Liderar equipes'];
+const PERF_ADULTO=[
+ {q:'Qual é a sua situação atual?',m:false,o:['Estudando','Trabalhando','Trabalhando e estudando','Procurando trabalho','Em transição de carreira','Nenhuma das anteriores']},
+ {q:'Qual é a sua escolaridade mais alta, concluída ou em andamento?',m:false,o:['Ensino fundamental','Ensino médio','Curso técnico','Superior em andamento','Superior completo','Pós-graduação']},
+ {q:'Quanto tempo de experiência profissional você tem?',m:false,o:['Nenhuma','Até 2 anos','De 2 a 5 anos','De 5 a 10 anos','Mais de 10 anos']},
+ {q:'Em quais áreas você atua ou atuou? (pode marcar mais de uma)',m:true,o:['Saúde','Tecnologia e informática','Engenharia e indústria','Comércio e vendas','Administração e finanças','Educação','Design, arte e comunicação','Atendimento ao público','Serviços gerais ou manuais','Agro e meio ambiente','Outra ou nenhuma']},
+ {q:'Quais ferramentas ou programas você usa com frequência? (pode marcar mais de uma)',m:true,o:['Planilhas e documentos','Design (Canva, Figma, Adobe etc.)','Sistemas de gestão','Programação','Redes sociais e edição de vídeo','Máquinas ou equipamentos','Ferramentas manuais','Nenhuma específica']},
+ {q:'Quais atividades fazem parte do seu dia a dia? (pode marcar mais de uma)',m:true,o:ATIV},
+ {q:'O que você mais gosta de fazer? (marque até 3)',m:true,o:ATIV},
+ {q:'O que você menos gosta de fazer? (marque até 3)',m:true,o:ATIV},
+ {q:'Como você aprende melhor?',m:false,o:['Vendo vídeos ou imagens','Lendo textos','Fazendo na prática','Conversando e ouvindo','Uma combinação dessas']},
+ {q:'Qual modalidade de estudo você prefere?',m:false,o:['Presencial','EAD (a distância)','Híbrida','Tanto faz']},
+ {q:'Quanto tempo por semana você tem para estudar?',m:false,o:['Até 5 horas','De 5 a 10 horas','De 10 a 20 horas','Mais de 20 horas']},
+ {q:'Em qual país você pensa em estudar ou trabalhar?',m:false,o:['Brasil','Portugal','Outro país da União Europeia','Outro país','Ainda não sei']}
+];
+const MATERIAS=['Matemática','Português e literatura','Ciências','História e geografia','Artes','Educação física','Inglês e outras línguas','Informática','Filosofia e sociologia'];
+const PERF_MENOR=[
+ {q:'Em qual ano escolar você está?',m:false,o:['6º ao 9º ano','1º ano do ensino médio','2º ano do ensino médio','3º ano do ensino médio','Outro']},
+ {q:'Quais matérias você mais gosta? (marque até 3)',m:true,o:MATERIAS},
+ {q:'Quais matérias você menos gosta? (marque até 3)',m:true,o:MATERIAS},
+ {q:'Quais atividades extracurriculares você faz ou gostaria de fazer?',m:true,o:['Esportes','Música','Dança','Teatro','Desenho e artes','Programação ou jogos','Leitura e escrita','Voluntariado','Nenhuma']},
+ {q:'O que você mais faz no tempo livre?',m:true,o:['Jogar videogame','Assistir vídeos ou criar conteúdo','Ler','Montar ou construir coisas','Cozinhar','Cuidar de animais','Ajudar pessoas','Desenhar ou criar histórias','Outro']},
+ {q:'O que você faz com facilidade? (pode marcar mais de uma)',m:true,o:['Explicar coisas para outras pessoas','Resolver quebra-cabeças e desafios de lógica','Desenhar ou criar visuais','Escrever histórias ou textos','Consertar ou montar objetos','Organizar eventos ou grupos','Falar em público','Usar computador e tecnologia']},
+ {q:'Você prefere trabalhar:',m:false,o:['Sozinho(a)','Em dupla','Em grupo','Depende da atividade']},
+ {q:'Você prefere ambientes:',m:false,o:['Dentro de casa ou em escritórios','Ao ar livre','Laboratórios ou oficinas','Tanto faz']},
+ {q:'Você já pensou em alguma profissão?',m:false,o:['Ainda não','Tenho ideias vagas','Tenho uma ideia clara']},
+ {q:'Quem você admira ou se inspira? (pode marcar mais de um)',m:true,o:['Médico ou enfermeiro','Professor','Criador de conteúdo','Atleta','Artista ou designer','Cientista','Empreendedor','Policial ou bombeiro','Engenheiro ou técnico','Outro']},
+ {q:'Depois do ensino médio, você pensa em:',m:false,o:['Faculdade','Curso técnico','Curso tecnólogo ou CTeSP','Trabalhar antes de decidir','Ainda não sei']},
+ {q:'Como você aprende melhor?',m:false,o:['Vendo vídeos ou imagens','Lendo textos','Fazendo na prática','Conversando e ouvindo','Uma combinação dessas']}
+];
+
+const BLOCOS=[
+ null,
+ {nome:'Como eu funciono',desc:'Perguntas sobre ambiente, ritmo e forma de trabalhar. Não existem respostas certas nem erradas. Use “Não sei” quando precisar.'},
+ {nome:'Organização e foco',desc:'Perguntas sobre como você começa tarefas, lembra de prazos e mantém o foco no dia a dia comum.'},
+ {nome:'Interesses',desc:'Cada frase tem um exemplo. Pense no que você faria com prazer, e não no que acha que deveria fazer.'},
+ {nome:'Habilidades',desc:'Para cada habilidade, responda duas vezes: o que você faz hoje e o que acha que conseguiria desenvolver com tempo e prática.'},
+ {nome:'Valores',desc:'O que importa para você em um estudo ou em um trabalho ideal.'},
+ {nome:'Áreas de estudo',desc:'Marque o que despertar interesse. Pode deixar em branco e pode marcar mais de uma opção.'},
+ {nome:'Seu momento atual',desc:'Perguntas sobre a sua situação hoje. Responda com o que é verdadeiro agora.'}
+];
+const NUM_BLOCOS=BLOCOS.length-1;
+
+/* =========================================================
+   ESTADO E PÁGINAS
+   ========================================================= */
+let S={nome:'',idade:null,i:0,R:{},pausa:false,pref:{big:false,calm:false}};
+let PAGES=[];
+let CLEAN_HTML='';
+const app=document.getElementById('app');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function buildPages(){
+  const P=[];
+  F.forEach((x,i)=>P.push({b:1,tipo:'escala',id:'f'+i,t:x.t,ex:x.ex}));
+  EF.forEach((x,i)=>P.push({b:2,tipo:'escala',id:'e'+i,t:x.t,ex:x.ex}));
+  IA.forEach((x,i)=>P.push({b:3,tipo:'escala',id:'a'+i,t:x[0],ex:x[1]}));
+  HAB.forEach((x,i)=>P.push({b:4,tipo:'hab',id:'h'+i,t:x[0],ex:x[1]}));
+  VAL.forEach((x,i)=>P.push({b:5,tipo:'escala',id:'v'+i,t:x[0],ex:x[1]}));
+  AREAS.forEach((f,fi)=>P.push({b:6,tipo:'multi',id:'d'+fi,t:'Quais destas áreas de “'+f.f+'” despertam seu interesse?',ops:f.o.map(o=>o[0]+' · '+NIVEL[o[1]])}));
+  const perf=S.idade!==null&&S.idade<18?PERF_MENOR:PERF_ADULTO;
+  perf.forEach((q,i)=>P.push({b:7,tipo:q.m?'multi':'unica',id:'p'+i,t:q.q,ops:q.o,m:q.m}));
+  PAGES=P;
+}
+
+function totalPerguntas(){
+  return F.length+EF.length+IA.length+HAB.length+VAL.length+AREAS.length+PERF_ADULTO.length;
+}
+
+function salvar(){
+  if(!S.nome) return;
+  try{localStorage.setItem('tvnd:'+S.nome.toLowerCase(),JSON.stringify({nome:S.nome,idade:S.idade,i:S.i,R:S.R}));}catch(e){}
+}
+function carregar(nome){
+  try{return JSON.parse(localStorage.getItem('tvnd:'+nome.toLowerCase()));}catch(e){return null;}
+}
+function savePref(){try{localStorage.setItem('tvnd:pref',JSON.stringify(S.pref));}catch(e){}}
+function loadPref(){try{const p=JSON.parse(localStorage.getItem('tvnd:pref'));if(p)S.pref=p;}catch(e){}}
+function applyPref(){
+  document.body.classList.toggle('big',!!S.pref.big);
+  document.body.classList.toggle('calm',!!S.pref.calm);
+  document.getElementById('tBig').setAttribute('aria-pressed',!!S.pref.big);
+  document.getElementById('tCalm').setAttribute('aria-pressed',!!S.pref.calm);
+}
+function togglePref(k){S.pref[k]=!S.pref[k];savePref();applyPref();}
+
+/* =========================================================
+   ENVIO DE CÓPIA LIMPA E PDF
+   ========================================================= */
+// Envia uma cópia do teste sem respostas. Não altera o questionário atual.
+let DOWNLOADS=null;
+if(window.claude&&typeof window.claude.use==='function'){
+  window.claude.use('downloads').then(d=>{DOWNLOADS=d;}).catch(()=>{});
+}
+function enviarLimpo(){
+  const nomeArq='teste-vocacional-neuro.html';
+  if(DOWNLOADS&&typeof DOWNLOADS.save==='function'){
+    DOWNLOADS.save({filename:nomeArq,data:CLEAN_HTML}).catch(()=>{});
+    return;
+  }
+  const blob=new Blob([CLEAN_HTML],{type:'text/html'});
+  const file=new File([blob],nomeArq,{type:'text/html'});
+  if(navigator.canShare&&navigator.canShare({files:[file]})){
+    navigator.share({files:[file],title:'Teste vocacional',text:'Teste vocacional para neurodivergentes'}).catch(()=>{});
+  } else {
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download=nomeArq;
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  }
+}
+
+// Gera o PDF do resultado desta pessoa, com nome do arquivo pré-preenchido
+function imprimirPDF(){
+  const antigo=document.title;
+  const nome=(S.nome||'sem-nome').replace(/[^A-Za-z0-9À-ɏ]+/g,'-').replace(/^-|-$/g,'');
+  document.title='Resultado-'+nome+'-'+new Date().toISOString().slice(0,10);
+  window.addEventListener('afterprint',()=>{document.title=antigo;},{once:true});
+  window.print();
+}
+
+/* =========================================================
+   RENDERIZAÇÃO
+   ========================================================= */
+function setBar(){
+  const pct=PAGES.length?Math.min(S.i,PAGES.length)/PAGES.length*100:0;
+  const b=document.getElementById('bar'); if(b) b.style.width=pct+'%';
+}
+
+let ULTIMA_TELA='';
+// Sobe a tela só quando muda de pergunta, pausa ou resultado; clicar em uma opção não move a página
+function render(){
+  setBar();
+  let tela;
+  if(!PAGES.length){tela='intro';renderIntro();}
+  else if(S.i>=PAGES.length){tela='resultado';renderResultado();}
+  else if(S.pausa){tela='pausa'+S.i;renderPausa();}
+  else{tela='pergunta'+S.i;renderPagina();}
+  if(tela!==ULTIMA_TELA){ULTIMA_TELA=tela;window.scrollTo(0,0);}
+}
+
+function renderIntro(){
+  const salvo=S.nome?carregar(S.nome):null;
+  app.innerHTML=
+   '<div class="card">'+
+   '<h2>Antes de começar</h2>'+
+   '<p>São cerca de '+totalPerguntas()+' perguntas, divididas em '+NUM_BLOCOS+' blocos. Você pode responder uma por vez, pausar entre os blocos e voltar depois. Seu progresso fica salvo neste navegador.</p>'+
+   '<p class="small">Você pode pular qualquer pergunta. Não existe resposta certa: o objetivo é entender como você funciona.</p>'+
+   '<label class="field" for="nome">Seu nome (opcional, usado para salvar o progresso e nomear o PDF)</label>'+
+   '<input id="nome" type="text" value="'+esc(S.nome)+'">'+
+   '<label class="field" for="idade">Sua idade</label>'+
+   '<input id="idade" type="number" min="1" max="99" value="'+(S.idade===null?'':S.idade)+'">'+
+   '<p id="aviso" class="warn">'+(S.idade!==null&&S.idade<12?'Este teste é indicado a partir de 12 anos.':'')+'</p>'+
+   '<div class="nav">'+
+     (salvo&&salvo.i>0?'<button class="btn gr" onclick="continuarSalvo()">Continuar de onde parou</button>':'')+
+     '<button class="btn" id="ini" '+((S.idade===null||S.idade<12)?'disabled':'')+' onclick="comecar()">Começar do início</button>'+
+   '</div></div>';
+}
+
+app.addEventListener('input',e=>{
+  if(e.target.id==='nome') S.nome=e.target.value.trim();
+  if(e.target.id==='idade'){
+    const v=parseInt(e.target.value,10);
+    S.idade=isNaN(v)?null:v;
+    const aviso=document.getElementById('aviso');
+    const ini=document.getElementById('ini');
+    if(S.idade!==null&&S.idade<12){aviso.textContent='Este teste é indicado a partir de 12 anos.';ini.disabled=true;}
+    else{aviso.textContent='';ini.disabled=(S.idade===null);}
+  }
+});
+
+function comecar(){
+  if(S.idade===null||S.idade<12) return;
+  S.R={};S.i=0;S.pausa=false;
+  buildPages();
+  salvar();
+  render();
+}
+
+function continuarSalvo(){
+  const s=carregar(S.nome);
+  if(!s) return;
+  S.nome=s.nome;S.idade=s.idade;S.i=s.i;S.R=s.R||{};S.pausa=false;
+  buildPages();
+  render();
+}
+
+function renderPausa(){
+  const anterior=PAGES[S.i-1];
+  const prox=PAGES[S.i];
+  app.innerHTML=
+   '<div class="card" style="text-align:center;padding:34px 22px">'+
+   '<h2>Bloco '+anterior.b+' concluído</h2>'+
+   '<p>Você terminou “'+BLOCOS[anterior.b].nome+'”. Pode fazer uma pausa agora, sem pressa. Seu progresso está salvo.</p>'+
+   '<p class="small">Próximo bloco: '+BLOCOS[prox.b].nome+'</p>'+
+   '<div class="nav" style="justify-content:center"><button class="btn" onclick="pausaContinuar()">Continuar</button></div>'+
+   '</div>';
+}
+
+function pausaContinuar(){
+  S.pausa=false;S.i++;salvar();render();
+}
+
+function renderPagina(){
+  const p=PAGES[S.i];
+  const bl=BLOCOS[p.b];
+  const primeiro=S.i===0||PAGES[S.i-1].b!==p.b;
+  let controle='';
+  if(p.tipo==='escala') controle=escalaHTML(p.id,null,S.R[p.id]);
+  if(p.tipo==='hab'){
+    const v=S.R[p.id]||{};
+    controle='<div class="sub">O que você faz hoje?</div>'+escalaHTML(p.id,'h',v.h)+
+             '<div class="sub">Com estudo e prática, quanto você acha que conseguiria evoluir?</div>'+escalaHTML(p.id,'p',v.p);
+  }
+  if(p.tipo==='multi'){
+    const arr=Array.isArray(S.R[p.id])?S.R[p.id]:[];
+    controle=p.ops.map((o,oi)=>{
+      const on=arr.includes(oi);
+      return '<button class="opt'+(on?' on':'')+'" aria-pressed="'+on+'" onclick="toggleMulti(\''+p.id+'\','+oi+')"><span class="box">'+(on?'✓':'')+'</span><span>'+esc(o)+'</span></button>';
+    }).join('');
+  }
+  if(p.tipo==='unica'){
+    const v=S.R[p.id];
+    controle=p.ops.map((o,oi)=>{
+      const on=v===oi;
+      return '<button class="opt round'+(on?' on':'')+'" aria-pressed="'+on+'" onclick="setVal(\''+p.id+'\',null,'+oi+')"><span class="box">'+(on?'●':'')+'</span><span>'+esc(o)+'</span></button>';
+    }).join('');
+  }
+  const ex=p.ex?'<div class="ex">'+esc(p.ex)+'</div>':'';
+  app.innerHTML=
+   '<div class="meta"><span>Bloco '+p.b+' de '+NUM_BLOCOS+' · '+bl.nome+'</span><span>Pergunta '+(S.i+1)+' de '+PAGES.length+'</span></div>'+
+   (primeiro?'<div class="bloco-desc">'+bl.desc+'</div>':'')+
+   '<div class="card" id="pergunta">'+
+     '<h2>'+esc(p.t)+'</h2>'+ex+controle+
+   '</div>'+
+   '<div class="nav">'+
+     '<button class="btn ghost" onclick="voltar()" '+(S.i===0?'disabled':'')+'>← Voltar</button>'+
+     '<button class="btn ghost" onclick="pular()">Pular</button>'+
+     '<button class="btn" id="prox" onclick="proxima()">Próxima →</button>'+
+   '</div>'+
+   '<p id="msg" class="warn"></p>'+
+   '<p class="small no-print" style="text-align:center">Atalhos: teclas 0 a 5 respondem a escala, Enter avança, seta à esquerda volta.</p>';
+}
+
+function escalaHTML(id,sub,val){
+  let h='<div class="sc-row">';
+  for(let k=0;k<=5;k++){
+    const on=val===k;
+    h+='<button class="sc'+(on?' on':'')+'" aria-pressed="'+on+'" onclick="setVal(\''+id+'\',\''+(sub||'')+'\','+k+')"><b>'+k+'</b><small>'+ESC[k]+'</small></button>';
+  }
+  const nsei=val==='nsei';
+  h+='<button class="sc nsei'+(nsei?' on':'')+'" aria-pressed="'+nsei+'" onclick="setVal(\''+id+'\',\''+(sub||'')+'\',\'nsei\')">Não sei / não se aplica</button>';
+  h+='</div>';
+  return h;
+}
+
+function setVal(id,sub,val){
+  if(sub){
+    if(typeof S.R[id]!=='object'||S.R[id]===null) S.R[id]={};
+    S.R[id][sub]=val;
+  } else S.R[id]=val;
+  salvar();
+  render();
+}
+
+function toggleMulti(id,oi){
+  const arr=Array.isArray(S.R[id])?S.R[id].slice():[];
+  const k=arr.indexOf(oi);
+  if(k>=0) arr.splice(k,1); else arr.push(oi);
+  S.R[id]=arr;
+  salvar();
+  render();
+}
+
+function respondido(p){
+  const v=S.R[p.id];
+  if(p.tipo==='hab') return v&&v.h!==undefined&&v.p!==undefined;
+  return v!==undefined;
+}
+
+function proxima(){
+  const p=PAGES[S.i];
+  if(!respondido(p)){
+    document.getElementById('msg').textContent='Responda para continuar, ou use “Pular”.';
+    return;
+  }
+  const nxt=PAGES[S.i+1];
+  if(nxt&&nxt.b!==p.b){S.pausa=true;salvar();render();return;}
+  S.i++;salvar();render();
+}
+
+function voltar(){
+  if(S.pausa){S.pausa=false;render();return;}
+  if(S.i>0){S.i--;salvar();render();}
+}
+
+function pular(){
+  const p=PAGES[S.i];
+  S.R[p.id]=p.tipo==='hab'?{h:'skip',p:'skip'}:'skip';
+  const nxt=PAGES[S.i+1];
+  salvar();
+  if(nxt&&nxt.b!==p.b){S.pausa=true;render();return;}
+  S.i++;salvar();render();
+}
+
+document.addEventListener('keydown',e=>{
+  if(!PAGES.length||S.i>=PAGES.length||S.pausa) return;
+  if(e.target.tagName==='INPUT') return;
+  const p=PAGES[S.i];
+  if(/^[0-5]$/.test(e.key)&&(p.tipo==='escala'||p.tipo==='hab')){
+    if(p.tipo==='escala') setVal(p.id,null,+e.key);
+    else{
+      const v=S.R[p.id]||{};
+      setVal(p.id,v.h===undefined?'h':'p',+e.key);
+    }
+  }
+  if(e.key==='Enter'&&!e.target.closest('button')) proxima();
+  if(e.key==='ArrowLeft') voltar();
+});
+
+/* =========================================================
+   RESULTADO
+   ========================================================= */
+const num=(id,sub)=>{
+  const v=sub?(S.R[id]||{})[sub]:S.R[id];
+  return typeof v==='number'?v:null;
+};
+
+function renderResultado(){
+  const med={};
+  for(const k of 'RIASEC'){
+    const vals=[...Array(30).keys()].filter(i=>DIMS[i]===k).map(i=>num('a'+i)).filter(v=>v!==null);
+    med[k]=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;
+  }
+  const ordem='RIASEC'.split('').sort((a,b)=>med[b]-med[a]);
+  const [d1,d2,d3]=ordem;
+
+  const jeito=F.map((x,i)=>({x,v:num('f'+i)})).filter(o=>o.v!==null&&o.v>=4).map(o=>o.x.alto);
+  const organiz=EF.map((x,i)=>({x,v:num('e'+i)})).filter(o=>o.v!==null&&o.v>=4).map(o=>o.x.alto);
+
+  const hab=HAB.map((x,i)=>({t:x[0],ex:x[1],h:num('h'+i,'h'),p:num('h'+i,'p')}));
+  const fortes=hab.filter(x=>x.h!==null&&x.h>=4).sort((a,b)=>b.h-a.h);
+  const potencial=hab.filter(x=>x.p!==null&&x.p>=4&&(x.h===null||x.h<=3)).sort((a,b)=>b.p-a.p);
+
+  const valores=VAL.map((x,i)=>({t:x[0],v:num('v'+i)})).filter(x=>x.v!==null).sort((a,b)=>b.v-a.v).slice(0,5);
+
+  const todas=[];
+  const famMax={};
+  AREAS.forEach((f,fi)=>f.o.forEach((o,oi)=>{
+    const arr=Array.isArray(S.R['d'+fi])?S.R['d'+fi]:[];
+    const sel=arr.includes(oi);
+    const letras=o[2].split('');
+    const fit=letras.reduce((s,l)=>s+med[l],0)/letras.length;
+    const score=(sel?3:0)+fit;
+    const motivo=letras.filter(l=>med[l]>=3).map(l=>DIM_NOME[l]);
+    todas.push({nome:o[0],nivel:o[1],fam:f.f,sel,score,motivo,compat:Math.round(Math.min(100,score/8*100))});
+    famMax[f.f]=Math.max(famMax[f.f]===undefined?0:famMax[f.f],score);
+  }));
+  todas.sort((a,b)=>b.score-a.score);
+  const grad=todas.filter(x=>x.nivel==='G').slice(0,6);
+  const tec=todas.filter(x=>x.nivel!=='G').slice(0,6);
+  const famTop=Object.keys(famMax).sort((a,b)=>famMax[b]-famMax[a]).slice(0,3);
+
+  const perf=(S.idade!==null&&S.idade<18)?PERF_MENOR:PERF_ADULTO;
+  const linhas=perf.map((q,i)=>{
+    const v=S.R['p'+i];
+    let r;
+    if(q.m){const arr=Array.isArray(v)?v:[];r=arr.map(k=>q.o[k]).join(', ')||'—';}
+    else r=(typeof v==='number')?q.o[v]:'—';
+    return '<li><span class="small">'+esc(q.q)+'</span><br><b>'+esc(r)+'</b></li>';
+  }).join('');
+
+  const barras=ordem.map(k=>{
+    const pct=Math.round(med[k]/5*100);
+    return '<div class="row"><span>'+k+' · '+DIM_NOME[k]+'</span><div class="track"><i style="width:'+pct+'%"></i></div><span>'+med[k].toFixed(1)+'</span></div>';
+  }).join('');
+
+  const frase=d1&&d2
+    ? 'Perfil predominante: '+DIM_NOME[d1]+' e '+DIM_NOME[d2]+'. Você '+DIM_TRAIT[d1].split(',')[0]+', e também '+DIM_TRAIT[d2].replace(/^gosta de /,'')+'.'
+    : '';
+
+  const tituloPessoa=S.nome?esc(S.nome):'Sem nome';
+
+  app.innerHTML=
+   '<div class="no-print" style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:12px">'+
+     '<button class="btn" onclick="imprimirPDF()">Baixar em PDF (imprimir e salvar como PDF)</button>'+
+     '<button class="btn ghost" onclick="novaPessoa()">Nova pessoa</button>'+
+   '</div>'+
+   '<div class="res">'+
+   '<div class="hero">'+
+     '<p class="small" style="color:#fff;opacity:.85">Resultado de</p>'+
+     '<h2>'+tituloPessoa+'</h2>'+
+     '<p>Código de interesses: <span class="code">'+(d1||'')+(d2||'')+(d3||'')+'</span></p>'+
+     '<p>'+esc(frase)+'</p>'+
+     '<p class="small" style="color:#fff;opacity:.85">Data: '+new Date().toLocaleDateString('pt-BR')+' · Idade: '+(S.idade===null?'—':S.idade)+'</p>'+
+   '</div>'+
+
+   '<h3>1. Seu jeito de funcionar</h3>'+
+   (jeito.length
+     ? '<div class="card"><ul class="clean">'+jeito.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></div>'
+     : '<div class="card"><p>Você marcou poucos pontos como “muito parecidos” com você. Isso não é um problema: pode ser um sinal de que o ambiente certo ainda não foi experimentado.</p></div>')+
+
+   '<h3>2. Organização e foco</h3>'+
+   (organiz.length
+     ? '<div class="card"><ul class="clean">'+organiz.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></div>'
+     : '<div class="card"><p>Nenhum ponto de organização apareceu como muito marcante. Vale observar, no seu dia a dia, quais tarefas costumam ficar para depois.</p></div>')+
+
+   '<h3>3. Interesses</h3>'+
+   '<div class="card"><p>Os seus interesses principais apontam para estes caminhos:</p>'+
+   '<div class="bars">'+barras+'</div>'+
+   ordem.slice(0,3).map(k=>'<p><span class="pill lav">'+DIM_NOME[k]+'</span> '+esc(DIM_TRAIT[k])+'</p><p class="small">Áreas relacionadas: '+esc(DIM_CAM[k])+'.</p>').join('')+
+   '</div>'+
+
+   '<h3>4. Pontos fortes</h3>'+
+   '<div class="card">'+
+   (fortes.length
+     ? '<ul class="clean">'+fortes.slice(0,6).map(x=>'<li><b>'+esc(x.t)+'</b> (nota '+x.h+')<br><span class="small">'+esc(x.ex)+'</span></li>').join('')+'</ul>'
+     : '<p>Nenhuma habilidade ficou com nota alta hoje. Habilidades podem ser construídas com tempo e prática.</p>')+
+   '</div>'+
+
+   '<h3>5. Potencial para desenvolver</h3>'+
+   '<div class="card">'+
+   (potencial.length
+     ? '<ul class="clean">'+potencial.slice(0,5).map(x=>'<li><b>'+esc(x.t)+'</b> (potencial '+x.p+')<br><span class="small">Um primeiro passo possível: um mini-projeto ou curso curto de 2 a 4 semanas nessa habilidade.</span></li>').join('')+'</ul>'
+     : '<p>Nenhuma habilidade destacou um potencial acima do que você já percebe em si.</p>')+
+   '</div>'+
+
+   '<h3>6. O que é importante para você</h3>'+
+   '<div class="card"><ul class="clean">'+valores.map(x=>'<li>'+esc(x.t)+' <span class="pill">nota '+x.v+'</span></li>').join('')+'</ul></div>'+
+
+   '<h3>7. Áreas de estudo mais compatíveis</h3>'+
+   '<p class="small">A compatibilidade combina as áreas que você marcou com os seus interesses. Ela é uma orientação, não uma garantia.</p>'+
+   '<div class="two">'+
+     '<div class="card"><b>Graduação</b><ul class="clean">'+grad.map(x=>'<li>'+esc(x.nome)+' <span class="pill">'+x.compat+'%</span>'+(x.sel?' <span class="pill lav">marcada por você</span>':'')+'<br><span class="small">Combina com: '+esc(x.motivo.join(', ')||'interesses variados')+'</span></li>').join('')+'</ul></div>'+
+     '<div class="card"><b>Tecnólogos, CTeSP e técnicos</b><ul class="clean">'+tec.map(x=>'<li>'+esc(x.nome)+' <span class="pill">'+x.compat+'%</span>'+(x.sel?' <span class="pill lav">marcada por você</span>':'')+'<br><span class="small">'+esc(x.nivel)+' · combina com: '+esc(x.motivo.join(', ')||'interesses variados')+'</span></li>').join('')+'</ul></div>'+
+   '</div>'+
+   '<div class="note">Os nomes de cursos variam entre Brasil e Portugal. Tecnólogo no Brasil corresponde, de forma aproximada, ao CTeSP em Portugal. Antes de escolher, compare a grade curricular, a carga horária, o formato das avaliações e a modalidade (presencial, híbrida ou EAD) em cada instituição.</div>'+
+
+   '<h3>8. Caminhos profissionais de exemplo</h3>'+
+   famTop.map(f=>'<div class="card"><b>'+esc(f)+'</b><div style="margin-top:8px">'+JOBS[f].map(j=>'<span class="pill">'+esc(j)+'</span>').join('')+'</div></div>').join('')+
+   '<p class="small">Estes são exemplos, não uma lista fechada. Algumas profissões são regulamentadas, como saúde, direito e engenharia; confirme as exigências de cada país antes de decidir.</p>'+
+
+   '<h3>9. Perfil atual</h3>'+
+   '<div class="card"><ul class="clean">'+linhas+'</ul></div>'+
+
+   '<h3>10. Próximos passos sugeridos</h3>'+
+   '<div class="card"><ul class="clean">'+
+     '<li><b>Escolha duas áreas</b> da lista acima e compare a grade de duas instituições, uma presencial e uma EAD.</li>'+
+     '<li><b>Converse com alguém</b> que trabalha na área. Pergunte o que é um dia comum, sem pressa.</li>'+
+     '<li><b>Experimente antes de decidir:</b> um curso livre curto, uma oficina ou um projeto pequeno.</li>'+
+     '<li><b>Pergunte sobre apoio:</b> muitas instituições têm serviços de acessibilidade e apoio ao estudante. Pergunte sobre horários flexíveis, formatos alternativos de avaliação e materiais em outros formatos.</li>'+
+   '</ul></div>'+
+
+   '<div class="note">Este resultado é uma orientação para reflexão e conversa. Ele não é um diagnóstico e não substitui a avaliação de um orientador vocacional ou profissional. Para menores de idade, use-o como ponto de partida para conversar com a família e a escola.</div>'+
+   '</div>';
+}
+
+function novaPessoa(){
+  S={nome:'',idade:null,i:0,R:{},pausa:false,pref:S.pref};
+  PAGES=[];
+  render();
+}
+
+/* Inicialização: a cópia limpa é capturada quando o DOM está completo, antes de qualquer resposta */
+document.addEventListener('DOMContentLoaded',()=>{
+  try{
+    CLEAN_HTML='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+    loadPref();
+    applyPref();
+    render();
+  }catch(err){
+    document.getElementById('app').innerHTML='<div class="card"><h2>Não foi possível abrir o teste aqui</h2><p>Este visualizador não executou o questionário. Abra o arquivo em um navegador (Chrome, Safari ou Edge), e não na pré-visualização do WhatsApp, do e-mail ou de um app de arquivos.</p><p class="small">No iPhone: toque em Compartilhar e escolha “Salvar em Arquivos”; depois abra o arquivo pelo app Arquivos, que costuma usar o Safari.</p></div>';
+  }
+});
+</script>
+</body>
+</html>
