@@ -260,7 +260,9 @@ const BLOCOS=[
  {nome:'Habilidades',desc:'Para cada habilidade, responda duas vezes: o que você faz hoje e o que acha que consegue aprender com prática.'},
  {nome:'O que é importante',desc:'O que faz diferença para você.'},
  {nome:'Matérias e atividades',desc:'Marque o que combina com você. Pode deixar em branco.'},
- {nome:'Sobre você',desc:'Algumas perguntas rápidas sobre você.'}
+ {nome:'Sobre você',desc:'Algumas perguntas rápidas sobre você.'},
+ {"nome": "Escolhas rápidas", "desc": "Em cada par, escolha a atividade de que você mais gostaria. Não existe resposta certa. Se não souber, use “Pular”."},
+ {"nome": "Ritmo e ambiente", "desc": "Como você gosta de estudar e de fazer as coisas. Responda pensando no que é mais verdadeiro para você."}
 ];
 const NUM_BLOCOS=BLOCOS.length-1;
 
@@ -275,6 +277,8 @@ const app=document.getElementById('app');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const URL_ADULTOS='https://melcaxias.github.io/teste-vocacional-neuro/';
 
+const PARES=[{"a": ["Montar uma maquete ou um objeto com as mãos", "R"], "b": ["Organizar a lista de tarefas de um trabalho em grupo", "C"]}, {"a": ["Descobrir como uma coisa funciona por dentro", "I"], "b": ["Criar um desenho ou uma história", "A"]}, {"a": ["Ajudar um colega que está com dificuldade", "S"], "b": ["Liderar a equipe em uma competição", "E"]}, {"a": ["Vender alguma coisa na feira da escola", "E"], "b": ["Cuidar de um animal de estimação", "S"]}, {"a": ["Conferir se os números de um trabalho estão corretos", "C"], "b": ["Ensinar um colega a fazer um exercício", "S"]}, {"a": ["Consertar uma bicicleta ou um brinquedo", "R"], "b": ["Fazer uma pesquisa sobre um assunto curioso", "I"]}, {"a": ["Escrever o roteiro de um vídeo", "A"], "b": ["Organizar um evento da turma", "E"]}, {"a": ["Arrumar a sala ou o armário para encontrar tudo fácil", "C"], "b": ["Tocar um instrumento ou cantar", "A"]}, {"a": ["Cuidar de plantas e de uma horta", "R"], "b": ["Conversar com alguém para entender como ela se sente", "S"]}, {"a": ["Propor uma ideia nova para a turma e defendê-la", "E"], "b": ["Calcular quanto custa um passeio", "C"]}];
+const RITMO=[{"t": "Você se concentra melhor em um lugar silencioso.", "alto": "lugares silenciosos para estudar"}, {"t": "Você gosta de ter as tarefas anotadas em uma lista.", "alto": "listas de tarefas"}, {"t": "Você prefere atividades em que pode fazer do seu jeito.", "alto": "atividades em que pode fazer do seu jeito"}, {"t": "Você gosta de atividades ao ar livre.", "alto": "atividades ao ar livre"}, {"t": "Você gosta de mudar de atividade com frequência.", "alto": "mudar de atividade com frequência"}];
 function buildPages(){
   const P=[];
   F.forEach((x,i)=>P.push({b:1,tipo:'escala',id:'f'+i,t:x.t,ex:x.ex}));
@@ -284,11 +288,13 @@ function buildPages(){
   VAL.forEach((x,i)=>P.push({b:5,tipo:'escala',id:'v'+i,t:x[0],ex:x[1]}));
   MULTI.forEach((x,i)=>P.push({b:6,tipo:'multi',id:'m'+i,t:x.t,ops:x.ops}));
   SOBRE.forEach((x,i)=>P.push({b:7,tipo:x.m?'multi':'unica',id:'s'+i,t:x.t,ops:x.ops}));
+  PARES.forEach((x,i)=>P.push({b:BLOCOS.length-2,tipo:'unica',id:'x'+i,t:'Qual destas duas atividades você preferiria fazer?',ops:[x.a[0],x.b[0]]}));
+  RITMO.forEach((x,i)=>P.push({b:BLOCOS.length-1,tipo:'escala',id:'r'+i,t:x.t}));
   PAGES=P;
 }
 
 function totalPerguntas(){
-  return F.length+EF.length+IA.length+HAB.length+VAL.length+MULTI.length+SOBRE.length;
+  return F.length+EF.length+IA.length+HAB.length+VAL.length+MULTI.length+SOBRE.length+PARES.length+RITMO.length;
 }
 
 function salvar(){
@@ -710,7 +716,8 @@ function htmlProfissoes(med,gostaIdx,gostaMap,menosIdx,menosMap){
    CÓDIGO DE RESPOSTAS: guarda as respostas em texto curto e gera o resultado de novo
    Formato: VERSÃO~nome~idade~resposta|resposta|...  (uma resposta por pergunta, na ordem do teste)
    ========================================================= */
-const CODIGO_VERSAO='TVJ1';
+const CODIGO_VERSAO='TVJ2';
+const CODIGO_ANTIGO='TVJ1';
 function tokSai(v){
   if(v===undefined||v===null) return '_';
   if(v==='nsei') return 'n';
@@ -739,9 +746,10 @@ function tokEntra(t){
 }
 function codigoLer(txt){
   const partes=String(txt).trim().split('~');
-  if(partes.length!==4||partes[0]!==CODIGO_VERSAO) throw new Error('Este código não é deste teste, ou é de uma versão antiga.');
+  if(partes.length!==4||(partes[0]!==CODIGO_VERSAO&&partes[0]!==CODIGO_ANTIGO)) throw new Error('Este código não é deste teste, ou é de uma versão antiga.');
   buildPages();
-  const toks=partes[3].split('|');
+  let toks=partes[3].split('|');
+  if(partes[0]===CODIGO_ANTIGO) toks=toks.concat(Array(PARES.length+RITMO.length).fill('_'));
   if(toks.length!==PAGES.length) throw new Error('Este código não confere com as perguntas atuais do teste.');
   const R={};
   PAGES.forEach((p,i)=>{
@@ -851,12 +859,18 @@ function cardMais20(){
     linhas+'</div>';
 }
 
+function cardRitmo(){
+  const itens=RITMO.map((x,i)=>({a:x.alto,v:num('r'+i)})).filter(o=>o.v!==null&&o.v>=4).map(o=>o.a);
+  if(!itens.length) return '';
+  return '<div class="card"><b>Ritmo e ambiente</b><p>Pelas suas respostas, você parece se sentir bem com: '+esc(itens.join('; '))+'. Use isso como pista ao escolher um lugar e um jeito de trabalhar ou estudar, e não como uma regra.</p></div>';
+}
 function renderResultado(){
   const med={};
   for(const k of 'RIASEC'){
     const vals=[...Array(30).keys()].filter(i=>DIMS[i]===k).map(i=>num('a'+i)).filter(v=>v!==null);
     med[k]=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;
   }
+  PARES.forEach((x,i)=>{const v=S.R['x'+i]; if(v===0||v===1) med[v===0?x.a[1]:x.b[1]]+=0.2;});
   const ordem='RIASEC'.split('').sort((a,b)=>med[b]-med[a]);
   const [d1,d2,d3]=ordem;
 
@@ -953,7 +967,7 @@ function renderResultado(){
      '<li><b>Peça à escola</b> informações sobre projetos e feiras de profissões.</li>'+
    '</ul></div>'+
 
-   cardMais20()+cardOutras()+cardCodigo()+'<div class="note"><b>Para a família e a escola:</b> interesses mudam bastante nessa idade. Este resultado é um ponto de partida para conversar, e não uma decisão. Se houver dúvidas, um orientador pode ajudar.</div>'+
+   cardRitmo()+cardMais20()+cardOutras()+cardCodigo()+'<div class="note"><b>Para a família e a escola:</b> interesses mudam bastante nessa idade. Este resultado é um ponto de partida para conversar, e não uma decisão. Se houver dúvidas, um orientador pode ajudar.</div>'+
    '<div class="note">Este resultado não é um diagnóstico e não define o futuro.</div>'+
    '</div>';
 }

@@ -497,7 +497,9 @@ const BLOCOS=[
  {nome:'Habilidades',desc:'Para cada habilidade, responda duas vezes: o que você faz hoje e o que acha que conseguiria desenvolver com tempo e prática.'},
  {nome:'Valores',desc:'O que importa para você em um estudo ou em um trabalho ideal.'},
  {nome:'Áreas de estudo',desc:'Marque o que despertar interesse. Pode deixar em branco e pode marcar mais de uma opção.'},
- {nome:'Seu momento atual',desc:'Perguntas sobre a sua situação hoje. Responda com o que é verdadeiro agora.'}
+ {nome:'Seu momento atual',desc:'Perguntas sobre a sua situação hoje. Responda com o que é verdadeiro agora.'},
+ {"nome": "Escolhas rápidas", "desc": "Em cada par, escolha a atividade que você preferiria fazer. Não existe resposta certa. Se não souber, use “Pular”."},
+ {"nome": "Ritmo e ambiente", "desc": "Como você prefere trabalhar e estudar. Responda pensando no que é mais verdadeiro para você."}
 ];
 const NUM_BLOCOS=BLOCOS.length-1;
 
@@ -510,6 +512,8 @@ let CLEAN_HTML='';
 const app=document.getElementById('app');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
+const PARES=[{"a": ["Consertar um aparelho que parou de funcionar", "R"], "b": ["Montar uma planilha que controla as contas de um negócio", "C"]}, {"a": ["Descobrir por que um resultado saiu diferente do esperado", "I"], "b": ["Organizar a agenda de uma equipe para cumprir todos os prazos", "C"]}, {"a": ["Criar a identidade visual de uma marca nova", "A"], "b": ["Negociar com um fornecedor para conseguir um preço melhor", "E"]}, {"a": ["Ensinar um assunto difícil para um grupo de pessoas", "S"], "b": ["Convencer uma loja a vender os seus produtos", "E"]}, {"a": ["Acompanhar alguém que está passando por um momento difícil", "S"], "b": ["Revisar, linha por linha, um relatório para achar erros", "C"]}, {"a": ["Liderar um grupo para cumprir uma meta de vendas", "E"], "b": ["Cuidar de um jardim, plantando e podando", "R"]}, {"a": ["Escrever uma história ou um roteiro do zero", "A"], "b": ["Atualizar um cadastro de clientes para deixá-lo completo e correto", "C"]}, {"a": ["Estudar os dados de uma pesquisa para tirar conclusões", "I"], "b": ["Ajudar um colega a se organizar no trabalho", "S"]}, {"a": ["Preparar uma apresentação de vendas para um público novo", "E"], "b": ["Cuidar de uma criança ou de um idoso durante o dia", "S"]}, {"a": ["Organizar um estoque para encontrar qualquer item em segundos", "C"], "b": ["Pintar um quadro ou uma parede com um estilo próprio", "A"]}, {"a": ["Cuidar de animais, alimentando e observando a saúde deles", "S"], "b": ["Calcular os custos de um projeto antes de começar", "C"]}, {"a": ["Construir uma estrutura de madeira ou metal seguindo um projeto", "R"], "b": ["Dar aula particular de um assunto que você domina", "S"]}];
+const RITMO=[{"t": "Você rende mais quando pode fazer as coisas no seu próprio ritmo.", "alto": "trabalhar no seu próprio ritmo"}, {"t": "Você se sente bem em lugares com pouco barulho e pouca gente por perto.", "alto": "lugares silenciosos e com pouca gente"}, {"t": "Você gosta de saber com antecedência o que vai acontecer no dia.", "alto": "uma rotina previsível"}, {"t": "Você prefere tarefas com começo, meio e fim bem definidos.", "alto": "tarefas com início, meio e fim bem definidos"}, {"t": "Você se sente bem trabalhando com vários assuntos ao mesmo tempo.", "alto": "várias frentes de trabalho ao mesmo tempo"}, {"t": "Você gosta de ter liberdade para decidir como fazer o seu trabalho.", "alto": "liberdade para decidir como fazer o trabalho"}];
 function buildPages(){
   const P=[];
   F.forEach((x,i)=>P.push({b:1,tipo:'escala',id:'f'+i,t:x.t,ex:x.ex}));
@@ -520,11 +524,13 @@ function buildPages(){
   AREAS.forEach((f,fi)=>P.push({b:6,tipo:'multi',id:'d'+fi,t:'Quais destas áreas de “'+f.f+'” despertam seu interesse?',ops:f.o.map(o=>o[0]+' · '+NIVEL[o[1]])}));
   const perf=PERF_ADULTO;
   perf.forEach((q,i)=>P.push({b:7,tipo:q.m?'multi':'unica',id:'p'+i,t:q.q,ops:q.o,m:q.m}));
+  PARES.forEach((x,i)=>P.push({b:BLOCOS.length-2,tipo:'unica',id:'x'+i,t:'Qual destas duas atividades você preferiria fazer?',ops:[x.a[0],x.b[0]]}));
+  RITMO.forEach((x,i)=>P.push({b:BLOCOS.length-1,tipo:'escala',id:'r'+i,t:x.t}));
   PAGES=P;
 }
 
 function totalPerguntas(){
-  return F.length+EF.length+IA.length+HAB.length+VAL.length+AREAS.length+PERF_ADULTO.length;
+  return F.length+EF.length+IA.length+HAB.length+VAL.length+AREAS.length+PERF_ADULTO.length+PARES.length+RITMO.length;
 }
 
 function salvar(){
@@ -904,7 +910,8 @@ function htmlProfissoes(med,gostaIdx,gostaMap,menosIdx,menosMap){
    CÓDIGO DE RESPOSTAS: guarda as respostas em texto curto e gera o resultado de novo
    Formato: VERSÃO~nome~idade~resposta|resposta|...  (uma resposta por pergunta, na ordem do teste)
    ========================================================= */
-const CODIGO_VERSAO='TVA1';
+const CODIGO_VERSAO='TVA2';
+const CODIGO_ANTIGO='TVA1';
 function tokSai(v){
   if(v===undefined||v===null) return '_';
   if(v==='nsei') return 'n';
@@ -933,9 +940,10 @@ function tokEntra(t){
 }
 function codigoLer(txt){
   const partes=String(txt).trim().split('~');
-  if(partes.length!==4||partes[0]!==CODIGO_VERSAO) throw new Error('Este código não é deste teste, ou é de uma versão antiga.');
+  if(partes.length!==4||(partes[0]!==CODIGO_VERSAO&&partes[0]!==CODIGO_ANTIGO)) throw new Error('Este código não é deste teste, ou é de uma versão antiga.');
   buildPages();
-  const toks=partes[3].split('|');
+  let toks=partes[3].split('|');
+  if(partes[0]===CODIGO_ANTIGO) toks=toks.concat(Array(PARES.length+RITMO.length).fill('_'));
   if(toks.length!==PAGES.length) throw new Error('Este código não confere com as perguntas atuais do teste.');
   const R={};
   PAGES.forEach((p,i)=>{
@@ -1045,12 +1053,18 @@ function cardMais20(){
     linhas+'</div>';
 }
 
+function cardRitmo(){
+  const itens=RITMO.map((x,i)=>({a:x.alto,v:num('r'+i)})).filter(o=>o.v!==null&&o.v>=4).map(o=>o.a);
+  if(!itens.length) return '';
+  return '<div class="card"><b>Ritmo e ambiente</b><p>Pelas suas respostas, você parece se sentir bem com: '+esc(itens.join('; '))+'. Use isso como pista ao escolher um lugar e um jeito de trabalhar ou estudar, e não como uma regra.</p></div>';
+}
 function renderResultado(){
   const med={};
   for(const k of 'RIASEC'){
     const vals=[...Array(30).keys()].filter(i=>DIMS[i]===k).map(i=>num('a'+i)).filter(v=>v!==null);
     med[k]=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;
   }
+  PARES.forEach((x,i)=>{const v=S.R['x'+i]; if(v===0||v===1) med[v===0?x.a[1]:x.b[1]]+=0.2;});
   const ordem='RIASEC'.split('').sort((a,b)=>med[b]-med[a]);
   const [d1,d2,d3]=ordem;
 
@@ -1190,7 +1204,7 @@ function renderResultado(){
    '<h3>8. Profissões que combinam com você</h3>'+
    '<p class="small">São as dez profissões mais próximas do seu perfil. Algumas exigem formação. Outras não exigem formação obrigatória, mas costumam pedir prática, portfólio ou clientes. São sugestões para conhecer, não uma lista fechada.</p>'+
    profHtml+
-   cardMais20()+cardOutras()+'<div class="note">Algumas profissões são regulamentadas, como saúde, direito e engenharia. Confirme as exigências de cada país antes de decidir.</div>'+
+   cardRitmo()+cardMais20()+cardOutras()+'<div class="note">Algumas profissões são regulamentadas, como saúde, direito e engenharia. Confirme as exigências de cada país antes de decidir.</div>'+
 
    '<h3>9. Perfil atual</h3>'+
    '<div class="card"><ul class="clean">'+linhas+'</ul></div>'+

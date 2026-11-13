@@ -27,8 +27,8 @@ Ao final, você recebe um resultado em linguagem simples, que pode ser salvo em 
 
 | Teste | Quem pode fazer | Arquivo | Perguntas |
 |---|---|---|---|
-| **Para jovens** | 10 a 16 anos | `jovens.html` | 82 |
-| **Para adultos** | 17 anos ou mais | `index.html` | 100 |
+| **Para jovens** | 10 a 16 anos | `jovens.html` | 97 |
+| **Para adultos** | 17 anos ou mais | `index.html` | 118 |
 
 - **Menos de 10 anos:** o teste não é indicado para essa idade e a tela avisa isso.
 - **Jovens de 17 anos ou mais** que abrirem o teste para jovens veem um link para o teste de adultos.
@@ -42,7 +42,7 @@ Ao final, você recebe um resultado em linguagem simples, que pode ser salvo em 
 
 ### Blocos de cada teste
 
-**Adultos (100 perguntas)**
+**Adultos (118 perguntas)**
 
 1. Como eu funciono (12)
 2. Organização e foco (10)
@@ -51,8 +51,10 @@ Ao final, você recebe um resultado em linguagem simples, que pode ser salvo em 
 5. Valores (12)
 6. Áreas de estudo, com seleção de várias opções (8)
 7. Seu momento atual (12)
+8. Escolhas rápidas, em pares de atividades (12)
+9. Ritmo e ambiente (6)
 
-**Jovens (82 perguntas)**
+**Jovens (97 perguntas)**
 
 1. Como eu funciono (10)
 2. Organização e foco (10)
@@ -61,6 +63,8 @@ Ao final, você recebe um resultado em linguagem simples, que pode ser salvo em 
 5. O que é importante para você (8)
 6. Matérias e atividades, com seleção de várias opções (6)
 7. Sobre você (6)
+8. Escolhas rápidas, em pares de atividades (10)
+9. Ritmo e ambiente (5)
 
 ## Como usar
 
@@ -88,6 +92,14 @@ Ao final, você recebe um resultado em linguagem simples, que pode ser salvo em 
 ### Enviar para outra pessoa
 
 Há um botão flutuante **"Enviar para outra pessoa"** em todas as telas. Ele envia uma cópia limpa do questionário, sem respostas, sem alterar o teste que você está respondendo. Use para passar o teste para um filho, irmão ou outra pessoa.
+
+### Escolhas rápidas e ritmo e ambiente
+
+- **Escolhas rápidas:** em cada par, a pessoa escolhe a atividade que preferiria fazer. Esse formato separa melhor áreas parecidas do que a escala de 0 a 5, porque obriga a escolher. Cada escolha dá um pequeno peso à área correspondente no cálculo do perfil.
+- **Ritmo e ambiente:** perguntas sobre como a pessoa prefere trabalhar e estudar (ritmo, barulho, rotina, autonomia). O resultado mostra um card com os itens com nota alta. Não entra no cálculo das profissões.
+- As perguntas foram escritas para este projeto. Não são cópias de outros testes.
+
+Respostas de códigos gerados antes desta versão continuam válidas. As perguntas novas aparecem em branco e podem ser respondidas depois.
 
 ## Profissões sugeridas
 
@@ -126,6 +138,7 @@ As listas oficiais estão na pasta `referencias/`. Confira sempre o nome e a des
 - Não é um instrumento validado cientificamente. As perguntas e as associações entre interesses e áreas de estudo são uma aproximação inspirada em modelos de carreira conhecidos, como o RIASEC (Holland), e precisam ser lidas com senso crítico.
 - O resultado não considera oportunidades de mercado, renda, localização ou condições pessoais específicas.
 - Não foi revisado por profissionais de psicologia ou orientação vocacional.
+- As escolhas rápidas e as perguntas de ritmo ainda não foram testadas com pessoas reais. Os pesos foram escolhidos por critério, não por validação estatística.
 - As profissões de destaque e as 20 extras são uma seleção feita à mão. Não cobrem todas as profissões das listas oficiais, e a lista de nomes é apenas uma referência.
 - Os links da Wikipédia levam a uma busca pelo nome, não a uma página verificada de cada profissão.
 - Pessoas com dificuldades específicas (como de leitura ou de atenção) podem precisar de mais tempo ou de apoio de alguém de confiança para responder.
