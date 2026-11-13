@@ -75,11 +75,29 @@ Ao final, você recebe um resultado em linguagem simples, que pode ser salvo em 
 - Toque em **Baixar em PDF (imprimir e salvar como PDF)** no resultado.
 - No campo de destino, escolha **Salvar como PDF**. Se você preencheu o campo de nome no início, o nome do arquivo sai com ele e com a data.
 - Cada pessoa tem o próprio PDF.
+- O PDF traz, no fim, o **código de respostas** e a data em que foi gerado. Se o resultado da tela se perder, o PDF guarda o que é preciso para recuperá-lo (ver abaixo).
+
+### Recuperar ou atualizar um resultado
+
+- Guarde o código de respostas (pela tela ou pelo PDF). Ele guarda as respostas, não só o resultado.
+- Na tela inicial do teste, clique em **"Já tem um código de respostas?"**, cole o código e confirme. O resultado é gerado de novo, sem refazer as perguntas.
+- Se o teste for atualizado depois, colar o código gera o resultado com a versão nova.
+- Quem tiver o código consegue ver as respostas. Guarde com cuidado.
 - Dentro de visualizadores online, o botão pode ser bloqueado. Nesse caso, use Ctrl+P (Cmd+P no Mac) e escolha "Salvar como PDF", ou abra o endereço direto no Google Chrome.
 
 ### Enviar para outra pessoa
 
 Há um botão flutuante **"Enviar para outra pessoa"** em todas as telas. Ele envia uma cópia limpa do questionário, sem respostas, sem alterar o teste que você está respondendo. Use para passar o teste para um filho, irmão ou outra pessoa.
+
+## Profissões sugeridas
+
+O resultado traz três conjuntos de profissões, com finalidades diferentes:
+
+1. **Profissões de destaque (75):** são as que o teste calcula. Cada uma tem a descrição do que faz, as características comuns e a indicação de formação (graduação, técnico, curso livre ou sem formação obrigatória). Quando a profissão pode exigir registro ou licença, o resultado avisa.
+2. **Mais 20 profissões para explorar:** escolhidas por mim nas duas listas oficiais, a CBO (Brasil) e a CPP (Portugal), para cobrir áreas pouco representadas nas profissões de destaque. A letra C (organização e dados) aparece em 16 delas, E (negócios) em 17, S (cuidado) em 21 e R (trabalho prático) em 37. Cada uma traz o motivo da escolha e um link de busca na Wikipédia para saber mais. Elas não entram no ranking.
+3. **Lista de nomes (só na tela):** cerca de 2.800 nomes das duas listas oficiais, com busca por nome. Serve para encontrar uma profissão específica. Não tem descrições, e não sai no PDF.
+
+As listas oficiais estão na pasta `referencias/`. Confira sempre o nome e a descrição na fonte oficial antes de tomar uma decisão.
 
 ## Privacidade
 
@@ -100,6 +118,7 @@ Há um botão flutuante **"Enviar para outra pessoa"** em todas as telas. Ele en
 |---|---|
 | `index.html` | Teste para adultos (17 anos ou mais) |
 | `jovens.html` | Teste para jovens (10 a 16 anos) |
+| `referencias/` | Listas oficiais de profissões usadas no teste: CBO 2002 (Brasil, PDF e lista extraída em JSON) e CPP 2010 (Portugal, INE, PDF e lista extraída em JSON) |
 | `README.md` | Esta descrição |
 
 ## Limitações
@@ -107,6 +126,8 @@ Há um botão flutuante **"Enviar para outra pessoa"** em todas as telas. Ele en
 - Não é um instrumento validado cientificamente. As perguntas e as associações entre interesses e áreas de estudo são uma aproximação inspirada em modelos de carreira conhecidos, como o RIASEC (Holland), e precisam ser lidas com senso crítico.
 - O resultado não considera oportunidades de mercado, renda, localização ou condições pessoais específicas.
 - Não foi revisado por profissionais de psicologia ou orientação vocacional.
+- As profissões de destaque e as 20 extras são uma seleção feita à mão. Não cobrem todas as profissões das listas oficiais, e a lista de nomes é apenas uma referência.
+- Os links da Wikipédia levam a uma busca pelo nome, não a uma página verificada de cada profissão.
 - Pessoas com dificuldades específicas (como de leitura ou de atenção) podem precisar de mais tempo ou de apoio de alguém de confiança para responder.
 
 Se algo não funcionar no seu aparelho ou se a linguagem não fizer sentido para você, isso é um retorno valioso e pode ser ajustado.

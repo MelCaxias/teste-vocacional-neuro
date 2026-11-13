@@ -1,0 +1,1669 @@
+{
+ "fonte": "CPP 2010 (INE)",
+ "itens": [
+  {
+   "codigo": "0111.1",
+   "titulo": "Oficial de Marinha"
+  },
+  {
+   "codigo": "0111.2",
+   "titulo": "Oficial de Administração Naval"
+  },
+  {
+   "codigo": "0111.3",
+   "titulo": "Oficial Engenheiro Naval"
+  },
+  {
+   "codigo": "0111.4",
+   "titulo": "Oficial Fuzileiro"
+  },
+  {
+   "codigo": "0111.5",
+   "titulo": "Outros Oficiais da Marinha e Equiparados"
+  },
+  {
+   "codigo": "0112.1",
+   "titulo": "Oficial de Infantaria"
+  },
+  {
+   "codigo": "0112.2",
+   "titulo": "Oficial de Artilharia"
+  },
+  {
+   "codigo": "0112.3",
+   "titulo": "Oficial de Cavalaria"
+  },
+  {
+   "codigo": "0112.4",
+   "titulo": "Oficial de Transmissões (Exército)"
+  },
+  {
+   "codigo": "0112.5",
+   "titulo": "Oficial de Engenharia Militar"
+  },
+  {
+   "codigo": "0112.6",
+   "titulo": "Oficial de Material Militar (Exército)"
+  },
+  {
+   "codigo": "0112.7",
+   "titulo": "Oficial de Administração Militar (Exército)"
+  },
+  {
+   "codigo": "0112.8",
+   "titulo": "Outros Oficiais do Exército"
+  },
+  {
+   "codigo": "0113.1",
+   "titulo": "Oficial Piloto Aviador"
+  },
+  {
+   "codigo": "0113.2",
+   "titulo": "Oficial da Área de Operações Aéreas"
+  },
+  {
+   "codigo": "0113.3",
+   "titulo": "Oficial da Força Aérea da Área de Manutenção de Sistemas de Armas"
+  },
+  {
+   "codigo": "0113.4",
+   "titulo": "Oficial da Polícia Aérea"
+  },
+  {
+   "codigo": "0113.5",
+   "titulo": "Outros Oficiais da Força Aérea"
+  },
+  {
+   "codigo": "0211.1",
+   "titulo": "Sargento de Comunicações (Marinha)"
+  },
+  {
+   "codigo": "0211.2",
+   "titulo": "Sargento Fuzileiro"
+  },
+  {
+   "codigo": "0211.3",
+   "titulo": "Sargento Mergulhador"
+  },
+  {
+   "codigo": "0211.4",
+   "titulo": "Sargento de Operações (Marinha)"
+  },
+  {
+   "codigo": "0211.5",
+   "titulo": "Sargento de Manobra e Serviços (Marinha)"
+  },
+  {
+   "codigo": "0211.6",
+   "titulo": "Sargento Técnico de Armamento (Marinha)"
+  },
+  {
+   "codigo": "0211.7",
+   "titulo": "Outros Sargentos de Marinha e Equiparados"
+  },
+  {
+   "codigo": "0212.1",
+   "titulo": "Sargento de Infantaria"
+  },
+  {
+   "codigo": "0212.2",
+   "titulo": "Sargento de Artilharia"
+  },
+  {
+   "codigo": "0212.3",
+   "titulo": "Sargento de Cavalaria"
+  },
+  {
+   "codigo": "0212.4",
+   "titulo": "Sargento de Transmissões (Exército)"
+  },
+  {
+   "codigo": "0212.5",
+   "titulo": "Sargento de Engenharia Militar"
+  },
+  {
+   "codigo": "0212.6",
+   "titulo": "Sargento de Material Militar (Exército)"
+  },
+  {
+   "codigo": "0212.7",
+   "titulo": "Sargento de Administração Militar (Exército)"
+  },
+  {
+   "codigo": "0212.8",
+   "titulo": "Outros Sargentos do Exército"
+  },
+  {
+   "codigo": "0213.1",
+   "titulo": "Sargento da Área de Operações Aéreas"
+  },
+  {
+   "codigo": "0213.2",
+   "titulo": "Sargento da Força Aérea da Área de Manutenção de Sistemas de"
+  },
+  {
+   "codigo": "0213.3",
+   "titulo": "Sargento de Polícia Aérea"
+  },
+  {
+   "codigo": "0213.4",
+   "titulo": "Outros Sargentos da Força Aérea"
+  },
+  {
+   "codigo": "0311.1",
+   "titulo": "Praça de Comunicações (Marinha)"
+  },
+  {
+   "codigo": "0311.2",
+   "titulo": "Praça Fuzileiro"
+  },
+  {
+   "codigo": "0311.3",
+   "titulo": "Praça Mergulhador"
+  },
+  {
+   "codigo": "0311.4",
+   "titulo": "Praça de Operações (Marinha)"
+  },
+  {
+   "codigo": "0311.5",
+   "titulo": "Praça de Manobra e Serviços (Marinha)"
+  },
+  {
+   "codigo": "0311.6",
+   "titulo": "Praça Técnico de Armamento (Marinha)"
+  },
+  {
+   "codigo": "0311.7",
+   "titulo": "Outras Praças da Marinha e Equiparados"
+  },
+  {
+   "codigo": "0312.1",
+   "titulo": "Praça de Infantaria"
+  },
+  {
+   "codigo": "0312.2",
+   "titulo": "Praça de Artilharia"
+  },
+  {
+   "codigo": "0312.3",
+   "titulo": "Praça de Cavalaria"
+  },
+  {
+   "codigo": "0312.4",
+   "titulo": "Praça de Transmissões (Exército)"
+  },
+  {
+   "codigo": "0312.5",
+   "titulo": "Praça de Engenharia Militar"
+  },
+  {
+   "codigo": "0312.6",
+   "titulo": "Praça de Material Militar (Exército)"
+  },
+  {
+   "codigo": "0312.7",
+   "titulo": "Outras Praças do Exército"
+  },
+  {
+   "codigo": "0313.1",
+   "titulo": "Praça da Área de Operações Aéreas"
+  },
+  {
+   "codigo": "0313.2",
+   "titulo": "Praça da Força Aérea da Área de Manutenção de Sistemas de Armas"
+  },
+  {
+   "codigo": "0313.3",
+   "titulo": "Praça da Polícia Aérea"
+  },
+  {
+   "codigo": "0313.4",
+   "titulo": "Outras Praças da Força Aérea"
+  },
+  {
+   "codigo": "1221.2",
+   "titulo": "Director de marketing"
+  },
+  {
+   "codigo": "1222.1",
+   "titulo": "Director de publicidade"
+  },
+  {
+   "codigo": "1222.2",
+   "titulo": "Director de relações públicas"
+  },
+  {
+   "codigo": "1311.1",
+   "titulo": "Director de produção na agricultura"
+  },
+  {
+   "codigo": "1311.2",
+   "titulo": "Director de produção animal"
+  },
+  {
+   "codigo": "1311.3",
+   "titulo": "Director de produção florestal"
+  },
+  {
+   "codigo": "1312.1",
+   "titulo": "Director de produção na pesca"
+  },
+  {
+   "codigo": "1312.2",
+   "titulo": "Director de produção na aquicultura"
+  },
+  {
+   "codigo": "1324.1",
+   "titulo": "Director de compras"
+  },
+  {
+   "codigo": "1324.2",
+   "titulo": "Director de transportes"
+  },
+  {
+   "codigo": "1324.3",
+   "titulo": "Directores de armazenagem, distribuição e relacionados"
+  },
+  {
+   "codigo": "1349.1",
+   "titulo": "Director de bibliotecas, arquivos, museus, galerias de arte e"
+  },
+  {
+   "codigo": "1349.2",
+   "titulo": "Oficiais e outros profissionais, das forças e serviços de segurança,"
+  },
+  {
+   "codigo": "1349.3",
+   "titulo": "Director de outros serviços especializados, n.e."
+  },
+  {
+   "codigo": "1420.1",
+   "titulo": "Director e gerente do comércio a retalho"
+  },
+  {
+   "codigo": "1420.2",
+   "titulo": "Director e gerente do comércio por grosso"
+  },
+  {
+   "codigo": "2111.1",
+   "titulo": "Físico"
+  },
+  {
+   "codigo": "2111.2",
+   "titulo": "Astrónomo"
+  },
+  {
+   "codigo": "2114.1",
+   "titulo": "Geólogo"
+  },
+  {
+   "codigo": "2114.2",
+   "titulo": "Geofísico"
+  },
+  {
+   "codigo": "2114.3",
+   "titulo": "Oceanógrafo"
+  },
+  {
+   "codigo": "2120.1",
+   "titulo": "Matemático"
+  },
+  {
+   "codigo": "2120.2",
+   "titulo": "Actuário"
+  },
+  {
+   "codigo": "2120.3",
+   "titulo": "Estaticista e demógrafo"
+  },
+  {
+   "codigo": "2131.1",
+   "titulo": "Biólogo"
+  },
+  {
+   "codigo": "2131.2",
+   "titulo": "Botânico"
+  },
+  {
+   "codigo": "2131.3",
+   "titulo": "Zoólogo"
+  },
+  {
+   "codigo": "2131.4",
+   "titulo": "Farmacologista e outros especialistas relacionados"
+  },
+  {
+   "codigo": "2132.1",
+   "titulo": "Engenheiro agrónomo"
+  },
+  {
+   "codigo": "2132.2",
+   "titulo": "Engenheiro florestal"
+  },
+  {
+   "codigo": "2132.3",
+   "titulo": "Consultor de actividades das pescas"
+  },
+  {
+   "codigo": "2142.1",
+   "titulo": "Engenheiro de construção de edifícios"
+  },
+  {
+   "codigo": "2142.2",
+   "titulo": "Engenheiro de obras de engenharia civil"
+  },
+  {
+   "codigo": "2146.1",
+   "titulo": "Engenheiro de minas"
+  },
+  {
+   "codigo": "2146.2",
+   "titulo": "Engenheiro metalúrgico"
+  },
+  {
+   "codigo": "2146.3",
+   "titulo": "Outros engenheiros relacionados com minas e metalurgia"
+  },
+  {
+   "codigo": "2163.1",
+   "titulo": "Designer de produto industrial ou de equipamento"
+  },
+  {
+   "codigo": "2163.2",
+   "titulo": "Designer de têxteis e moda"
+  },
+  {
+   "codigo": "2163.3",
+   "titulo": "Designer de interiores, espaços ou de ambientes"
+  },
+  {
+   "codigo": "2165.1",
+   "titulo": "Cartógrafo e agrimensor"
+  },
+  {
+   "codigo": "2165.2",
+   "titulo": "Topógrafo e similares"
+  },
+  {
+   "codigo": "2211.1",
+   "titulo": "Médico de medicina geral e familiar"
+  },
+  {
+   "codigo": "2211.2",
+   "titulo": "Outros médicos generalistas"
+  },
+  {
+   "codigo": "2212.1",
+   "titulo": "Médico de especialidades cirúrgicas"
+  },
+  {
+   "codigo": "2212.2",
+   "titulo": "Médico de especialidades médicas"
+  },
+  {
+   "codigo": "2212.3",
+   "titulo": "Médico de especialidades técnicas"
+  },
+  {
+   "codigo": "2221.1",
+   "titulo": "Enfermeiro de cuidados gerais"
+  },
+  {
+   "codigo": "2221.2",
+   "titulo": "Enfermeiro especialista em reabilitação"
+  },
+  {
+   "codigo": "2221.3",
+   "titulo": "Enfermeiro especialista em saúde infantil e pediátrica"
+  },
+  {
+   "codigo": "2221.4",
+   "titulo": "Enfermeiro especialista em saúde mental e psiquiátrica"
+  },
+  {
+   "codigo": "2221.5",
+   "titulo": "Enfermeiro especialista em enfermagem comunitária"
+  },
+  {
+   "codigo": "2221.6",
+   "titulo": "Enfermeiro especialista em enfermagem médico-cirúrgica"
+  },
+  {
+   "codigo": "2221.7",
+   "titulo": "Outros enfermeiros especialistas (excepto em saúde materna e"
+  },
+  {
+   "codigo": "2230.1",
+   "titulo": "Acupunctor"
+  },
+  {
+   "codigo": "2230.2",
+   "titulo": "Homeopata"
+  },
+  {
+   "codigo": "2230.3",
+   "titulo": "Outros especialistas em medicina tradicional e alternativa"
+  },
+  {
+   "codigo": "2250.0",
+   "titulo": "Veterinário"
+  },
+  {
+   "codigo": "2261.1",
+   "titulo": "Médico estomatologista"
+  },
+  {
+   "codigo": "2261.2",
+   "titulo": "Médico dentista"
+  },
+  {
+   "codigo": "2266.1",
+   "titulo": "Audiologista"
+  },
+  {
+   "codigo": "2266.2",
+   "titulo": "Terapeuta da fala"
+  },
+  {
+   "codigo": "2269.1",
+   "titulo": "Terapeuta ocupacional"
+  },
+  {
+   "codigo": "2269.2",
+   "titulo": "Outros profissionais da saúde diversos, n.e."
+  },
+  {
+   "codigo": "2433.1",
+   "titulo": "Delegado de informação médica"
+  },
+  {
+   "codigo": "2433.2",
+   "titulo": "Outros especialistas em venda de material técnico e médico (excepto"
+  },
+  {
+   "codigo": "2434.0",
+   "titulo": "comunicação (TIC)"
+  },
+  {
+   "codigo": "2611.1",
+   "titulo": "Advogado"
+  },
+  {
+   "codigo": "2611.2",
+   "titulo": "Solicitador"
+  },
+  {
+   "codigo": "2619.1",
+   "titulo": "Conservador dos registos civil, automóvel, comercial e predial"
+  },
+  {
+   "codigo": "2619.2",
+   "titulo": "Notário"
+  },
+  {
+   "codigo": "2619.3",
+   "titulo": "Outros especialistas em assuntos jurídicos, n.e."
+  },
+  {
+   "codigo": "2621.1",
+   "titulo": "Arquivista"
+  },
+  {
+   "codigo": "2621.2",
+   "titulo": "Curador de museus"
+  },
+  {
+   "codigo": "2632.1",
+   "titulo": "Sociólogo"
+  },
+  {
+   "codigo": "2632.2",
+   "titulo": "Geógrafo"
+  },
+  {
+   "codigo": "2632.3",
+   "titulo": "Arqueólogo"
+  },
+  {
+   "codigo": "2632.4",
+   "titulo": "Antropólogo e similares"
+  },
+  {
+   "codigo": "2633.1",
+   "titulo": "Filósofo"
+  },
+  {
+   "codigo": "2633.2",
+   "titulo": "Historiador"
+  },
+  {
+   "codigo": "2633.3",
+   "titulo": "Especialista em ciências políticas"
+  },
+  {
+   "codigo": "2643.1",
+   "titulo": "Filólogo"
+  },
+  {
+   "codigo": "2643.2",
+   "titulo": "Tradutor"
+  },
+  {
+   "codigo": "2643.3",
+   "titulo": "Intérprete e outros linguistas"
+  },
+  {
+   "codigo": "2651.1",
+   "titulo": "Escultor"
+  },
+  {
+   "codigo": "2651.2",
+   "titulo": "Pintor de arte"
+  },
+  {
+   "codigo": "2651.3",
+   "titulo": "Caricaturista"
+  },
+  {
+   "codigo": "2651.4",
+   "titulo": "Outros artistas de artes visuais"
+  },
+  {
+   "codigo": "2652.1",
+   "titulo": "Compositor"
+  },
+  {
+   "codigo": "2652.2",
+   "titulo": "Músico"
+  },
+  {
+   "codigo": "2652.3",
+   "titulo": "Cantor"
+  },
+  {
+   "codigo": "2653.1",
+   "titulo": "Bailarino"
+  },
+  {
+   "codigo": "2653.2",
+   "titulo": "Coreógrafo"
+  },
+  {
+   "codigo": "2654.1",
+   "titulo": "Realizador de cinema e teatro"
+  },
+  {
+   "codigo": "2654.2",
+   "titulo": "Encenador de teatro"
+  },
+  {
+   "codigo": "2654.3",
+   "titulo": "Produtor de cinema e teatro"
+  },
+  {
+   "codigo": "2654.4",
+   "titulo": "Produtor e realizador, de televisão e rádio"
+  },
+  {
+   "codigo": "2654.5",
+   "titulo": "Director de fotografia e de som, montador e relacionados"
+  },
+  {
+   "codigo": "2656.0",
+   "titulo": "de comunicação"
+  },
+  {
+   "codigo": "2659.1",
+   "titulo": "Disc Jockey"
+  },
+  {
+   "codigo": "2659.2",
+   "titulo": "Outros artistas e intérpretes criativos das artes do espectáculo, n.e."
+  },
+  {
+   "codigo": "3111.1",
+   "titulo": "Técnico das ciências físicas"
+  },
+  {
+   "codigo": "3111.2",
+   "titulo": "Técnico das ciências químicas"
+  },
+  {
+   "codigo": "3115.1",
+   "titulo": "Técnico de inspecção de veículos"
+  },
+  {
+   "codigo": "3115.2",
+   "titulo": "Outros técnicos e inspectores de mecânica"
+  },
+  {
+   "codigo": "3119.1",
+   "titulo": "Técnico de gás"
+  },
+  {
+   "codigo": "3119.2",
+   "titulo": "Outros técnicos das ciências físicas e de engenharia, n.e."
+  },
+  {
+   "codigo": "3122.1",
+   "titulo": "Encarregados das indústrias alimentares e das bebidas"
+  },
+  {
+   "codigo": "3122.2",
+   "titulo": "Encarregados das indústrias têxteis, do vestuário, calçado e curtumes"
+  },
+  {
+   "codigo": "3122.3",
+   "titulo": "Encarregados das indústrias da madeira e cortiça"
+  },
+  {
+   "codigo": "3122.4",
+   "titulo": "Encarregados das indústrias da pasta, papel, impressão e similares"
+  },
+  {
+   "codigo": "3122.5",
+   "titulo": "Encarregados das indústrias da refinação do petróleo, químicas,"
+  },
+  {
+   "codigo": "3122.6",
+   "titulo": "Encarregados das indústrias da transformação de minerais não"
+  },
+  {
+   "codigo": "3122.7",
+   "titulo": "Encarregados das indústrias metalúrgicas de base e fabrico de"
+  },
+  {
+   "codigo": "3122.8",
+   "titulo": "Outros encarregados da indústria transformadora"
+  },
+  {
+   "codigo": "3132.1",
+   "titulo": "Técnico de operação de incineradores"
+  },
+  {
+   "codigo": "3132.2",
+   "titulo": "Técnico de operação de instalações de tratamento de água"
+  },
+  {
+   "codigo": "3134.0",
+   "titulo": "gás natural"
+  },
+  {
+   "codigo": "3142.1",
+   "titulo": "Técnico agrícola"
+  },
+  {
+   "codigo": "3142.2",
+   "titulo": "Técnico da produção animal"
+  },
+  {
+   "codigo": "3211.1",
+   "titulo": "Técnico de cardiopneumografia"
+  },
+  {
+   "codigo": "3211.2",
+   "titulo": "Técnico de radiologia"
+  },
+  {
+   "codigo": "3211.3",
+   "titulo": "Técnico de medicina nuclear"
+  },
+  {
+   "codigo": "3211.4",
+   "titulo": "Técnico de radioterapia"
+  },
+  {
+   "codigo": "3211.5",
+   "titulo": "Outros técnicos de equipamento de diagnóstico e terapêutico"
+  },
+  {
+   "codigo": "3212.1",
+   "titulo": "Técnico de análises clínicas"
+  },
+  {
+   "codigo": "3212.2",
+   "titulo": "Técnico de anatomia patológica, citológica e tanatológica"
+  },
+  {
+   "codigo": "3254.1",
+   "titulo": "Técnico de óptica ocular"
+  },
+  {
+   "codigo": "3254.2",
+   "titulo": "Técnico de contactologia"
+  },
+  {
+   "codigo": "3313.1",
+   "titulo": "Tesoureiro"
+  },
+  {
+   "codigo": "3313.2",
+   "titulo": "Outros técnicos administrativos de contabilidade"
+  },
+  {
+   "codigo": "3341.1",
+   "titulo": "Chefe de escritório"
+  },
+  {
+   "codigo": "3341.2",
+   "titulo": "Encarregado de armazém"
+  },
+  {
+   "codigo": "3341.3",
+   "titulo": "Chefe de estação de correios"
+  },
+  {
+   "codigo": "3341.4",
+   "titulo": "Fiscal e encarregado de portagem"
+  },
+  {
+   "codigo": "3341.5",
+   "titulo": "Supervisor de cargas e descargas"
+  },
+  {
+   "codigo": "3341.6",
+   "titulo": "Outros supervisores de pessoal administrativo"
+  },
+  {
+   "codigo": "3359.0",
+   "titulo": "para aplicação da lei e similares"
+  },
+  {
+   "codigo": "3421.1",
+   "titulo": "Jogador profissional de futebol"
+  },
+  {
+   "codigo": "3421.2",
+   "titulo": "Ciclista profissional"
+  },
+  {
+   "codigo": "3421.3",
+   "titulo": "Outros atletas e desportistas de competição"
+  },
+  {
+   "codigo": "3422.1",
+   "titulo": "Treinador de desportos"
+  },
+  {
+   "codigo": "3422.2",
+   "titulo": "Árbitro (juiz) de desportos"
+  },
+  {
+   "codigo": "3422.3",
+   "titulo": "Instrutor de desportos"
+  },
+  {
+   "codigo": "3435.1",
+   "titulo": "Toureiro, cavaleiro tauromáquico e outros profissionais similares"
+  },
+  {
+   "codigo": "3435.2",
+   "titulo": "Outros técnicos de nível intermédio das actividades culturais e"
+  },
+  {
+   "codigo": "3511.0",
+   "titulo": "(TIC)"
+  },
+  {
+   "codigo": "3512.0",
+   "titulo": "informação e comunicação (TIC)"
+  },
+  {
+   "codigo": "3521.1",
+   "titulo": "Técnico de emissões de rádio"
+  },
+  {
+   "codigo": "3521.2",
+   "titulo": "Técnico de emissões de televisão"
+  },
+  {
+   "codigo": "3521.3",
+   "titulo": "Técnico de gravação audiovisual"
+  },
+  {
+   "codigo": "3521.4",
+   "titulo": "Técnico de sistemas de comunicações via rádio"
+  },
+  {
+   "codigo": "4212.0",
+   "titulo": "apostas"
+  },
+  {
+   "codigo": "4321.1",
+   "titulo": "Empregado de aprovisionamento"
+  },
+  {
+   "codigo": "4321.2",
+   "titulo": "Empregado de armazém"
+  },
+  {
+   "codigo": "4323.1",
+   "titulo": "Controlador de transportes terrestres de passageiros"
+  },
+  {
+   "codigo": "4323.2",
+   "titulo": "Controlador de transportes terrestres de mercadorias"
+  },
+  {
+   "codigo": "4323.3",
+   "titulo": "Empregado de controlo dos serviços de transportes aéreos e"
+  },
+  {
+   "codigo": "5142.1",
+   "titulo": "Esteticista"
+  },
+  {
+   "codigo": "5142.2",
+   "titulo": "Massagista de estética"
+  },
+  {
+   "codigo": "5142.3",
+   "titulo": "Manicura, pedicura e calista"
+  },
+  {
+   "codigo": "5142.4",
+   "titulo": "Outros trabalhadores similares aos esteticistas"
+  },
+  {
+   "codigo": "5151.0",
+   "titulo": "escritórios, hotéis e outros estabelecimentos"
+  },
+  {
+   "codigo": "5161.1",
+   "titulo": "Astrólogo"
+  },
+  {
+   "codigo": "5161.2",
+   "titulo": "Adivinhador e similares"
+  },
+  {
+   "codigo": "5163.1",
+   "titulo": "Agente funerário"
+  },
+  {
+   "codigo": "5163.2",
+   "titulo": "Embalsamador"
+  },
+  {
+   "codigo": "5230.1",
+   "titulo": "Operador de caixa"
+  },
+  {
+   "codigo": "5230.2",
+   "titulo": "Bilheteiro"
+  },
+  {
+   "codigo": "5329.0",
+   "titulo": "serviços de saúde"
+  },
+  {
+   "codigo": "5412.1",
+   "titulo": "Sargentos da Guarda Nacional Republicana"
+  },
+  {
+   "codigo": "5412.2",
+   "titulo": "Guardas da Guarda Nacional Republicana"
+  },
+  {
+   "codigo": "5412.3",
+   "titulo": "Agente de Polícia de Segurança Pública"
+  },
+  {
+   "codigo": "5412.4",
+   "titulo": "Agente de Polícia Marítima"
+  },
+  {
+   "codigo": "5412.5",
+   "titulo": "Agente de Polícia Municipal"
+  },
+  {
+   "codigo": "5412.6",
+   "titulo": "Outros agentes de polícia"
+  },
+  {
+   "codigo": "5414.1",
+   "titulo": "Porteiro de hotelaria"
+  },
+  {
+   "codigo": "5414.2",
+   "titulo": "Segurança (vigilante privado), outros porteiros e similares"
+  },
+  {
+   "codigo": "6111.0",
+   "titulo": "culturas extensivas"
+  },
+  {
+   "codigo": "6112.0",
+   "titulo": "arbustos"
+  },
+  {
+   "codigo": "6113.1",
+   "titulo": "Agricultor e trabalhador qualificado da horticultura"
+  },
+  {
+   "codigo": "6113.2",
+   "titulo": "Floricultor"
+  },
+  {
+   "codigo": "6113.3",
+   "titulo": "Viveirista"
+  },
+  {
+   "codigo": "6113.4",
+   "titulo": "Trabalhador qualificado da jardinagem"
+  },
+  {
+   "codigo": "6121.1",
+   "titulo": "Produtor e trabalhador qualificado na produção de bovinos"
+  },
+  {
+   "codigo": "6121.2",
+   "titulo": "Produtor e trabalhador qualificado na produção de ovinos e caprinos"
+  },
+  {
+   "codigo": "6121.3",
+   "titulo": "Produtor e trabalhador qualificado na produção de suinos"
+  },
+  {
+   "codigo": "6121.4",
+   "titulo": "Produtor e trabalhador qualificado na produção de outros animais de"
+  },
+  {
+   "codigo": "6123.1",
+   "titulo": "Apicultor e trabalhador qualificado da apicultura"
+  },
+  {
+   "codigo": "6123.2",
+   "titulo": "Sericicultor e trabalhador qualificado da sericicultura"
+  },
+  {
+   "codigo": "6210.1",
+   "titulo": "Motosserrista"
+  },
+  {
+   "codigo": "6210.2",
+   "titulo": "Sapador florestal"
+  },
+  {
+   "codigo": "6210.3",
+   "titulo": "Outros trabalhadores qualificados da floresta e similares"
+  },
+  {
+   "codigo": "6221.1",
+   "titulo": "Aquicultor (aquacultor) e trabalhador qualificado de aquicultura de"
+  },
+  {
+   "codigo": "6221.2",
+   "titulo": "Aquicultor (aquacultor) e trabalhador qualificado de aquicultura de"
+  },
+  {
+   "codigo": "6222.1",
+   "titulo": "Pescador de águas interiores"
+  },
+  {
+   "codigo": "6222.2",
+   "titulo": "Mestre, contramestre e arrais, de pesca marítima costeira"
+  },
+  {
+   "codigo": "6222.3",
+   "titulo": "Pescador e marinheiro pescador, de pesca marítima costeira"
+  },
+  {
+   "codigo": "6222.4",
+   "titulo": "Outros trabalhadores qualificados de pesca de águas interiores"
+  },
+  {
+   "codigo": "6222.5",
+   "titulo": "Outros trabalhadores qualificados de pesca marítima costeira"
+  },
+  {
+   "codigo": "6223.1",
+   "titulo": "Mestre, contramestre e arrais, de pesca marítima do largo"
+  },
+  {
+   "codigo": "6223.2",
+   "titulo": "Pescador e marinheiro pescador, de pesca marítima do largo"
+  },
+  {
+   "codigo": "6223.3",
+   "titulo": "Outros trabalhadores qualificados da pesca marítima do largo"
+  },
+  {
+   "codigo": "6224.0",
+   "titulo": "mercado"
+  },
+  {
+   "codigo": "7112.1",
+   "titulo": "Pedreiro"
+  },
+  {
+   "codigo": "7112.2",
+   "titulo": "Calceteiro"
+  },
+  {
+   "codigo": "7112.3",
+   "titulo": "Assentador de refractários"
+  },
+  {
+   "codigo": "7113.1",
+   "titulo": "Polidor de pedra"
+  },
+  {
+   "codigo": "7113.2",
+   "titulo": "Canteiro"
+  },
+  {
+   "codigo": "7113.3",
+   "titulo": "Outros trabalhadores qualificados da pedra e similares"
+  },
+  {
+   "codigo": "7114.1",
+   "titulo": "Cimenteiro"
+  },
+  {
+   "codigo": "7114.2",
+   "titulo": "Armador de ferro"
+  },
+  {
+   "codigo": "7114.3",
+   "titulo": "Montador de alvenarias e de pré-esforçados"
+  },
+  {
+   "codigo": "7114.4",
+   "titulo": "Outros trabalhadores qualificados em betão armado e similares"
+  },
+  {
+   "codigo": "7115.1",
+   "titulo": "Carpinteiro de limpos e de tosco"
+  },
+  {
+   "codigo": "7115.2",
+   "titulo": "Carpinteiro naval"
+  },
+  {
+   "codigo": "7115.3",
+   "titulo": "Outros carpinteiros e similares"
+  },
+  {
+   "codigo": "7119.1",
+   "titulo": "Montador de andaimes"
+  },
+  {
+   "codigo": "7119.2",
+   "titulo": "Espalhador de betuminosos"
+  },
+  {
+   "codigo": "7119.3",
+   "titulo": "Outros trabalhadores qualificados da construção de estruturas"
+  },
+  {
+   "codigo": "7122.1",
+   "titulo": "Assentador de tacos e afagador de madeira"
+  },
+  {
+   "codigo": "7122.2",
+   "titulo": "Ladrilhador"
+  },
+  {
+   "codigo": "7122.3",
+   "titulo": "Outros assentadores de revestimentos"
+  },
+  {
+   "codigo": "7126.1",
+   "titulo": "Canalizador"
+  },
+  {
+   "codigo": "7126.2",
+   "titulo": "Montador de tubagens"
+  },
+  {
+   "codigo": "7131.1",
+   "titulo": "Pintor de construções"
+  },
+  {
+   "codigo": "7131.2",
+   "titulo": "Colocador de papel de parede, pintor decorador e similares"
+  },
+  {
+   "codigo": "7132.1",
+   "titulo": "Pintor à pistola de superfícies"
+  },
+  {
+   "codigo": "7132.2",
+   "titulo": "Envernizador"
+  },
+  {
+   "codigo": "7133.1",
+   "titulo": "Limpador de fachadas"
+  },
+  {
+   "codigo": "7133.2",
+   "titulo": "Limpador de chaminés e de outras estruturas de edifícios"
+  },
+  {
+   "codigo": "7212.1",
+   "titulo": "Soldador"
+  },
+  {
+   "codigo": "7212.2",
+   "titulo": "Trabalhador de corte a oxi-gás"
+  },
+  {
+   "codigo": "7213.1",
+   "titulo": "Bate-chapa de veículos automóveis"
+  },
+  {
+   "codigo": "7213.2",
+   "titulo": "Funileiro e caldeireiro"
+  },
+  {
+   "codigo": "7214.1",
+   "titulo": "Serralheiro civil"
+  },
+  {
+   "codigo": "7214.2",
+   "titulo": "Outro preparador e montador de estruturas metálicas"
+  },
+  {
+   "codigo": "7221.1",
+   "titulo": "Forjador e ferreiro"
+  },
+  {
+   "codigo": "7221.2",
+   "titulo": "Operador de prensa de forjar, estampador e similares"
+  },
+  {
+   "codigo": "7223.1",
+   "titulo": "Regulador e operador de máquinas-ferramentas convencionais para"
+  },
+  {
+   "codigo": "7223.2",
+   "titulo": "Regulador e operador de máquinas-ferramentas de comando"
+  },
+  {
+   "codigo": "7311.0",
+   "titulo": "precisão"
+  },
+  {
+   "codigo": "7312.0",
+   "titulo": "musicais"
+  },
+  {
+   "codigo": "7313.1",
+   "titulo": "Joalheiro"
+  },
+  {
+   "codigo": "7313.2",
+   "titulo": "Filigranista"
+  },
+  {
+   "codigo": "7313.3",
+   "titulo": "Outros ourives e trabalhadores de diamantes industriais"
+  },
+  {
+   "codigo": "7314.1",
+   "titulo": "Oleiro"
+  },
+  {
+   "codigo": "7314.2",
+   "titulo": "Modelador e formista, de cerâmica"
+  },
+  {
+   "codigo": "7314.3",
+   "titulo": "Outros oleiros e similares"
+  },
+  {
+   "codigo": "7315.1",
+   "titulo": "Soprador de artigos de vidro"
+  },
+  {
+   "codigo": "7315.2",
+   "titulo": "Cortador de vidro"
+  },
+  {
+   "codigo": "7315.3",
+   "titulo": "Polidor e acabador de artigos de vidro"
+  },
+  {
+   "codigo": "7316.1",
+   "titulo": "Lapidador e gravador, de vidro, cerâmica e outros materiais"
+  },
+  {
+   "codigo": "7316.2",
+   "titulo": "Pintor-decorador de vidro, cerâmica e outros materiais"
+  },
+  {
+   "codigo": "7317.1",
+   "titulo": "Artesão de artigos em madeira"
+  },
+  {
+   "codigo": "7317.2",
+   "titulo": "Artesão de cestaria e artigos similares"
+  },
+  {
+   "codigo": "7318.1",
+   "titulo": "Artesão de rendas, bordados e tapeçarias, manuais"
+  },
+  {
+   "codigo": "7318.2",
+   "titulo": "Artesão de artigos de couro"
+  },
+  {
+   "codigo": "7318.3",
+   "titulo": "Outros trabalhadores manuais de artigos têxteis, couro e materiais"
+  },
+  {
+   "codigo": "7319.0",
+   "titulo": "de precisão, artesãos e similares"
+  },
+  {
+   "codigo": "7322.1",
+   "titulo": "Serígrafo e similar"
+  },
+  {
+   "codigo": "7322.2",
+   "titulo": "Outros operadores de impressão"
+  },
+  {
+   "codigo": "7323.1",
+   "titulo": "Encadernador"
+  },
+  {
+   "codigo": "7323.2",
+   "titulo": "Outros trabalhadores relacionados com o acabamento da impressão"
+  },
+  {
+   "codigo": "7412.1",
+   "titulo": "Instalador de sistemas solares térmicos"
+  },
+  {
+   "codigo": "7412.2",
+   "titulo": "Instalador de sistemas solares fotovoltaicos"
+  },
+  {
+   "codigo": "7412.3",
+   "titulo": "Instalador de sistemas de bioenergia"
+  },
+  {
+   "codigo": "7412.4",
+   "titulo": "Electromecânico, electricista e outros instaladores de máquinas e"
+  },
+  {
+   "codigo": "7511.1",
+   "titulo": "Matador de animais"
+  },
+  {
+   "codigo": "7511.2",
+   "titulo": "Cortador de carne"
+  },
+  {
+   "codigo": "7511.3",
+   "titulo": "Salsicheiro"
+  },
+  {
+   "codigo": "7511.4",
+   "titulo": "Preparador e conservador de peixe"
+  },
+  {
+   "codigo": "7511.5",
+   "titulo": "Outros preparadores de carne, peixe e similares"
+  },
+  {
+   "codigo": "7512.1",
+   "titulo": "Padeiro"
+  },
+  {
+   "codigo": "7512.2",
+   "titulo": "Pasteleiro"
+  },
+  {
+   "codigo": "7512.3",
+   "titulo": "Confeiteiro"
+  },
+  {
+   "codigo": "7521.1",
+   "titulo": "Trabalhador do tratamento da madeira"
+  },
+  {
+   "codigo": "7521.2",
+   "titulo": "Trabalhador do tratamento da cortiça"
+  },
+  {
+   "codigo": "7522.1",
+   "titulo": "Marceneiro"
+  },
+  {
+   "codigo": "7522.2",
+   "titulo": "Tanoeiro, embutidor e outros similares a marceneiro"
+  },
+  {
+   "codigo": "7523.1",
+   "titulo": "Operador de máquinas e de equipamentos para trabalhar madeira"
+  },
+  {
+   "codigo": "7523.2",
+   "titulo": "Operador de máquinas e de equipamentos para trabalhar cortiça"
+  },
+  {
+   "codigo": "7531.1",
+   "titulo": "Alfaiate e costureiro"
+  },
+  {
+   "codigo": "7531.2",
+   "titulo": "Peleiro"
+  },
+  {
+   "codigo": "7531.3",
+   "titulo": "Chapeleiro"
+  },
+  {
+   "codigo": "7532.1",
+   "titulo": "Riscador de moldes e cortador de tecidos"
+  },
+  {
+   "codigo": "7532.2",
+   "titulo": "Riscador de moldes e cortador, de couros e similares"
+  },
+  {
+   "codigo": "7533.1",
+   "titulo": "Bordador"
+  },
+  {
+   "codigo": "7533.2",
+   "titulo": "Trabalhador de costura e similares"
+  },
+  {
+   "codigo": "7534.1",
+   "titulo": "Estofador"
+  },
+  {
+   "codigo": "7534.2",
+   "titulo": "Colchoeiro"
+  },
+  {
+   "codigo": "7534.3",
+   "titulo": "Outros trabalhadores similares a estofador"
+  },
+  {
+   "codigo": "7535.1",
+   "titulo": "Curtidor de peles"
+  },
+  {
+   "codigo": "7535.2",
+   "titulo": "Preparador e acabador de peles"
+  },
+  {
+   "codigo": "7536.1",
+   "titulo": "Sapateiro"
+  },
+  {
+   "codigo": "7536.2",
+   "titulo": "Maleiro"
+  },
+  {
+   "codigo": "7536.3",
+   "titulo": "Correeiro"
+  },
+  {
+   "codigo": "7536.4",
+   "titulo": "Albardeiro e similares"
+  },
+  {
+   "codigo": "7549.1",
+   "titulo": "Trabalhador de vidro de óptica"
+  },
+  {
+   "codigo": "7549.2",
+   "titulo": "Salineiro"
+  },
+  {
+   "codigo": "7549.3",
+   "titulo": "Trabalhador de fabrico de foguetes (fogueteiro)"
+  },
+  {
+   "codigo": "7549.4",
+   "titulo": "Trabalhador de outros ofícios diversos, n.e."
+  },
+  {
+   "codigo": "8111.1",
+   "titulo": "Mineiro"
+  },
+  {
+   "codigo": "8111.2",
+   "titulo": "Trabalhador das pedreiras"
+  },
+  {
+   "codigo": "8112.1",
+   "titulo": "Operador de instalações de processamento de minérios"
+  },
+  {
+   "codigo": "8112.2",
+   "titulo": "Operador de instalações de processamento de rochas"
+  },
+  {
+   "codigo": "8114.1",
+   "titulo": "Operador de máquinas para trabalhar o cimento"
+  },
+  {
+   "codigo": "8114.2",
+   "titulo": "Operador de máquinas para trabalhar a pedra"
+  },
+  {
+   "codigo": "8114.3",
+   "titulo": "Operador de máquinas para trabalhar outros minerais"
+  },
+  {
+   "codigo": "8121.1",
+   "titulo": "Operador de instalações de fornos e de primeira transformação de"
+  },
+  {
+   "codigo": "8121.2",
+   "titulo": "Operador de instalações de fornos de segunda fusão, vazadores e"
+  },
+  {
+   "codigo": "8121.3",
+   "titulo": "Operador de instalações de tratamento térmico de metais"
+  },
+  {
+   "codigo": "8121.4",
+   "titulo": "Operador de instalações de trefilagem e estiragem"
+  },
+  {
+   "codigo": "8122.0",
+   "titulo": "acabamento de metais"
+  },
+  {
+   "codigo": "8131.1",
+   "titulo": "Operador de instalações e máquinas para moagem de substâncias"
+  },
+  {
+   "codigo": "8131.2",
+   "titulo": "Operador de instalações e máquinas para tratamento térmico de"
+  },
+  {
+   "codigo": "8131.3",
+   "titulo": "Operador de instalações e máquinas, para filtragem e separação"
+  },
+  {
+   "codigo": "8131.4",
+   "titulo": "Operador de instalações e máquinas, para reacção e verificação de"
+  },
+  {
+   "codigo": "8131.5",
+   "titulo": "Operador de instalações e máquinas, para petróleo e gás"
+  },
+  {
+   "codigo": "8131.6",
+   "titulo": "Operador de instalações e máquinas para outros tratamentos"
+  },
+  {
+   "codigo": "8142.0",
+   "titulo": "plásticas"
+  },
+  {
+   "codigo": "8154.0",
+   "titulo": "outros têxteis"
+  },
+  {
+   "codigo": "8159.0",
+   "titulo": "têxteis, de pele com pêlo e couro"
+  },
+  {
+   "codigo": "8160.1",
+   "titulo": "Operador de máquinas de preparação de carne e peixe"
+  },
+  {
+   "codigo": "8160.2",
+   "titulo": "Operador de máquinas de fabrico de produtos lácteos"
+  },
+  {
+   "codigo": "8160.3",
+   "titulo": "Operador de máquinas de moagem de cereais, de transformação de"
+  },
+  {
+   "codigo": "8160.4",
+   "titulo": "Operador de máquinas de produtos de padaria, de pastelaria, de"
+  },
+  {
+   "codigo": "8160.5",
+   "titulo": "Operador de máquinas de tratamento de frutos, legumes, fabrico de"
+  },
+  {
+   "codigo": "8160.6",
+   "titulo": "Operador de máquinas de produção e refinação de açúcar"
+  },
+  {
+   "codigo": "8160.7",
+   "titulo": "Operador de máquinas para preparação de chá, café e cacau"
+  },
+  {
+   "codigo": "8160.8",
+   "titulo": "Operador de máquinas para preparação de vinhos e outras bebidas"
+  },
+  {
+   "codigo": "8160.9",
+   "titulo": "Operador de máquinas para o fabrico do tabaco"
+  },
+  {
+   "codigo": "8171.0",
+   "titulo": "papel"
+  },
+  {
+   "codigo": "8181.1",
+   "titulo": "Operador de instalações para o fabrico de vidro"
+  },
+  {
+   "codigo": "8181.2",
+   "titulo": "Operador de instalações para o fabrico de produtos cerâmicos"
+  },
+  {
+   "codigo": "8189.1",
+   "titulo": "Operador de máquinas para corte, soldadura, isolamento, fabrico e"
+  },
+  {
+   "codigo": "8189.2",
+   "titulo": "Operador de máquinas para fabrico de molas para estofos, colchões,"
+  },
+  {
+   "codigo": "8189.3",
+   "titulo": "Operador de máquinas para fabrico de produtos de arame"
+  },
+  {
+   "codigo": "8189.4",
+   "titulo": "Outros operadores de instalações fixas e de máquinas, diversas, n.e"
+  },
+  {
+   "codigo": "8322.1",
+   "titulo": "Motorista de táxis"
+  },
+  {
+   "codigo": "8322.2",
+   "titulo": "Motorista de automóveis ligeiros e carrinhas"
+  },
+  {
+   "codigo": "8331.1",
+   "titulo": "Motorista de autocarros"
+  },
+  {
+   "codigo": "8331.2",
+   "titulo": "Guarda-freio de eléctrico"
+  },
+  {
+   "codigo": "9112.0",
+   "titulo": "estabelecimentos"
+  },
+  {
+   "codigo": "9211.0",
+   "titulo": "e floricultura)"
+  },
+  {
+   "codigo": "9213.0",
+   "titulo": "combinadas"
+  },
+  {
+   "codigo": "9216.1",
+   "titulo": "Trabalhador não qualificado da pesca"
+  },
+  {
+   "codigo": "9216.2",
+   "titulo": "Trabalhador não qualificado da aquicultura"
+  },
+  {
+   "codigo": "9311.1",
+   "titulo": "Trabalhador não qualificado das minas"
+  },
+  {
+   "codigo": "9311.2",
+   "titulo": "Trabalhador não qualificado das pedreiras"
+  },
+  {
+   "codigo": "9613.1",
+   "titulo": "Cantoneiro de limpeza"
+  },
+  {
+   "codigo": "9613.2",
+   "titulo": "Empregado de lavabos e similares"
+  },
+  {
+   "codigo": "9621.1",
+   "titulo": "Estafeta"
+  },
+  {
+   "codigo": "9621.2",
+   "titulo": "Bagageiro"
+  },
+  {
+   "codigo": "9621.3",
+   "titulo": "Auxiliar de apoio administrativo (contínuo)"
+  },
+  {
+   "codigo": "9621.4",
+   "titulo": "Distribuidor de mercadorias e similares"
+  },
+  {
+   "codigo": "9622.1",
+   "titulo": "Colocador de anúncios (montador de anúncios)"
+  },
+  {
+   "codigo": "9622.2",
+   "titulo": "Outros trabalhadores polivalentes"
+  },
+  {
+   "codigo": "9623.1",
+   "titulo": "Leitor de contadores"
+  },
+  {
+   "codigo": "9623.2",
+   "titulo": "Colector de dinheiro em máquinas de venda automática,"
+  },
+  {
+   "codigo": "9629.1",
+   "titulo": "Coveiro"
+  },
+  {
+   "codigo": "9629.2",
+   "titulo": "Outras profissões elementares diversas, n.e."
+  }
+ ]
+}
