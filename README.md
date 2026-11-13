@@ -80,7 +80,6 @@ Ao final, você recebe um resultado em linguagem simples, que pode ser salvo em 
 - O arquivo é gerado com a biblioteca pdf-lib, carregada da internet na primeira vez. Por isso, é preciso estar conectado para baixar o PDF.
 - Cada pessoa tem o próprio PDF. O nome do arquivo sai com o nome preenchido no início e com a data.
 - O PDF traz, no fim, o **código de respostas** e a data em que foi gerado. Se o resultado da tela se perder, o código recupera tudo (ver abaixo).
-- **Imprimir** abre a impressão do navegador. Use se preferir imprimir direto.
 - Se o PDF não abrir ou sair incompleto, use **Baixar em HTML (arquivo para guardar)**. Ele baixa um arquivo `.html` com o resultado completo, que abre sem internet e pode ser impresso ou salvo como PDF em qualquer navegador.
 
 ### Recuperar ou atualizar um resultado

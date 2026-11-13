@@ -344,13 +344,6 @@ function enviarLimpo(){
   }
 }
 
-function imprimirPDF(){
-  const antigo=document.title;
-  const nome=(S.nome||'sem-nome').replace(/[^A-Za-z0-9À-ɏ]+/g,'-').replace(/^-|-$/g,'');
-  document.title='Resultado-jovem-'+nome+'-'+new Date().toISOString().slice(0,10);
-  window.addEventListener('afterprint',()=>{document.title=antigo;},{once:true});
-  window.print();
-}
 
 // Baixa o resultado como arquivo HTML autônomo (abre sem internet e imprime bem em qualquer navegador)
 function baixarHTML(){
@@ -1159,7 +1152,6 @@ function renderResultado(){
   app.innerHTML=
    '<div class="no-print" style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:12px">'+
      '<button class="btn" onclick="gerarPDF()">Baixar em PDF</button>'+
-     '<button class="btn ghost" onclick="imprimirPDF()">Imprimir</button>'+
      '<button class="btn ghost" onclick="baixarHTML()">Baixar em HTML (arquivo para guardar)</button>'+
      '<button class="btn ghost" onclick="novaPessoa()">Nova pessoa</button>'+
    '</div>'+
