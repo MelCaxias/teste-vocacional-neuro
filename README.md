@@ -71,7 +71,7 @@ Ao final, você recebe um resultado em linguagem simples, que pode ser salvo em 
 1. Abra o link do teste adequado à idade (ou o arquivo `.html`, se tiver baixado).
 2. Responda uma pergunta por vez. As respostas usam uma escala de 0 a 5, ou marcação de uma ou mais opções.
 3. Use **"Não sei / não se aplica"** ou **"Pular"** sempre que precisar.
-4. Faça pausas quando quiser. O progresso fica salvo no navegador deste aparelho, e ao voltar você continua de onde parou.
+4. Faça pausas quando quiser. O progresso fica salvo no navegador deste aparelho. Para continuar depois, abra o teste no mesmo navegador, digite o mesmo nome e toque em **"Continuar de onde parou"**. Atenção: "Começar do início" apaga as respostas salvas daquele nome, e o teste pede confirmação antes.
 5. Ao final, veja o resultado na tela e salve em PDF.
 
 ### Salvar o resultado em PDF

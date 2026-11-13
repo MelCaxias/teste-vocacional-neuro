@@ -381,13 +381,13 @@ function renderIntro(){
    '<input id="idade" type="number" min="1" max="99" value="'+(S.idade===null?'':S.idade)+'">'+
    '<p id="aviso" class="warn">'+esc(aviso)+'</p>'+
    '<div class="nav">'+
-     (salvo&&salvo.i>0?'<button class="btn gr" onclick="continuarSalvo()">Continuar de onde parou</button>':'')+
+     (salvo&&salvo.i>0?'<button class="btn gr" id="continuar" onclick="continuarSalvo()">Continuar de onde parou</button>':'')+
      '<button class="btn" id="ini" '+(bloqueado?'disabled':'')+' onclick="comecar()">Começar do início</button>'+
    '</div></div>';
 }
 
 app.addEventListener('input',e=>{
-  if(e.target.id==='nome') S.nome=e.target.value.trim();
+  if(e.target.id==='nome'){S.nome=e.target.value.trim();atualizaContinuar();}
   if(e.target.id==='idade'){
     const v=parseInt(e.target.value,10);
     S.idade=isNaN(v)?null:v;
@@ -397,8 +397,20 @@ app.addEventListener('input',e=>{
   }
 });
 
+function atualizaContinuar(){
+  const ini=document.getElementById('ini');
+  if(!ini) return;
+  const salvo=S.nome?carregar(S.nome):null;
+  let b=document.getElementById('continuar');
+  if(salvo&&salvo.i>0){
+    if(!b){b=document.createElement('button');b.id='continuar';b.className='btn gr';b.textContent='Continuar de onde parou';b.onclick=continuarSalvo;ini.parentNode.insertBefore(b,ini);}
+  } else if(b) b.remove();
+}
+
 function comecar(){
   if(S.idade===null||S.idade<10||S.idade>16) return;
+  const antes=S.nome?carregar(S.nome):null;
+  if(antes&&antes.i>0&&!confirm('Já existe progresso salvo com este nome. Começar do início apaga essas respostas. Deseja continuar mesmo assim?')) return;
   S.R={};S.i=0;S.pausa=false;
   buildPages();
   salvar();
